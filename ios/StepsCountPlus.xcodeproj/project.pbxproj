@@ -9,11 +9,25 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* StepsCountPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* StepsCountPlusTests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-StepsCountPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-StepsCountPlus.a */; };
+		0FC5C77E7FF94F2B831EB23E /* PlusJakartaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0459566D7D7641A4923A715D /* PlusJakartaSans-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1A2C237AC84F41888B1739B8 /* PlusJakartaSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A344E4211484A59BA6FA2E6 /* PlusJakartaSans-Italic.ttf */; };
+		2657082F92624321A4707D7E /* PlusJakartaSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A1EB01F61C4421D9EC5BD75 /* PlusJakartaSans-ExtraBold.ttf */; };
+		4038D8C35FDA4E118B3BB1BC /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13D9A445323149AC887573E6 /* PlusJakartaSans-Bold.ttf */; };
+		60D98DBA82D34D9A94A9B81D /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC3FEDC23F86487880F955A0 /* PlusJakartaSans-Medium.ttf */; };
+		689DD5EDD01744ABA449DA22 /* PlusJakartaSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE542F7D936D441CBE19F0D6 /* PlusJakartaSans-Light.ttf */; };
+		69D561E4A9C74B8B86284C82 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42D9A9E161D242449913142A /* PlusJakartaSans-SemiBoldItalic.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-StepsCountPlus-StepsCountPlusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-StepsCountPlus-StepsCountPlusTests.a */; };
+		7E00F4AE27D94588AC3A709B /* PlusJakartaSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C7FD46101664563AFD57C7F /* PlusJakartaSans-BoldItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		81F0D70EC05E44629451BF1B /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F639A4297FBD47CCA2DC9255 /* PlusJakartaSans-MediumItalic.ttf */; };
+		8A6859076F1B49C7906134D3 /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AD5E9D0987C432CA3BD903F /* PlusJakartaSans-SemiBold.ttf */; };
+		8CE22D4FDB3146FBA34C98A5 /* PlusJakartaSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 813BE21B63E54D5AA8ECAE38 /* PlusJakartaSans-ExtraLight.ttf */; };
+		A71A1C43A3F34AAF835CAF70 /* PlusJakartaSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCCD5ACF56754D0DB0ACC8A6 /* PlusJakartaSans-ExtraLightItalic.ttf */; };
+		AA745A2982F34FC39EB96C0C /* PlusJakartaSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EBE823514C34821B848F141 /* PlusJakartaSans-LightItalic.ttf */; };
+		E8C4E7BC966A4C768649995D /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E748F197E1148A990707B7D /* PlusJakartaSans-ExtraBoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +44,34 @@
 		00E356EE1AD99517003FC87E /* StepsCountPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepsCountPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* StepsCountPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepsCountPlusTests.m; sourceTree = "<group>"; };
+		0459566D7D7641A4923A715D /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Regular.ttf"; path = "../assets/fonts/PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
+		0C7FD46101664563AFD57C7F /* PlusJakartaSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-BoldItalic.ttf"; path = "../assets/fonts/PlusJakartaSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* StepsCountPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepsCountPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = StepsCountPlus/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = StepsCountPlus/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = StepsCountPlus/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = StepsCountPlus/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = StepsCountPlus/main.m; sourceTree = "<group>"; };
+		13D9A445323149AC887573E6 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Bold.ttf"; path = "../assets/fonts/PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-StepsCountPlus-StepsCountPlusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StepsCountPlus-StepsCountPlusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E748F197E1148A990707B7D /* PlusJakartaSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/PlusJakartaSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		2EBE823514C34821B848F141 /* PlusJakartaSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-LightItalic.ttf"; path = "../assets/fonts/PlusJakartaSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-StepsCountPlus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StepsCountPlus.debug.xcconfig"; path = "Target Support Files/Pods-StepsCountPlus/Pods-StepsCountPlus.debug.xcconfig"; sourceTree = "<group>"; };
+		42D9A9E161D242449913142A /* PlusJakartaSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-SemiBoldItalic.ttf"; path = "../assets/fonts/PlusJakartaSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-StepsCountPlus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StepsCountPlus.release.xcconfig"; path = "Target Support Files/Pods-StepsCountPlus/Pods-StepsCountPlus.release.xcconfig"; sourceTree = "<group>"; };
+		5A1EB01F61C4421D9EC5BD75 /* PlusJakartaSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraBold.ttf"; path = "../assets/fonts/PlusJakartaSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-StepsCountPlus-StepsCountPlusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StepsCountPlus-StepsCountPlusTests.debug.xcconfig"; path = "Target Support Files/Pods-StepsCountPlus-StepsCountPlusTests/Pods-StepsCountPlus-StepsCountPlusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-StepsCountPlus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StepsCountPlus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A344E4211484A59BA6FA2E6 /* PlusJakartaSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Italic.ttf"; path = "../assets/fonts/PlusJakartaSans-Italic.ttf"; sourceTree = "<group>"; };
+		813BE21B63E54D5AA8ECAE38 /* PlusJakartaSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraLight.ttf"; path = "../assets/fonts/PlusJakartaSans-ExtraLight.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = StepsCountPlus/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-StepsCountPlus-StepsCountPlusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StepsCountPlus-StepsCountPlusTests.release.xcconfig"; path = "Target Support Files/Pods-StepsCountPlus-StepsCountPlusTests/Pods-StepsCountPlus-StepsCountPlusTests.release.xcconfig"; sourceTree = "<group>"; };
+		8AD5E9D0987C432CA3BD903F /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-SemiBold.ttf"; path = "../assets/fonts/PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		AC3FEDC23F86487880F955A0 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Medium.ttf"; path = "../assets/fonts/PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
+		CE542F7D936D441CBE19F0D6 /* PlusJakartaSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-Light.ttf"; path = "../assets/fonts/PlusJakartaSans-Light.ttf"; sourceTree = "<group>"; };
+		DCCD5ACF56754D0DB0ACC8A6 /* PlusJakartaSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-ExtraLightItalic.ttf"; path = "../assets/fonts/PlusJakartaSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F639A4297FBD47CCA2DC9255 /* PlusJakartaSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlusJakartaSans-MediumItalic.ttf"; path = "../assets/fonts/PlusJakartaSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +134,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		68BA547BDF5F47A6B3DC168B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				13D9A445323149AC887573E6 /* PlusJakartaSans-Bold.ttf */,
+				0C7FD46101664563AFD57C7F /* PlusJakartaSans-BoldItalic.ttf */,
+				5A1EB01F61C4421D9EC5BD75 /* PlusJakartaSans-ExtraBold.ttf */,
+				2E748F197E1148A990707B7D /* PlusJakartaSans-ExtraBoldItalic.ttf */,
+				813BE21B63E54D5AA8ECAE38 /* PlusJakartaSans-ExtraLight.ttf */,
+				DCCD5ACF56754D0DB0ACC8A6 /* PlusJakartaSans-ExtraLightItalic.ttf */,
+				6A344E4211484A59BA6FA2E6 /* PlusJakartaSans-Italic.ttf */,
+				CE542F7D936D441CBE19F0D6 /* PlusJakartaSans-Light.ttf */,
+				2EBE823514C34821B848F141 /* PlusJakartaSans-LightItalic.ttf */,
+				AC3FEDC23F86487880F955A0 /* PlusJakartaSans-Medium.ttf */,
+				F639A4297FBD47CCA2DC9255 /* PlusJakartaSans-MediumItalic.ttf */,
+				0459566D7D7641A4923A715D /* PlusJakartaSans-Regular.ttf */,
+				8AD5E9D0987C432CA3BD903F /* PlusJakartaSans-SemiBold.ttf */,
+				42D9A9E161D242449913142A /* PlusJakartaSans-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +171,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				68BA547BDF5F47A6B3DC168B /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -183,6 +233,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				24456431508B475C990AEAB1 /* Upload Debug Symbols to Embrace */,
 			);
 			buildRules = (
 			);
@@ -206,7 +257,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -243,6 +294,20 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4038D8C35FDA4E118B3BB1BC /* PlusJakartaSans-Bold.ttf in Resources */,
+				7E00F4AE27D94588AC3A709B /* PlusJakartaSans-BoldItalic.ttf in Resources */,
+				2657082F92624321A4707D7E /* PlusJakartaSans-ExtraBold.ttf in Resources */,
+				E8C4E7BC966A4C768649995D /* PlusJakartaSans-ExtraBoldItalic.ttf in Resources */,
+				8CE22D4FDB3146FBA34C98A5 /* PlusJakartaSans-ExtraLight.ttf in Resources */,
+				A71A1C43A3F34AAF835CAF70 /* PlusJakartaSans-ExtraLightItalic.ttf in Resources */,
+				1A2C237AC84F41888B1739B8 /* PlusJakartaSans-Italic.ttf in Resources */,
+				689DD5EDD01744ABA449DA22 /* PlusJakartaSans-Light.ttf in Resources */,
+				AA745A2982F34FC39EB96C0C /* PlusJakartaSans-LightItalic.ttf in Resources */,
+				60D98DBA82D34D9A94A9B81D /* PlusJakartaSans-Medium.ttf in Resources */,
+				81F0D70EC05E44629451BF1B /* PlusJakartaSans-MediumItalic.ttf in Resources */,
+				0FC5C77E7FF94F2B831EB23E /* PlusJakartaSans-Regular.ttf in Resources */,
+				8A6859076F1B49C7906134D3 /* PlusJakartaSans-SemiBold.ttf in Resources */,
+				69D561E4A9C74B8B86284C82 /* PlusJakartaSans-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/main.jsbundle.map\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
 		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -281,6 +346,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StepsCountPlus/Pods-StepsCountPlus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		24456431508B475C990AEAB1 /* Upload Debug Symbols to Embrace */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Embrace";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "EMBRACE_ID=niEBS EMBRACE_TOKEN=d74f88e9725943a5b119b983513fba73 \"${PODS_ROOT}/EmbraceIO/run.sh\"";
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -466,6 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25P2P36RRF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = StepsCountPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -480,6 +560,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = StepsCountPlus;
+				SWIFT_OBJC_BRIDGING_HEADER = "StepsCountPlus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -493,6 +574,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 25P2P36RRF;
 				INFOPLIST_FILE = StepsCountPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -506,6 +588,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = StepsCountPlus;
+				SWIFT_OBJC_BRIDGING_HEADER = "StepsCountPlus-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
