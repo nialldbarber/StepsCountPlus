@@ -6,7 +6,6 @@ import { formatNumber } from "@/app/lib/format/numbers";
 import { useDistanceStore } from "@/app/store/distance";
 import { useFlightsStore } from "@/app/store/flights";
 import { useStepsStore } from "@/app/store/steps";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 const D = () => (
 	<Box
@@ -29,17 +28,11 @@ export function StatsScreen() {
 		useFlightsStore();
 	const { dailyDistance, weeklyDistance, monthlyDistance, yearlyDistance } =
 		useDistanceStore();
-	const { styles } = useStyles(stylesheet);
 
 	return (
 		<Layout>
-			<Text
-				level="heading"
-				size="26px"
-				weight="medium"
-				textStyles={styles.text}
-			>
-				What should be on this screen? poop
+			<Text level="heading" size="26px" weight="bold">
+				What should be on this screen?
 			</Text>
 			<D />
 			<Text>Daily steps: {formatNumber(dailySteps)}</Text>
@@ -60,9 +53,3 @@ export function StatsScreen() {
 		</Layout>
 	);
 }
-
-const stylesheet = createStyleSheet((theme) => ({
-	text: {
-		backgroundColor: theme.colors.bottomTabActiveTabBorder,
-	},
-}));

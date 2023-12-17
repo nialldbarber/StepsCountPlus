@@ -17,6 +17,7 @@
 		"@react-navigation/native": "^6.1.9",
 		"@react-navigation/native-stack": "^6.9.17",
 		"@shopify/react-native-performance": "^4.1.2",
+		"@shopify/react-native-skia": "^0.1.230",
 		"ContextMenu": "file:context-menu",
 		"emoji-regex": "^10.3.0",
 		"iconsax-react-native": "^0.0.8",
