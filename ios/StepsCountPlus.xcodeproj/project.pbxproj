@@ -494,6 +494,7 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-StepsCountPlus-StepsCountPlusTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 95P8RUD7QB;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -522,6 +523,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 95P8RUD7QB;
 				INFOPLIST_FILE = StepsCountPlusTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -548,7 +550,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StepsCountPlus/StepsCountPlus.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 25P2P36RRF;
+				DEVELOPMENT_TEAM = 95P8RUD7QB;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = StepsCountPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -561,7 +563,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = nialldbarber.StepsCountPlus;
 				PRODUCT_NAME = StepsCountPlus;
 				SWIFT_OBJC_BRIDGING_HEADER = "StepsCountPlus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -578,7 +580,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = StepsCountPlus/StepsCountPlus.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 25P2P36RRF;
+				DEVELOPMENT_TEAM = 95P8RUD7QB;
 				INFOPLIST_FILE = StepsCountPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,7 +592,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = nialldbarber.StepsCountPlus;
 				PRODUCT_NAME = StepsCountPlus;
 				SWIFT_OBJC_BRIDGING_HEADER = "StepsCountPlus-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -753,7 +755,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "StepsCountPlus" */ = {
 			isa = XCConfigurationList;
@@ -762,7 +764,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "StepsCountPlus" */ = {
 			isa = XCConfigurationList;
@@ -771,7 +773,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

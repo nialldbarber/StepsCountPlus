@@ -1,10 +1,17 @@
 import type { DaysPrevious } from "@/app/lib/activity/types";
-import type { HealthInputOptions } from "react-native-health";
-import AppleHealthKit from "react-native-health";
+import type {
+	HealthInputOptions,
+	AppleHealthKit as HealthKit,
+} from "react-native-health";
 
-export function getStepsFromPeriod(
+export function getMeasurementsFromPeriod(
 	daysPrevious: DaysPrevious,
-	callback: (...args: unknown[]) => void,
+	retrievalFn:
+		| HealthKit["getDailyStepCountSamples"]
+		| HealthKit["getDailyFlightsClimbedSamples"]
+		| HealthKit["getDailyDistanceWalkingRunningSamples"],
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	callback: (...args: any[]) => void,
 ) {
 	const startDate = new Date();
 	const endDate = new Date();
@@ -19,7 +26,7 @@ export function getStepsFromPeriod(
 		period: 1444,
 	};
 
-	AppleHealthKit.getDailyStepCountSamples(options, (error, results) => {
+	retrievalFn(options, (error, results) => {
 		if (error) {
 			console.error(
 				`Error retrieving step count for the past ${daysPrevious}`,
