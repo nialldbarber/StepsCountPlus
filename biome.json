@@ -6,6 +6,9 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
+			"correctness": {
+				"useExhaustiveDependencies": "warn"
+			},
 			"recommended": true,
 			"suspicious": {
 				"noEmptyInterface": "off"

@@ -1,8 +1,13 @@
 import { Layout } from "@/app/design-system/components/layout";
 import { Text } from "@/app/design-system/components/text";
+import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
+import { useStepsStore } from "@/app/store/steps";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export function StatsScreen() {
+	useGetHealthData(new Date());
+
+	const { dailySteps } = useStepsStore();
 	const { styles } = useStyles(stylesheet);
 
 	return (
@@ -13,8 +18,11 @@ export function StatsScreen() {
 				weight="medium"
 				textStyles={styles.text}
 			>
-				Race against time
+				What should be on this screen?
 			</Text>
+			<Text>Daily steps: {dailySteps}</Text>
+			<Text>Daily flights</Text>
+			<Text>Daily Distance</Text>
 		</Layout>
 	);
 }

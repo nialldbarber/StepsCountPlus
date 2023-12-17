@@ -1,19 +1,7 @@
-/**
- * this component should be consumable on each bottom tab screen
- *
- * you should be able to return to the previous screen
- * -> use the react navigation hook: goBack()
- *
- * it should show the screen header title
- *
- * debug mode, let's give it a red background
- */
-
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { shadow } from "@/app/design-system/shadow";
-import type { Tabs } from "@/app/navigation/bottom-tabs";
 import type { RootStackParamsList } from "@/app/navigation/types";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -22,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Props = {
-	header: Tabs;
+	header: "stats" | "challenges" | "goals";
 };
 
 type SettingsModalScreenNavigationProp = NativeStackNavigationProp<
@@ -36,7 +24,10 @@ export function Header({ header }: Props) {
 	const { navigate } = useNavigation<SettingsModalScreenNavigationProp>();
 
 	return (
-		<Box styles={{ paddingTop: insets.top }}>
+		<Box
+			styles={{ paddingTop: insets.top }}
+			backgroundColor={theme.colors.screenBackgroundColor}
+		>
 			<Box
 				flexDirection="row"
 				alignItems="center"

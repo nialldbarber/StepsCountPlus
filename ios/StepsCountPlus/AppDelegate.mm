@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "RCTAppleHealthKit.h"
 #import <React/RCTLinkingManager.h>
 #import <Embrace/Embrace.h>
 #import <React/RCTBundleURLProvider.h>
@@ -8,8 +9,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self
+                                            launchOptions:launchOptions];
+
   [ReactNativePerformance onAppStarted]; 
   [[Embrace sharedInstance] startWithLaunchOptions:launchOptions framework:EMBAppFrameworkReactNative];
+  [[RCTAppleHealthKit new] initializeBackgroundObservers:bridge];
 self.moduleName = @"StepsCountPlus";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.

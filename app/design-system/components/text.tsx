@@ -28,7 +28,7 @@ export function Text({
 	weight = "medium",
 	level = "text",
 	size = level === "heading" ? "18px" : "16px",
-	color = "black",
+	color,
 	withEmoji = false,
 	a11yHint,
 	textStyles,
@@ -50,7 +50,7 @@ export function Text({
 }
 
 // @ts-expect-error
-const stylesheet = createStyleSheet(() => ({
+const stylesheet = createStyleSheet((theme) => ({
 	text: (
 		size: FontSizes,
 		level: TextTypes,
@@ -61,6 +61,6 @@ const stylesheet = createStyleSheet(() => ({
 			? typeHierarchy.heading[size]
 			: typeHierarchy.text[size]),
 		fontFamily: fontWeight[weight],
-		color: colors[color],
+		color: color ? colors[color] : theme.colors.textColor,
 	}),
 }));

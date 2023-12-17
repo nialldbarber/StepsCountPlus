@@ -1,10 +1,12 @@
 import { Layout } from "@/app/design-system/components/layout";
-import { Text } from "react-native";
+import { Text } from "@/app/design-system/components/text";
 
 export function GoalsScreen() {
 	return (
 		<Layout>
-			<Text>Hello from goals!</Text>
+			<Text level="heading" size="30px">
+				Hello from goals!
+			</Text>
 		</Layout>
 	);
 }

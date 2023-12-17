@@ -4,6 +4,10 @@ import { radius } from "@/app/design-system/radius";
 export const lightTheme = {
 	colors: {
 		/**
+		 * @type Text color
+		 */
+		textColor: colors.black,
+		/**
 		 * @type Background colors
 		 */
 		screenBackgroundColor: colors.whiteTwo,
@@ -12,7 +16,7 @@ export const lightTheme = {
 		 */
 		cardBackgroundColor: colors.whiteThree,
 		/**
-		 * @type Icons
+		 * @type Bottom tabs
 		 */
 		bottomTabBackgroundColor: colors.pureWhite,
 		bottomTabActiveTabBorder: colors.primary,
@@ -37,6 +41,10 @@ export const lightTheme = {
 		buttonPrimaryTextColor: colors.white,
 		buttonSecondaryBackgroundColor: colors.secondary,
 		buttonSecondaryTextColor: colors.black,
+		/**
+		 * @type Bottom tabs
+		 */
+		bottomTabsBackgroundColor: colors.white,
 	},
 	dimensions: {
 		/**
@@ -49,6 +57,10 @@ export const lightTheme = {
 export const darkTheme = {
 	colors: {
 		/**
+		 * @type Text color
+		 */
+		textColor: colors.white,
+		/**
 		 * @type Background colors
 		 */
 		screenBackgroundColor: colors.black,
@@ -57,13 +69,13 @@ export const darkTheme = {
 		 */
 		cardBackgroundColor: colors.whiteThree,
 		/**
-		 * @type Icons
+		 * @type Bottom tabs
 		 */
 		bottomTabBackgroundColor: colors.pureWhite,
 		bottomTabActiveTabBorder: colors.primary,
-		bottomTabsIconStroke: colors.black,
+		bottomTabsIconStroke: colors.white,
 		bottomTabsIconActiveStroke: colors.primary,
-		bottomTabsTextColor: colors.black,
+		bottomTabsTextColor: colors.white,
 		bottomTabsTextActiveColor: colors.primary,
 		/**
 		 * @type Icons
@@ -82,6 +94,10 @@ export const darkTheme = {
 		buttonPrimaryTextColor: colors.white,
 		buttonSecondaryBackgroundColor: colors.secondary,
 		buttonSecondaryTextColor: colors.black,
+		/**
+		 * @type Bottom tabs
+		 */
+		bottomTabsBackgroundColor: colors.black,
 	},
 	dimensions: {
 		/**

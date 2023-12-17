@@ -1,0 +1,13 @@
+{
+	"name": "ContextMenu",
+	"version": "1.0.0",
+	"peerDependencies": {
+		"react": "*",
+		"react-native": "*"
+	},
+	"codegenConfig": {
+		"name": "ContextMenuSpec",
+		"type": "all",
+		"jsSrcsDir": "spec"
+	}
+}

@@ -9,25 +9,31 @@
 		"start": "react-native start",
 		"test:unit": "jest ./app",
 		"test:e2e:ios": "detox test --configuration ios.sim.debug",
-		"test:e2e:android": "detox test --configuration android.sim.debug"
+		"test:e2e:android": "detox test --configuration android.sim.debug",
+		"postinstall": "RCT_NEW_ARCH_ENABLED=1 npx pod-install"
 	},
 	"dependencies": {
 		"@react-navigation/bottom-tabs": "^6.5.11",
 		"@react-navigation/native": "^6.1.9",
 		"@react-navigation/native-stack": "^6.9.17",
 		"@shopify/react-native-performance": "^4.1.2",
+		"ContextMenu": "file:context-menu",
 		"emoji-regex": "^10.3.0",
 		"iconsax-react-native": "^0.0.8",
+		"immer": "^10.0.3",
 		"react": "18.2.0",
 		"react-keyed-flatten-children": "^3.0.0",
 		"react-native": "0.73.0",
 		"react-native-context-menu-view": "^1.14.1",
 		"react-native-embrace": "^3.16.0",
+		"react-native-health": "^1.18.0",
+		"react-native-mmkv": "^2.11.0",
 		"react-native-reanimated": "^3.6.1",
 		"react-native-safe-area-context": "^4.8.1",
 		"react-native-screens": "^3.29.0",
 		"react-native-svg": "^14.1.0",
-		"react-native-unistyles": "^2.0.0-rc.1"
+		"react-native-unistyles": "^2.0.0-rc.1",
+		"zustand": "^4.4.7"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.0",

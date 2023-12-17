@@ -1,22 +1,26 @@
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
+import { radius } from "@/app/design-system/radius";
+import { useMeasurementsStore } from "@/app/store/measurements";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
-import ContextMenu from "react-native-context-menu-view";
+import { Linking, Switch } from "react-native";
+// import ContextMenu from "react-native-context-menu-view";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export function SettingsScreen() {
 	const { styles, theme } = useStyles(stylesheet);
 	const { goBack } = useNavigation();
+	const { distance, setDistance } = useMeasurementsStore();
 
 	return (
-		<Box flex={1} backgroundColor="black">
+		<Box flex={1} backgroundColor={theme.colors.screenBackgroundColor}>
 			<Box
 				flexDirection="row"
 				alignItems="center"
 				justifyContent="space-between"
-				backgroundColor="destructive"
+				backgroundColor="greyTwo"
 				padding="20px"
 			>
 				<Text level="heading" size="30px" weight="bold">
@@ -33,7 +37,7 @@ export function SettingsScreen() {
 					</Text>
 				</Box>
 				<Box
-					backgroundColor="greySix"
+					backgroundColor="greyTwo"
 					padding="20px"
 					margin="20px"
 					borderRadius="large"
@@ -41,26 +45,32 @@ export function SettingsScreen() {
 					justifyContent="space-between"
 					alignItems="center"
 				>
-					<Text color="white" weight="bold">
-						Color mode
-					</Text>
-					<ContextMenu
-						title="Hello there man!"
-						actions={[{ title: "Title 1" }, { title: "Title 2" }]}
-						onPress={(e) => {
-							console.warn(
-								`Pressed ${e.nativeEvent.name} at index ${e.nativeEvent.index}`,
-							);
-						}}
+					<Text weight="bold">Color mode</Text>
+					<Pressable
+						style={styles.button}
+						onPress={() => Linking.openSettings()}
 					>
-						<Box
-							height="20px"
-							width="20px"
-							borderRadius="full"
-							backgroundColor="destructive"
-							zIndex="4px"
-						/>
-					</ContextMenu>
+						<Text size="12px" weight="bold">
+							Click here
+						</Text>
+					</Pressable>
+				</Box>
+				<Box
+					backgroundColor="greyTwo"
+					padding="20px"
+					margin="20px"
+					borderRadius="large"
+					flexDirection="row"
+					justifyContent="space-between"
+					alignItems="center"
+				>
+					<Text weight="bold">Distance unit: ({distance})</Text>
+					<Switch
+						value={distance === "km"}
+						onValueChange={() =>
+							setDistance(distance === "km" ? "miles" : "km")
+						}
+					/>
 				</Box>
 				<Text>Units preference</Text>
 			</Box>
@@ -69,5 +79,11 @@ export function SettingsScreen() {
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-	container: {},
+	button: {
+		borderWidth: 1,
+		borderColor: theme.colors.buttonPrimaryBackgroundColor,
+		borderStyle: "dashed",
+		padding: 10,
+		borderRadius: radius.large,
+	},
 }));
