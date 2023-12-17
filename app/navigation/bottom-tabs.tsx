@@ -52,6 +52,9 @@ export function BottomTabs() {
 				tabBarStyle: {
 					backgroundColor: theme.colors.bottomTabsBackgroundColor,
 				},
+				tabBarLabelStyle: {
+					fontWeight: "bold",
+				},
 			}}
 		>
 			<Tab.Screen
