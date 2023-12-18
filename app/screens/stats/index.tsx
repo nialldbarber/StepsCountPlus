@@ -15,10 +15,10 @@ import type { Goals } from "@/app/store/goal-types";
 import { goalTypes } from "@/app/store/goal-types";
 import { useGoalsStore } from "@/app/store/goals";
 import { useStepsStore } from "@/app/store/steps";
-// import * as Sentry from "@sentry/react-native";
+import * as Sentry from "@sentry/react-native";
 import { useFont } from "@shopify/react-native-skia";
 import { useMemo, useState } from "react";
-import { PixelRatio } from "react-native";
+import { Button, PixelRatio } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 const RADIUS = PixelRatio.roundToNearestPixel(170);
@@ -170,12 +170,12 @@ export function StatsScreen() {
 							</>
 						)}
 
-						{/* <Button
+						<Button
 							title="Try!"
 							onPress={() => {
-								Sentry.captureException(new Error("First error"));
+								Sentry.captureException(new Error("Yooooooooo NEW error"));
 							}}
-						/> */}
+						/>
 
 						{currentFilter === "Distance" && (
 							<>
