@@ -91,7 +91,10 @@ export function StatsScreen() {
 
 	return (
 		<>
-			<Box alignItems="center">
+			<Box
+				alignItems="center"
+				backgroundColor={theme.colors.screenBackgroundColor}
+			>
 				<Box
 					marginVertical="30px"
 					styles={{
@@ -111,7 +114,11 @@ export function StatsScreen() {
 				</Box>
 			</Box>
 
-			<Box alignItems="center" backgroundColor="pureWhite" shadow>
+			<Box
+				alignItems="center"
+				backgroundColor={theme.colors.screenBackgroundColor}
+				shadow
+			>
 				<Row
 					marginHorizontal="15px"
 					marginTop="12px"

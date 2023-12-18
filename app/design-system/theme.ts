@@ -32,6 +32,8 @@ export const lightTheme = {
 		chipActiveBackgroundColor: colors.primary,
 		chipDarkInactiveBackgroundColor: colors.white,
 		chipDarkActiveBackgroundColor: colors.primary,
+		chipActiveColor: colors.pureWhite,
+		chipInactiveColor: colors.pureWhite,
 		/**
 		 * @type Icon
 		 */
@@ -93,6 +95,8 @@ export const darkTheme = {
 		chipActiveBackgroundColor: colors.primary,
 		chipDarkInactiveBackgroundColor: colors.white,
 		chipDarkActiveBackgroundColor: colors.primary,
+		chipActiveColor: colors.pureWhite,
+		chipInactiveColor: colors.black,
 		/**
 		 * @type Icons
 		 */

@@ -1,4 +1,3 @@
-import { colors } from "@/app/design-system/colors";
 import type { PressableProps } from "@/app/design-system/components/pressable";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
@@ -73,14 +72,16 @@ export function Chip({
 			width: widths[width],
 		},
 		text: {
-			color: isSelected ? "white" : colors.black,
+			color: isSelected
+				? theme.colors.chipActiveColor
+				: theme.colors.chipInactiveColor,
 		},
 	});
 
 	return (
 		<Pressable style={styles.container} onPress={handleOnPress} {...rest}>
 			{icon && <Box paddingRight="5px">{icon}</Box>}
-			<Text style={styles.text} weight="bold" size={size}>
+			<Text textStyles={styles.text} weight="bold" size={size}>
 				{label}
 			</Text>
 		</Pressable>
