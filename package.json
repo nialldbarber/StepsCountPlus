@@ -27,6 +27,7 @@
 		"react": "18.2.0",
 		"react-keyed-flatten-children": "^3.0.0",
 		"react-native": "0.73.0",
+		"react-native-config": "^1.5.1",
 		"react-native-context-menu-view": "^1.14.1",
 		"react-native-embrace": "^3.16.0",
 		"react-native-gesture-handler": "^2.14.0",
