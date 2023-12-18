@@ -7,6 +7,8 @@ import { shadow } from "@/app/design-system/shadow";
 import { space } from "@/app/design-system/space";
 import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
 import { useEffect } from "react";
+// import type { ImpactFeedbackStyle } from "expo-haptics";
+// import * as Haptics from "expo-haptics";
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
@@ -26,6 +28,7 @@ export type Variant =
 
 interface ButtonProps extends PressableProps, BaseTextProps {
 	variant?: Variant;
+	// haptic?: keyof typeof ImpactFeedbackStyle;
 	isLoading?: boolean;
 	isDisabled?: boolean;
 	children: string;
@@ -33,6 +36,7 @@ interface ButtonProps extends PressableProps, BaseTextProps {
 
 export function Button({
 	variant = "primary",
+	// haptic,
 	isLoading = false,
 	isDisabled = false,
 	// isActive = false,
@@ -64,7 +68,12 @@ export function Button({
 			<Pressable
 				{...rest}
 				style={styles.button}
-				onPressIn={() => onPress("in")}
+				onPressIn={() => {
+					onPress("in");
+					// if (haptic !== undefined) {
+					// 	Haptics.impactAsync(Haptics.ImpactFeedbackStyle[haptic]);
+					// }
+				}}
 				onPressOut={() => onPress("out")}
 				accessibilityRole="button"
 				accessibilityLabel={accessibilityLabel}

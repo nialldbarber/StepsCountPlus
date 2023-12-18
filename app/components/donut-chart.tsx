@@ -55,7 +55,7 @@ export function DonutChart({
 			<Canvas style={styles.container}>
 				<Path
 					path={backgroundPath}
-					color={colors.pureWhite}
+					color={colors.secondary}
 					style="stroke"
 					strokeWidth={strokeWidth}
 					strokeCap="round"

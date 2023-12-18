@@ -13,11 +13,9 @@
 		"postinstall": "RCT_NEW_ARCH_ENABLED=1 npx pod-install"
 	},
 	"dependencies": {
-		"@gorhom/bottom-sheet": "^4.5.1",
 		"@react-navigation/bottom-tabs": "^6.5.11",
 		"@react-navigation/native": "^6.1.9",
 		"@react-navigation/native-stack": "^6.9.17",
-		"@sentry/react-native": "^5.15.1",
 		"@shopify/react-native-performance": "^4.1.2",
 		"@shopify/react-native-skia": "^0.1.230",
 		"ContextMenu": "file:context-menu",
@@ -28,8 +26,7 @@
 		"react-keyed-flatten-children": "^3.0.0",
 		"react-native": "0.73.0",
 		"react-native-context-menu-view": "^1.14.1",
-		"react-native-gesture-handler": "^2.14.0",
-		"react-native-haptic-feedback": "^2.2.0",
+		"react-native-embrace": "^3.16.0",
 		"react-native-health": "^1.18.0",
 		"react-native-mmkv": "^2.11.0",
 		"react-native-reanimated": "^3.6.1",

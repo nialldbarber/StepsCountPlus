@@ -1,22 +1,13 @@
-import type { Colors } from "@/app/design-system/colors";
-import { colors } from "@/app/design-system/colors";
 import { Box } from "@/app/design-system/components/box";
 import { PropsWithChildren } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-type Props = {
-	backgroundColor?: Colors | string;
-};
-
-export function Layout({
-	children,
-	backgroundColor,
-}: PropsWithChildren<Props>) {
+export function Layout({ children }: PropsWithChildren) {
 	const { styles } = useStyles(stylesheet);
 
 	return (
-		<SafeAreaView style={styles.container(backgroundColor)}>
+		<SafeAreaView style={styles.container}>
 			<ScrollView>
 				<Box padding="20px">{children}</Box>
 			</ScrollView>
@@ -25,10 +16,8 @@ export function Layout({
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-	container: (backgroundColor) => ({
+	container: {
 		flex: 1,
-		backgroundColor: backgroundColor
-			? colors[backgroundColor]
-			: theme.colors.screenBackgroundColor,
-	}),
+		backgroundColor: theme.colors.screenBackgroundColor,
+	},
 }));

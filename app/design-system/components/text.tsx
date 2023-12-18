@@ -8,7 +8,6 @@ import type { FontWeight } from "@/app/design-system/font-weight";
 import { fontWeight } from "@/app/design-system/font-weight";
 import { maxFontSizeMultiplier } from "@/app/design-system/max-font-size";
 import { renderStringWithEmoji } from "@/app/design-system/render-emoji";
-import React from "react";
 import type { TextProps as NativeTextProps, TextStyle } from "react-native";
 import { Text as NativeText } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
@@ -26,7 +25,7 @@ export type BaseTextProps = {
 export interface TextProps extends NativeTextProps, BaseTextProps {}
 
 export function Text({
-	weight = "bold",
+	weight = "medium",
 	level = "text",
 	size = level === "heading" ? "18px" : "16px",
 	color,
@@ -37,23 +36,6 @@ export function Text({
 }: TextProps) {
 	const { styles } = useStyles(stylesheet);
 
-	const renderChildren = () => {
-		return React.Children.map(children, (child) => {
-			if (typeof child === "string") {
-				return withEmoji ? renderStringWithEmoji(child) : child;
-			}
-			if (React.isValidElement(child)) {
-				return React.cloneElement(child, {
-					style: {
-						...child.props.style,
-						alignSelf: "baseline",
-					},
-				});
-			}
-			return child;
-		});
-	};
-
 	return (
 		<NativeText
 			// @ts-expect-error
@@ -62,7 +44,7 @@ export function Text({
 			accessibilityRole={level === "heading" ? "header" : "text"}
 			accessibilityHint={a11yHint}
 		>
-			{renderChildren()}
+			{withEmoji ? renderStringWithEmoji(children) : children}
 		</NativeText>
 	);
 }

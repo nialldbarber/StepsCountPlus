@@ -20,8 +20,7 @@ export type ChallengeTypes =
 	| "distance"
 	| "flights"
 	| "long-distance-runs"
-	| "f1-tracks"
-	| "emphasise";
+	| "f1-tracks";
 
 export type RootChallengesScreen = {
 	ChallengesRoot: undefined;

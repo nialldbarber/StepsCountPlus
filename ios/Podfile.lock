@@ -6,6 +6,7 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - DoubleConversion (1.1.6)
+  - EmbraceIO (5.24.0)
   - FBLazyVector (0.73.0)
   - FBReactNativeSpec (0.73.0):
     - RCT-Folly (= 2022.05.16.00)
@@ -1139,11 +1140,8 @@ PODS:
     - React-Core
   - RNAppleHealthKit (1.7.0):
     - React
-  - RNGestureHandler (2.14.0):
-    - glog
-    - RCT-Folly (= 2022.05.16.00)
-    - React-Core
-  - RNReactNativeHapticFeedback (2.2.0):
+  - RNEmbrace (1.1.1):
+    - EmbraceIO (= 5.24.0)
     - React-Core
   - RNReanimated (3.6.1):
     - glog
@@ -1154,16 +1152,8 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - RNSentry (5.15.1):
-    - hermes-engine
-    - React-Core
-    - React-hermes
-    - Sentry/HybridSDK (= 8.17.1)
   - RNSVG (14.1.0):
     - React-Core
-  - Sentry/HybridSDK (8.17.1):
-    - SentryPrivate (= 8.17.1)
-  - SentryPrivate (8.17.1)
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -1248,17 +1238,16 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "ReactNativePerformance (from `../node_modules/@shopify/react-native-performance`)"
   - RNAppleHealthKit (from `../node_modules/react-native-health`)
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNReactNativeHapticFeedback (from `../node_modules/react-native-haptic-feedback`)
+  - RNEmbrace (from `../node_modules/react-native-embrace`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
-  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
     - CocoaAsyncSocket
+    - EmbraceIO
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -1272,8 +1261,6 @@ SPEC REPOS:
     - MMKV
     - MMKVCore
     - OpenSSL-Universal
-    - Sentry
-    - SentryPrivate
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1388,16 +1375,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@shopify/react-native-performance"
   RNAppleHealthKit:
     :path: "../node_modules/react-native-health"
-  RNGestureHandler:
-    :path: "../node_modules/react-native-gesture-handler"
-  RNReactNativeHapticFeedback:
-    :path: "../node_modules/react-native-haptic-feedback"
+  RNEmbrace:
+    :path: "../node_modules/react-native-embrace"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
-  RNSentry:
-    :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -1408,6 +1391,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   ContextMenu: ce59bcac10118d6d1c35d1096a26a5d1b567827d
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
+  EmbraceIO: dc1b9fb66ef2fcf71542cfe99d17c9c3bacee257
   FBLazyVector: 39ba45baf4e398618f8b3a4bb6ba8fcdb7fc2133
   FBReactNativeSpec: 20cfca68498e27879514790359289d1df2b52c56
   Flipper: c7a0093234c4bdd456e363f2f19b2e4b27652d44
@@ -1473,14 +1457,10 @@ SPEC CHECKSUMS:
   ReactCommon: 851280fb976399ca1aabc74cc2c3612069ea70a2
   ReactNativePerformance: ab7dee4c4862623d72c1530a9fc71b55458edf71
   RNAppleHealthKit: 60a6beefdd89a75811e9a8873a5e24f351dee681
-  RNGestureHandler: 61bfdfc05db9b79dd61f894dcd29d3dcc6db3c02
-  RNReactNativeHapticFeedback: ec56a5f81c3941206fd85625fa669ffc7b4545f9
+  RNEmbrace: d022c89a1ecc9f701f93120e2f854cc55f55bc07
   RNReanimated: 57f436e7aa3d277fbfed05e003230b43428157c0
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
-  RNSentry: a6202c19ca31b69969dface2ea0db093e36c97a3
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
-  Sentry: d9f99f9cc13777c5d938650c1e1c85047bb4f0d1
-  SentryPrivate: 839b1e58addf58624087a80b2628e543193fa8ef
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 20d6a900dcc8d61d5e3b799bbf627cc34474a8c4
 

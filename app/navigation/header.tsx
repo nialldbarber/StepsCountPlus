@@ -35,12 +35,7 @@ export function Header({ header }: Props) {
 				paddingBottom="24px"
 				paddingHorizontal="20px"
 			>
-				<Text
-					level="heading"
-					size="34px"
-					weight="bold"
-					textStyles={styles.text}
-				>
+				<Text level="heading" size="34px" weight="bold" style={styles.text}>
 					{header}
 				</Text>
 				<Pressable
@@ -52,7 +47,7 @@ export function Header({ header }: Props) {
 					testID="navigationButton"
 				>
 					<Box borderRadius="full" padding="6px" styles={styles.background}>
-						<Setting2 size="26" color={theme.colors.settingsStroke} />
+						<Setting2 size="32" color={theme.colors.settingsStroke} />
 					</Box>
 				</Pressable>
 			</Box>
