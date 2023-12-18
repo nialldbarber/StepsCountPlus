@@ -1143,6 +1143,12 @@ PODS:
   - RNEmbrace (1.1.1):
     - EmbraceIO (= 5.24.0)
     - React-Core
+  - RNGestureHandler (2.14.0):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
+  - RNReactNativeHapticFeedback (2.2.0):
+    - React-Core
   - RNReanimated (3.6.1):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1239,6 +1245,8 @@ DEPENDENCIES:
   - "ReactNativePerformance (from `../node_modules/@shopify/react-native-performance`)"
   - RNAppleHealthKit (from `../node_modules/react-native-health`)
   - RNEmbrace (from `../node_modules/react-native-embrace`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReactNativeHapticFeedback (from `../node_modules/react-native-haptic-feedback`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -1377,6 +1385,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-health"
   RNEmbrace:
     :path: "../node_modules/react-native-embrace"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReactNativeHapticFeedback:
+    :path: "../node_modules/react-native-haptic-feedback"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1458,6 +1470,8 @@ SPEC CHECKSUMS:
   ReactNativePerformance: ab7dee4c4862623d72c1530a9fc71b55458edf71
   RNAppleHealthKit: 60a6beefdd89a75811e9a8873a5e24f351dee681
   RNEmbrace: d022c89a1ecc9f701f93120e2f854cc55f55bc07
+  RNGestureHandler: 61bfdfc05db9b79dd61f894dcd29d3dcc6db3c02
+  RNReactNativeHapticFeedback: ec56a5f81c3941206fd85625fa669ffc7b4545f9
   RNReanimated: 57f436e7aa3d277fbfed05e003230b43428157c0
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a

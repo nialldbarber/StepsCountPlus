@@ -1,6 +1,6 @@
 import { AppRegistry } from "react-native";
 import App from "./App";
 import { name as appName } from "./app.json";
-import "./app/design-system/unistyles";
+import "./app/design-system/unistyles.ts";
 
 AppRegistry.registerComponent(appName, () => App);

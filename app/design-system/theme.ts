@@ -11,6 +11,7 @@ export const lightTheme = {
 		 * @type Background colors
 		 */
 		screenBackgroundColor: colors.whiteTwo,
+		statsBottomSectionBackgroundColor: "pureWhite",
 		/**
 		 * @type Card
 		 */
@@ -24,6 +25,13 @@ export const lightTheme = {
 		bottomTabsIconActiveStroke: colors.primary,
 		bottomTabsTextColor: colors.black,
 		bottomTabsTextActiveColor: colors.primary,
+		/**
+		 * @type Chip
+		 */
+		chipInactiveBackgroundColor: colors.pureWhite,
+		chipActiveBackgroundColor: colors.primary,
+		chipDarkInactiveBackgroundColor: colors.white,
+		chipDarkActiveBackgroundColor: colors.primary,
 		/**
 		 * @type Icon
 		 */
@@ -44,7 +52,7 @@ export const lightTheme = {
 		/**
 		 * @type Bottom tabs
 		 */
-		bottomTabsBackgroundColor: colors.white,
+		bottomTabsBackgroundColor: colors.pureWhite,
 	},
 	dimensions: {
 		/**
@@ -64,6 +72,7 @@ export const darkTheme = {
 		 * @type Background colors
 		 */
 		screenBackgroundColor: colors.black,
+		statsBottomSectionBackgroundColor: "black",
 		/**
 		 * @type Card
 		 */
@@ -77,6 +86,13 @@ export const darkTheme = {
 		bottomTabsIconActiveStroke: colors.primary,
 		bottomTabsTextColor: colors.white,
 		bottomTabsTextActiveColor: colors.primary,
+		/**
+		 * @type Chip
+		 */
+		chipInactiveBackgroundColor: colors.pureWhite,
+		chipActiveBackgroundColor: colors.primary,
+		chipDarkInactiveBackgroundColor: colors.white,
+		chipDarkActiveBackgroundColor: colors.primary,
 		/**
 		 * @type Icons
 		 */

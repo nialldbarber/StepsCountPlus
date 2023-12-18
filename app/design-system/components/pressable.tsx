@@ -1,6 +1,7 @@
 import type { A11y } from "@/app/lib/misc-types";
 import type { PressableProps as NativePressableProps } from "react-native";
 import { Pressable as NativePressable } from "react-native";
+import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 export interface PressableProps extends NativePressableProps, A11y {
 	onPress?: (...args: unknown[]) => unknown;
@@ -22,6 +23,7 @@ export function Pressable({
 }: PressableProps) {
 	const handleOnPress = () => {
 		if (onPress === null || onPress === undefined) return;
+		RNReactNativeHapticFeedback.trigger("impactMedium");
 		onPress();
 	};
 

@@ -11,7 +11,7 @@ export function useButtonAnimation() {
 	}));
 
 	const onPress = (direction: "in" | "out") => {
-		size.value = withSpring(direction === "in" ? 0.88 : 1, {
+		size.value = withSpring(direction === "in" ? 0.95 : 1, {
 			overshootClamping: false,
 			restDisplacementThreshold: 0.01,
 			restSpeedThreshold: 2,

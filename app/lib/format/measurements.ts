@@ -1,5 +1,5 @@
 export function convertMetersToKm(value: number) {
-	return value / 1000;
+	return Number((value / 1000).toFixed(2));
 }
 
 export function formatKms(value: number) {
