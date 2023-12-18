@@ -9,6 +9,9 @@
 			"correctness": {
 				"useExhaustiveDependencies": "warn"
 			},
+			"nursery": {
+				"useGroupedTypeImport": "error"
+			},
 			"recommended": true,
 			"suspicious": {
 				"noEmptyInterface": "off"
