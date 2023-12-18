@@ -1,3 +1,4 @@
+import { Box } from "@/app/design-system/components/box";
 import type { PressableProps } from "@/app/design-system/components/pressable";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
@@ -10,7 +11,6 @@ import { space } from "@/app/design-system/space";
 import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
 import { StyleSheet, ViewStyle } from "react-native";
 import { useStyles } from "react-native-unistyles";
-import { Box } from "./box";
 
 type ChipMode = "light" | "dark";
 interface ChipProps extends PressableProps {

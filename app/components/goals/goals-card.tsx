@@ -1,6 +1,5 @@
 import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Box } from "@/app/design-system/components/box";
-import { Button } from "@/app/design-system/components/button";
 import { Chip } from "@/app/design-system/components/chip";
 import { Row } from "@/app/design-system/components/row";
 import { Stack } from "@/app/design-system/components/stack";
@@ -10,6 +9,7 @@ import { useShakeAnimation } from "@/app/hooks/useShakeAnimation";
 import { formatNumber } from "@/app/lib/format/numbers";
 import { useMemo, useRef } from "react";
 import Animated from "react-native-reanimated";
+import { useStyles } from "react-native-unistyles";
 
 type GoalsCardProps = {
 	title: string;
@@ -34,6 +34,7 @@ export function GoalsCard({
 	goalCallback,
 	options,
 }: GoalsCardProps) {
+	const { theme } = useStyles();
 	const timerRef = useRef(null);
 	const { handleActiveValue } = useActiveValue(-1);
 	const { handleShakeAnimation, useShakeAnimationStyles } = useShakeAnimation();
@@ -61,7 +62,7 @@ export function GoalsCard({
 
 	return (
 		<Box
-			backgroundColor="pureWhite"
+			backgroundColor={theme.colors.cardBackgroundColor}
 			borderRadius="large"
 			marginVertical="5px"
 			paddingHorizontal="20px"
@@ -69,15 +70,9 @@ export function GoalsCard({
 			shadow
 		>
 			<Stack gutter="5px">
-				<Box alignItems="center">
+				<Box alignItems="center" paddingBottom="20px">
 					<Text level="heading" size="26px" weight="bold">
 						{title}
-					</Text>
-				</Box>
-				<Box alignItems="center">
-					<Text level="text" weight="bold">
-						{/* {t("screen.goals.card.subheader")} */}
-						hello
 					</Text>
 				</Box>
 				<Box
@@ -85,18 +80,11 @@ export function GoalsCard({
 					alignItems="center"
 					justifyContent="space-between"
 				>
-					<Button
-						variant="secondary"
+					<Chip
+						label={`-${decrementBy}`}
 						onPress={handleMinusGoal}
-						// onLongPress={handleMinusGoal}
-						// a11yLabel={t("components.goals.chip.decrease.a11yLabel")}
-						// a11yHint={t("components.goals.chip.decrease.a11yHint", {
-						//   goalType: title.toLowerCase(),
-						//   amount: decrementBy,
-						// })}
-					>
-						{`-${decrementBy}`}
-					</Button>
+						a11yLabel="test"
+					/>
 					<Animated.View style={useShakeAnimationStyles}>
 						<Text level="heading" size="28px">
 							{goal}
@@ -105,19 +93,13 @@ export function GoalsCard({
 							</Text>
 						</Text>
 					</Animated.View>
-					<Button
-						variant="secondary"
+					<Chip
+						label={`+${incrementBy}`}
 						onPress={handlePlusGoal}
-						// a11yLabel={t("components.goals.chip.increase.a11yLabel")}
-						// a11yHint={t("components.goals.chip.increase.a11yHint", {
-						//   goalType: title.toLowerCase(),
-						//   amount: incrementBy,
-						// })}
-					>
-						{`+${incrementBy}`}
-					</Button>
+						a11yLabel="test"
+					/>
 				</Box>
-				<Box alignItems="center">
+				<Box alignItems="center" paddingTop="20px" paddingBottom="10px">
 					<Text level="text" weight="bold">
 						Suggested goal
 					</Text>

@@ -1,5 +1,6 @@
 export const baseColors = {
 	black: "#1C1C1E",
+	blackTwo: "#2b2b2d",
 	white: "#f5f5f5",
 	whiteTwo: "##F9F4EA",
 	whiteThree: "#F2EADC",

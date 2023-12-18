@@ -78,7 +78,7 @@ export const darkTheme = {
 		/**
 		 * @type Card
 		 */
-		cardBackgroundColor: colors.whiteThree,
+		cardBackgroundColor: colors.blackTwo,
 		/**
 		 * @type Bottom tabs
 		 */
@@ -103,9 +103,9 @@ export const darkTheme = {
 		goBackStroke: colors.white,
 		warningStroke: colors.destructive,
 		warningText: colors.destructive,
-		closeStroke: colors.black,
+		closeStroke: colors.pureWhite,
 		settingsStroke: colors.white,
-		settingsStrokeBackground: colors.black,
+		settingsStrokeBackground: colors.blackTwo,
 		plusStroke: colors.black,
 		/**
 		 * @type Button

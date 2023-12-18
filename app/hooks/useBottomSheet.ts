@@ -6,7 +6,7 @@ export function useBottomSheet(
 	sheetRef: RefObject<BottomSheetModal>,
 	points?: Array<string>,
 ) {
-	const snapPoints = useMemo(() => points ?? ["50%"], [points]);
+	const snapPoints = useMemo(() => points ?? ["50%", "75%"], [points]);
 	const handlePresentModalPress = useCallback(() => {
 		sheetRef.current?.present();
 	}, [sheetRef]);

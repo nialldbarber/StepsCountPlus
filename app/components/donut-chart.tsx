@@ -3,6 +3,7 @@ import { Box } from "@/app/design-system/components/box";
 import type { SkFont } from "@shopify/react-native-skia";
 import { Canvas, Path, Skia, Text } from "@shopify/react-native-skia";
 import { StyleSheet } from "react-native";
+import { useStyles } from "react-native-unistyles";
 
 type DonutChartProps = {
 	strokeWidth: number;
@@ -10,7 +11,7 @@ type DonutChartProps = {
 	font: SkFont;
 	smallerFont: SkFont;
 	targetPercentage: number;
-	amount: number;
+	amount: number | string;
 	message: string;
 };
 
@@ -23,6 +24,7 @@ export function DonutChart({
 	amount,
 	message,
 }: DonutChartProps) {
+	const { theme } = useStyles();
 	const innerRadius = radius - strokeWidth / 2;
 	const endAngle = 2 * Math.PI * targetPercentage - Math.PI / 2;
 	const backgroundPath = Skia.Path.Make();

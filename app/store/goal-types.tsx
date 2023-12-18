@@ -1,5 +1,5 @@
+import { colors } from "@/app/design-system/colors";
 import { AlignBottom, Ruler, StatusUp } from "iconsax-react-native";
-import { colors } from "../design-system/colors";
 
 export const goalTypes = [
 	{

@@ -85,10 +85,6 @@ export function StatsScreen() {
 
 	if (!font || !smallerFont) return <Box />;
 
-	// 1. donut chart needs to be dynamic
-	// 2. set up state where one option is showing
-	// 3.
-
 	return (
 		<>
 			<Box

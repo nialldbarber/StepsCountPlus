@@ -51,6 +51,7 @@ export function BottomTabs() {
 			screenOptions={{
 				tabBarStyle: {
 					backgroundColor: theme.colors.bottomTabsBackgroundColor,
+					borderTopColor: theme.colors.bottomTabsBackgroundColor,
 				},
 				tabBarLabelStyle: {
 					fontWeight: "bold",
