@@ -21,19 +21,21 @@ export function ScreenHeader({
 	const { goBack } = useNavigation();
 
 	return (
-		<Box flexDirection="row" alignItems="center">
-			<Pressable
-				onPress={goBack}
-				accessible
-				accessibilityLabel="Press to go back to home screen"
-			>
-				<ArrowLeft size={28} color={theme.colors.goBackStroke} />
-			</Pressable>
-			<Box paddingLeft="10px">
-				<Text level="heading" size="26px" weight="bold">
+		<>
+			<Box>
+				<Pressable
+					onPress={goBack}
+					accessible
+					accessibilityLabel="Press to go back to home screen"
+				>
+					<ArrowLeft size={28} color={theme.colors.goBackStroke} />
+				</Pressable>
+			</Box>
+			<Box paddingLeft="10px" alignSelf="center">
+				<Text level="heading" size="23px" weight="bold">
 					{title}
 				</Text>
 			</Box>
-		</Box>
+		</>
 	);
 }

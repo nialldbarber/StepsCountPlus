@@ -10,5 +10,10 @@ export function useBottomSheet(
 	const handlePresentModalPress = useCallback(() => {
 		sheetRef.current?.present();
 	}, [sheetRef]);
-	return { snapPoints, handlePresentModalPress };
+
+	const handleCloseModal = useCallback(() => {
+		sheetRef.current?.dismiss();
+	}, [sheetRef]);
+
+	return { snapPoints, handlePresentModalPress, handleCloseModal };
 }

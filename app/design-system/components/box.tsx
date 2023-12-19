@@ -5,7 +5,7 @@ import { radius } from "@/app/design-system/radius";
 import { shadow as dropShadow } from "@/app/design-system/shadow";
 import type { Height, Width } from "@/app/design-system/size";
 import { heights, widths } from "@/app/design-system/size";
-import type { Space } from "@/app/design-system/space";
+import type { NegativeSpace, Space } from "@/app/design-system/space";
 import { space } from "@/app/design-system/space";
 import type { NegativeZIndex, ZIndex } from "@/app/design-system/z-index";
 import { zIndex } from "@/app/design-system/z-index";
@@ -59,13 +59,13 @@ export type BoxProps = {
 		| "center"
 		| "space-between"
 		| "space-around";
-	margin?: Space;
-	marginBottom?: Space;
-	marginHorizontal?: Space;
-	marginLeft?: Space;
-	marginRight?: Space;
-	marginTop?: Space;
-	marginVertical?: Space;
+	margin?: Space | NegativeSpace;
+	marginBottom?: Space | NegativeSpace;
+	marginHorizontal?: Space | NegativeSpace;
+	marginLeft?: Space | NegativeSpace;
+	marginRight?: Space | NegativeSpace;
+	marginTop?: Space | NegativeSpace;
+	marginVertical?: Space | NegativeSpace;
 	minHeight?: Space;
 	maxHeight?: Space;
 	padding?: Space;

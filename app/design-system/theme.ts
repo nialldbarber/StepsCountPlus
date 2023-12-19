@@ -69,6 +69,10 @@ export const lightTheme = {
 		 * @type Settings screen
 		 */
 		settingsScreenSeparatorColor: colors.white,
+		/**
+		 * @type Stats screen
+		 */
+		statsScreenChipBackgroundColor: colors.white,
 	},
 	dimensions: {
 		/**
@@ -146,6 +150,10 @@ export const darkTheme = {
 		 * @type Settings screen
 		 */
 		settingsScreenSeparatorColor: colors.greyFour,
+		/**
+		 * @type Stats screen
+		 */
+		statsScreenChipBackgroundColor: colors.black,
 	},
 	dimensions: {
 		/**

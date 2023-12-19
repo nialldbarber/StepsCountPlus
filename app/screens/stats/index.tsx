@@ -1,12 +1,16 @@
 import { DonutChart } from "@/app/components/donut-chart";
 import { StatsTable } from "@/app/components/stats/stats-table";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
+import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Chip } from "@/app/design-system/components/chip";
 import { Layout } from "@/app/design-system/components/layout";
+import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
+import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
 import { useActiveValue } from "@/app/hooks/useActiveValue";
+import { useBottomSheet } from "@/app/hooks/useBottomSheet";
 import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { formatNumber } from "@/app/lib/format/numbers";
@@ -17,18 +21,27 @@ import type { Goals } from "@/app/store/goal-types";
 import { goalTypes } from "@/app/store/goal-types";
 import { useGoalsStore } from "@/app/store/goals";
 import { useStepsStore } from "@/app/store/steps";
+import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useNavigation } from "@react-navigation/native";
 import { useFont } from "@shopify/react-native-skia";
-import { useMemo, useState } from "react";
-import { PixelRatio } from "react-native";
+import { InfoCircle } from "iconsax-react-native";
+import { useMemo, useRef, useState } from "react";
+import { PixelRatio, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 const RADIUS = PixelRatio.roundToNearestPixel(160);
 const STROKE_WIDTH = 12;
 
 export function StatsScreen() {
+	const { navigate } = useNavigation();
+	const bottomSheetRef = useRef(null);
 	const { isLoading } = useGetHealthData(new Date());
 	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
 	const { value, handleActiveValue } = useActiveValue();
+
+	const { handlePresentModalPress, handleCloseModal } =
+		useBottomSheet(bottomSheetRef);
+
 	const { theme } = useStyles(stylesheet);
 	const font = useFont(
 		require("../../../assets/fonts/PlusJakartaSans-Bold.ttf"),
@@ -54,7 +67,10 @@ export function StatsScreen() {
 		if (currentFilter === "Flights") {
 			return dailyFlights / flightsGoal;
 		}
-		return dailyDistance / distanceGoal;
+		if (currentFilter === "Distance") {
+			console.log(dailyDistance, distanceGoal);
+			return convertMetersToKm(dailyDistance) / distanceGoal;
+		}
 	}, [
 		currentFilter,
 		dailySteps,
@@ -88,115 +104,188 @@ export function StatsScreen() {
 
 	return (
 		<>
-			<Box
-				alignItems="center"
-				backgroundColor={theme.colors.screenBackgroundColor}
-			>
-				<Box alignSelf="flex-start" paddingHorizontal="20px">
-					<Text level="heading" size="26px">
-						{timeBasedGreeting()} 👋
-					</Text>
-				</Box>
+			<Layout backgroundColor={theme.colors.statsBottomSectionBackgroundColor}>
 				<Box
-					marginVertical="30px"
-					styles={{
-						width: RADIUS * 2,
-						height: RADIUS * 2,
-					}}
+					alignItems="center"
+					backgroundColor={theme.colors.screenBackgroundColor}
 				>
-					<DonutChart
-						radius={RADIUS}
-						strokeWidth={STROKE_WIDTH}
-						targetPercentage={calculatePercentage}
-						font={font}
-						smallerFont={smallerFont}
-						amount={determineAmount}
-						message={`Goal ${formatNumber(determineGoal)}`}
-					/>
-				</Box>
-			</Box>
-
-			<Box
-				alignItems="center"
-				backgroundColor={theme.colors.screenBackgroundColor}
-				shadow
-			>
-				<Row
-					marginHorizontal="15px"
-					marginTop="12px"
-					marginBottom="10px"
-					gutter="10px"
-					a11yRole="tablist"
-					scroll
-				>
-					{goalTypes.map(({ id, label, view, icon, selectedIcon }, index) => {
-						return (
-							<Chip
-								key={id}
-								label={label}
-								icon={icon}
-								selectedIcon={selectedIcon}
-								onPress={() => {
-									handleActiveValue(index);
-									setCurrentFilter(view);
-								}}
-								a11yLabel="test"
-								a11yRole="menu"
-								hitSlop={hitSlopLarge}
-								isSelected={index === value}
-								size="16px"
-								height="36px"
-								mode="light"
-							/>
-						);
-					})}
-				</Row>
-			</Box>
-
-			{isLoading ? (
-				<Text level="heading" size="30px">
-					Loading...
-				</Text>
-			) : (
-				<Layout
-					backgroundColor={theme.colors.statsBottomSectionBackgroundColor}
-				>
-					<Box alignSelf="center">
-						<Text level="heading" size="20px">
-							{currentFilter} Stats
+					<Box alignSelf="flex-start">
+						<Text level="heading" size="26px">
+							{timeBasedGreeting()} 👋
 						</Text>
 					</Box>
-					<Box paddingVertical="10px">
-						{currentFilter === "Steps" && (
-							<StatsTable
-								filter="Steps"
-								daily={formatNumber(dailySteps)}
-								weekly={formatNumber(weeklySteps)}
-								monthly={formatNumber(monthlySteps)}
-								yearly={formatNumber(yearlySteps)}
-							/>
-						)}
-						{currentFilter === "Flights" && (
-							<StatsTable
-								filter="Flights"
-								daily={dailyFlights}
-								weekly={weeklyFlights}
-								monthly={monthlyFlights}
-								yearly={yearlyFlights}
-							/>
-						)}
-						{currentFilter === "Distance" && (
-							<StatsTable
-								filter="Distance"
-								daily={formatNumber(convertMetersToKm(dailyDistance))}
-								weekly={formatNumber(convertMetersToKm(weeklyDistance))}
-								monthly={formatNumber(convertMetersToKm(monthlyDistance))}
-								yearly={formatNumber(convertMetersToKm(yearlyDistance))}
-							/>
-						)}
+					<Box
+						marginVertical="30px"
+						styles={{
+							width: RADIUS * 2,
+							height: RADIUS * 2,
+						}}
+					>
+						<DonutChart
+							radius={RADIUS}
+							strokeWidth={STROKE_WIDTH}
+							targetPercentage={calculatePercentage}
+							font={font}
+							smallerFont={smallerFont}
+							amount={determineAmount}
+							message={`Goal ${formatNumber(determineGoal)}`}
+						/>
 					</Box>
-				</Layout>
-			)}
+				</Box>
+
+				{/* TODO: come back and fix this */}
+				<Bleed
+					alignItems="center"
+					left="-42px"
+					right="-42px"
+					backgroundColor={theme.colors.statsScreenChipBackgroundColor}
+					paddingVertical={10}
+					shadow
+				>
+					<Row
+						marginHorizontal="15px"
+						marginTop="12px"
+						marginBottom="10px"
+						gutter="10px"
+						a11yRole="tablist"
+					>
+						{goalTypes.map(
+							({ id, label, view, icon, selectedIcon }, index) => {
+								return (
+									<Chip
+										key={id}
+										label={label}
+										icon={icon}
+										selectedIcon={selectedIcon}
+										onPress={() => {
+											handleActiveValue(index);
+											setCurrentFilter(view);
+										}}
+										a11yLabel="test"
+										a11yRole="menu"
+										hitSlop={hitSlopLarge}
+										isSelected={index === value}
+										size="16px"
+										height="36px"
+										mode="light"
+									/>
+								);
+							},
+						)}
+					</Row>
+				</Bleed>
+
+				<Box
+					flexDirection="row"
+					paddingHorizontal="10px"
+					alignItems="center"
+					paddingTop="38px"
+					justifyContent="space-between"
+					position="relative"
+				>
+					<Text level="heading" size="20px" color="primary">
+						{currentFilter} Stats
+					</Text>
+					<Box paddingLeft="10px">
+						<Pressable onPress={handlePresentModalPress} hitSlop={hitSlopLarge}>
+							<InfoCircle color={theme.colors.infoStroke} size={22} />
+						</Pressable>
+					</Box>
+				</Box>
+				<Box paddingVertical="10px">
+					{currentFilter === "Steps" && (
+						<StatsTable
+							filter="Steps"
+							daily={formatNumber(dailySteps)}
+							weekly={formatNumber(weeklySteps)}
+							monthly={formatNumber(monthlySteps)}
+							yearly={formatNumber(yearlySteps)}
+						/>
+					)}
+					{currentFilter === "Flights" && (
+						<StatsTable
+							filter="Flights"
+							daily={dailyFlights}
+							weekly={weeklyFlights}
+							monthly={monthlyFlights}
+							yearly={yearlyFlights}
+						/>
+					)}
+					{currentFilter === "Distance" && (
+						<StatsTable
+							filter="Distance"
+							daily={formatNumber(convertMetersToKm(dailyDistance))}
+							weekly={formatNumber(convertMetersToKm(weeklyDistance))}
+							monthly={formatNumber(convertMetersToKm(monthlyDistance))}
+							yearly={formatNumber(convertMetersToKm(yearlyDistance))}
+						/>
+					)}
+				</Box>
+			</Layout>
+			<BottomSheetModal
+				ref={bottomSheetRef}
+				index={1}
+				snapPoints={["35%", "40%"]}
+				backdropComponent={BottomSheetBackdrop}
+				backgroundStyle={{
+					backgroundColor: theme.colors.modalBackgroundColor,
+				}}
+			>
+				<Stack margin="20px">
+					<ScrollView showsVerticalScrollIndicator={false}>
+						<Box paddingBottom="38px">
+							<Box marginBottom="28px">
+								<Text level="heading" size="26px" withEmoji>
+									A note on this app 🙋
+								</Text>
+							</Box>
+							<Text weight="medium" size="14px" withEmoji>
+								The official Apple Health app (amongst others) already present
+								these data points beautifully and in far greater detail 🙏
+							</Text>
+							<Box height="20px" />
+							<Text weight="medium" size="14px" withEmoji>
+								This app is about taking on challenges! We have a currated list
+								of various categories that you can choose from. Accept them and
+								push yourself to hit your goals 💪
+							</Text>
+							<Box height="20px" />
+							<Box flexDirection="row" alignItems="center">
+								<Text weight="medium" size="14px" withEmoji>
+									Take on your first challenge
+								</Text>
+								<Pressable
+									onPress={() => {
+										navigate("Challenges");
+										handleCloseModal();
+									}}
+								>
+									<Text color="primary" weight="bold" size="14px" withEmoji>
+										{" "}
+										here! 🎉
+									</Text>
+								</Pressable>
+							</Box>
+							<Box height="20px" />
+							<Box flexDirection="row" alignItems="center">
+								<Text weight="medium" size="14px" withEmoji>
+									Want to change your goals? Change them{" "}
+								</Text>
+								<Pressable
+									onPress={() => {
+										navigate("Goals");
+										handleCloseModal();
+									}}
+								>
+									<Text color="primary" weight="medium" size="14px" withEmoji>
+										here!
+									</Text>
+								</Pressable>
+							</Box>
+						</Box>
+					</ScrollView>
+				</Stack>
+			</BottomSheetModal>
 		</>
 	);
 }

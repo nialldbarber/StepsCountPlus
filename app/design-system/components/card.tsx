@@ -9,6 +9,20 @@ type Props = {
 	challengeType: ChallengeTypes;
 };
 
+const CHALLENGE_TYPES: Record<string, string> = {
+	distance: "Distance",
+	flights: "Flights",
+	"long-distance-runs": "Long Distance Runs",
+	"f1-tracks": "F1 Tracks",
+};
+
+const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
+	distance: "📍",
+	flights: "🪜",
+	"long-distance-runs": "🏃",
+	"f1-tracks": "🏎️",
+};
+
 export function Card({ challengeType }: Props) {
 	const { navigate } = useNavigation();
 	const { styles, theme } = useStyles(stylesheet);
@@ -16,7 +30,6 @@ export function Card({ challengeType }: Props) {
 	return (
 		<Box
 			position="relative"
-			flexBasis="48%"
 			backgroundColor={theme.colors.cardBackgroundColor}
 			padding="20px"
 			borderRadius="large"
@@ -30,7 +43,33 @@ export function Card({ challengeType }: Props) {
 					navigate("SingleChallenge", { challengeType });
 				}}
 			>
-				<Text>{challengeType}</Text>
+				<Box
+					flexDirection="row"
+					alignItems="center"
+					justifyContent="flex-start"
+					width="full"
+				>
+					<Box
+						backgroundColor="orange_light"
+						marginLeft="20px"
+						marginRight="24px"
+						height="80px"
+						width="80px"
+						alignItems="center"
+						justifyContent="center"
+						borderRadius="full"
+					>
+						<Text level="heading" size="44px">
+							{CHALLENGE_EMOJI_TYPES[challengeType]}
+						</Text>
+					</Box>
+					<Box flex={1} paddingRight="20px">
+						<Text>{CHALLENGE_TYPES[challengeType]}</Text>
+						<Text size="11px">
+							Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+						</Text>
+					</Box>
+				</Box>
 			</Pressable>
 		</Box>
 	);
