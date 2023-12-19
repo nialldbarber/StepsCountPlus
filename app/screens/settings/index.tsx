@@ -183,9 +183,10 @@ export function SettingsScreen() {
 				</Box>
 
 				<Box alignItems="center" paddingTop="38px" paddingBottom="20px">
-					<Text color="greyFour" size="12px">
+					<Text color="greyFour" size="12px" withEmoji>
 						Built with ❤️ by Niall Barber
 					</Text>
+					<Box height="3px" />
 					<Text color="greyFour" size="12px">
 						StepsCountPlus+ 1.1.0 (32)
 					</Text>

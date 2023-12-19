@@ -26,7 +26,8 @@ export function DailyDistanceGoal() {
 
 	return (
 		<GoalsCard
-			title="Distance"
+			type="Distance"
+			title="Distance 📍"
 			goalAmount={distanceGoal}
 			units={pluralisation}
 			incrementBy="0.5"

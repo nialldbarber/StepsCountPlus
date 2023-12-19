@@ -20,6 +20,7 @@ import Animated from "react-native-reanimated";
 import { useStyles } from "react-native-unistyles";
 
 type GoalsCardProps = {
+	type: string;
 	title: string;
 	goalAmount: number;
 	units?: string;
@@ -32,6 +33,7 @@ type GoalsCardProps = {
 };
 
 export function GoalsCard({
+	type,
 	title,
 	goalAmount,
 	units,
@@ -84,11 +86,11 @@ export function GoalsCard({
 			>
 				<Stack margin="20px">
 					<ScrollView showsVerticalScrollIndicator={false}>
-						{title === "Steps" ? (
+						{type === "Steps" ? (
 							<StepsInfo />
-						) : title === "Flights" ? (
+						) : type === "Flights" ? (
 							<FlightsInfo />
-						) : title === "Distance" ? (
+						) : type === "Distance" ? (
 							<DistanceInfo />
 						) : null}
 					</ScrollView>
@@ -110,7 +112,7 @@ export function GoalsCard({
 				</Box>
 				<Stack gutter="5px">
 					<Box alignItems="center" paddingBottom="20px">
-						<Text level="heading" size="26px" weight="bold">
+						<Text level="heading" size="26px" weight="bold" withEmoji>
 							{title}
 						</Text>
 					</Box>

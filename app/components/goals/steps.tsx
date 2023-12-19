@@ -13,7 +13,8 @@ export function DailyStepsGoal() {
 
 	return (
 		<GoalsCard
-			title="Steps"
+			type="Steps"
+			title="Steps 👟"
 			goalAmount={stepsGoal}
 			incrementBy="100"
 			decrementBy="100"

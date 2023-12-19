@@ -18,7 +18,8 @@ export function DailyFlightsGoal() {
 
 	return (
 		<GoalsCard
-			title="Flights"
+			type="Flights"
+			title="Flights 🪜"
 			goalAmount={flightsGoal}
 			units={pluralisation}
 			incrementBy="1"
