@@ -1,22 +1,45 @@
+import { colors } from "@/app/design-system/colors";
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
-import { radius } from "@/app/design-system/radius";
+import { storage } from "@/app/storage/mmkv";
 import { useMeasurementsStore } from "@/app/store/measurements";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
 import { Switch } from "react-native";
-// import ContextMenu from "react-native-context-menu-view";
 import {
 	UnistylesRuntime,
 	createStyleSheet,
 	useStyles,
 } from "react-native-unistyles";
 
+function invokeChangeTheme(
+	theme: "light" | "dark" | "system",
+	stylesRuntime: typeof UnistylesRuntime,
+) {
+	if (theme === "light") {
+		storage.set("theme", "light");
+		stylesRuntime.setAdaptiveThemes(false);
+		stylesRuntime.setTheme("light");
+		return;
+	}
+	if (theme === "dark") {
+		storage.set("theme", "dark");
+		stylesRuntime.setAdaptiveThemes(false);
+		stylesRuntime.setTheme("dark");
+		return;
+	}
+	storage.set("theme", "system");
+	UnistylesRuntime.setAdaptiveThemes(true);
+}
+
 export function SettingsScreen() {
 	const { styles, theme } = useStyles(stylesheet);
 	const { goBack } = useNavigation();
 	const { distance, setDistance } = useMeasurementsStore();
+
+	const currentTheme = storage.getString("theme");
+	console.log("currentTheme: ", currentTheme);
 
 	return (
 		<Box flex={1} backgroundColor={theme.colors.screenBackgroundColor}>
@@ -24,7 +47,7 @@ export function SettingsScreen() {
 				flexDirection="row"
 				alignItems="center"
 				justifyContent="space-between"
-				backgroundColor={theme.colors.cardBackgroundColor}
+				backgroundColor={theme.colors.settingsCardBackgroundColor}
 				padding="20px"
 			>
 				<Text level="heading" size="30px">
@@ -39,7 +62,7 @@ export function SettingsScreen() {
 					<Text color="greyFour">Appearance</Text>
 				</Box>
 				<Box
-					backgroundColor={theme.colors.cardBackgroundColor}
+					backgroundColor={theme.colors.settingsCardBackgroundColor}
 					padding="20px"
 					marginHorizontal="20px"
 					marginVertical="10px"
@@ -47,40 +70,48 @@ export function SettingsScreen() {
 					flexDirection="row"
 					justifyContent="space-between"
 					alignItems="center"
+					shadow
 				>
 					<Text>Color mode</Text>
 					<Pressable
 						style={styles.button}
-						onPress={() => {
-							UnistylesRuntime.setAdaptiveThemes(true);
-						}}
+						onPress={() => invokeChangeTheme("system", UnistylesRuntime)}
 					>
 						<Text size="20px">⚙️</Text>
+						<Text
+							textStyles={styles.text(currentTheme === "system")}
+							size="12px"
+						>
+							System
+						</Text>
 					</Pressable>
 					<Pressable
 						style={styles.button}
-						onPress={() => {
-							UnistylesRuntime.setAdaptiveThemes(false);
-							UnistylesRuntime.setTheme("light");
-						}}
+						onPress={() => invokeChangeTheme("light", UnistylesRuntime)}
 					>
 						<Text size="20px">☀️</Text>
+						<Text
+							textStyles={styles.text(currentTheme === "light")}
+							size="12px"
+						>
+							Light
+						</Text>
 					</Pressable>
 					<Pressable
 						style={styles.button}
-						onPress={() => {
-							UnistylesRuntime.setAdaptiveThemes(false);
-							UnistylesRuntime.setTheme("dark");
-						}}
+						onPress={() => invokeChangeTheme("dark", UnistylesRuntime)}
 					>
 						<Text size="20px">🌚</Text>
+						<Text textStyles={styles.text(currentTheme === "dark")} size="12px">
+							Dark
+						</Text>
 					</Pressable>
 				</Box>
 				<Box paddingHorizontal="30px" paddingTop="15px">
 					<Text color="greyFour">Distance</Text>
 				</Box>
 				<Box
-					backgroundColor={theme.colors.cardBackgroundColor}
+					backgroundColor={theme.colors.settingsCardBackgroundColor}
 					padding="20px"
 					marginHorizontal="20px"
 					marginVertical="10px"
@@ -88,6 +119,7 @@ export function SettingsScreen() {
 					flexDirection="row"
 					justifyContent="space-between"
 					alignItems="center"
+					shadow
 				>
 					<Text>Units</Text>
 					<Box flexDirection="row" alignItems="center">
@@ -127,11 +159,14 @@ export function SettingsScreen() {
 	);
 }
 
-const stylesheet = createStyleSheet((theme) => ({
+const stylesheet = createStyleSheet(() => ({
 	button: {
 		padding: 5,
+		alignItems: "center",
 		backgroundColor: "pureWhite",
-		borderRadius: radius.full,
-		borderWidth: 2,
 	},
+	text: (isSelected: boolean) => ({
+		paddingTop: 10,
+		color: isSelected ? colors.primary : colors.pureWhite,
+	}),
 }));

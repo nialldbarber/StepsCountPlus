@@ -16,6 +16,7 @@ export const lightTheme = {
 		 * @type Card
 		 */
 		cardBackgroundColor: colors.whiteThree,
+		settingsCardBackgroundColor: colors.pureWhite,
 		/**
 		 * @type Bottom tabs
 		 */
@@ -79,6 +80,7 @@ export const darkTheme = {
 		 * @type Card
 		 */
 		cardBackgroundColor: colors.blackTwo,
+		settingsCardBackgroundColor: colors.blackTwo,
 		/**
 		 * @type Bottom tabs
 		 */
