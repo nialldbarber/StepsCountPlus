@@ -1,6 +1,7 @@
 import { getMeasurementsFromPeriod } from "@/app/lib/activity/steps";
 import { useDistanceStore } from "@/app/store/distance";
 import { useFlightsStore } from "@/app/store/flights";
+import { useMeasurementsStore } from "@/app/store/measurements";
 import { useStepsStore } from "@/app/store/steps";
 import { useEffect, useState } from "react";
 import { Platform } from "react-native";
@@ -28,6 +29,7 @@ export function useGetHealthData(date: Date) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [hasPermission, setHasPermission] = useState(false);
 
+	const { distance } = useMeasurementsStore();
 	const { setDailySteps, setWeeklySteps, setMonthlySteps, setYearlySteps } =
 		useStepsStore();
 	const {

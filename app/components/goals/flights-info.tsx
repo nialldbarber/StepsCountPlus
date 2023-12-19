@@ -6,7 +6,7 @@ export function FlightsInfo() {
 	return (
 		<Box paddingBottom="38px">
 			<Box marginBottom="28px">
-				<Text level="heading" size="30px">
+				<Text level="heading" size="28px">
 					Flights
 				</Text>
 			</Box>

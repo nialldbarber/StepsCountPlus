@@ -1,4 +1,5 @@
 import { DonutChart } from "@/app/components/donut-chart";
+import { StatsTable } from "@/app/components/stats/stats-table";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Box } from "@/app/design-system/components/box";
 import { Chip } from "@/app/design-system/components/chip";
@@ -9,19 +10,19 @@ import { useActiveValue } from "@/app/hooks/useActiveValue";
 import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { formatNumber } from "@/app/lib/format/numbers";
+import { timeBasedGreeting } from "@/app/lib/times/greeting";
 import { useDistanceStore } from "@/app/store/distance";
 import { useFlightsStore } from "@/app/store/flights";
 import type { Goals } from "@/app/store/goal-types";
 import { goalTypes } from "@/app/store/goal-types";
 import { useGoalsStore } from "@/app/store/goals";
 import { useStepsStore } from "@/app/store/steps";
-import * as Sentry from "@sentry/react-native";
 import { useFont } from "@shopify/react-native-skia";
 import { useMemo, useState } from "react";
-import { Button, PixelRatio } from "react-native";
+import { PixelRatio } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-const RADIUS = PixelRatio.roundToNearestPixel(170);
+const RADIUS = PixelRatio.roundToNearestPixel(160);
 const STROKE_WIDTH = 12;
 
 export function StatsScreen() {
@@ -31,7 +32,7 @@ export function StatsScreen() {
 	const { theme } = useStyles(stylesheet);
 	const font = useFont(
 		require("../../../assets/fonts/PlusJakartaSans-Bold.ttf"),
-		80,
+		65,
 	);
 	const smallerFont = useFont(
 		require("../../../assets/fonts/PlusJakartaSans-Bold.ttf"),
@@ -81,7 +82,7 @@ export function StatsScreen() {
 			  ? flightsGoal
 			  : currentFilter === "Distance"
 				  ? distanceGoal
-				  : null;
+				  : "";
 
 	if (!font || !smallerFont) return <Box />;
 
@@ -91,6 +92,11 @@ export function StatsScreen() {
 				alignItems="center"
 				backgroundColor={theme.colors.screenBackgroundColor}
 			>
+				<Box alignSelf="flex-start" paddingHorizontal="20px">
+					<Text level="heading" size="26px">
+						{timeBasedGreeting()} 👋
+					</Text>
+				</Box>
 				<Box
 					marginVertical="30px"
 					styles={{
@@ -105,7 +111,7 @@ export function StatsScreen() {
 						font={font}
 						smallerFont={smallerFont}
 						amount={determineAmount}
-						message={`Goal ${determineGoal}`}
+						message={`Goal ${formatNumber(determineGoal)}`}
 					/>
 				</Box>
 			</Box>
@@ -154,51 +160,38 @@ export function StatsScreen() {
 				<Layout
 					backgroundColor={theme.colors.statsBottomSectionBackgroundColor}
 				>
-					<Box>
+					<Box alignSelf="center">
+						<Text level="heading" size="20px">
+							{currentFilter} Stats
+						</Text>
+					</Box>
+					<Box paddingVertical="10px">
 						{currentFilter === "Steps" && (
-							<>
-								<Text>Daily steps: {formatNumber(dailySteps)}</Text>
-								<Text>Weekly steps: {formatNumber(weeklySteps)}</Text>
-								<Text>Monthly steps: {formatNumber(monthlySteps)}</Text>
-								<Text>Yearly steps: {formatNumber(yearlySteps)}</Text>
-							</>
+							<StatsTable
+								filter="Steps"
+								daily={formatNumber(dailySteps)}
+								weekly={formatNumber(weeklySteps)}
+								monthly={formatNumber(monthlySteps)}
+								yearly={formatNumber(yearlySteps)}
+							/>
 						)}
-
 						{currentFilter === "Flights" && (
-							<>
-								<Text>Daily flights: {dailyFlights}</Text>
-								<Text>Weekly flights: {weeklyFlights}</Text>
-								<Text>Monthly flights: {monthlyFlights}</Text>
-								<Text>Yearly flights: {yearlyFlights}</Text>
-							</>
+							<StatsTable
+								filter="Flights"
+								daily={dailyFlights}
+								weekly={weeklyFlights}
+								monthly={monthlyFlights}
+								yearly={yearlyFlights}
+							/>
 						)}
-
-						<Button
-							title="Try!"
-							onPress={() => {
-								Sentry.captureException(new Error("Yooooooooo NEW error"));
-							}}
-						/>
-
 						{currentFilter === "Distance" && (
-							<>
-								<Text>
-									Daily Distance:{" "}
-									{formatNumber(convertMetersToKm(dailyDistance))}
-								</Text>
-								<Text>
-									Weekly Distance:{" "}
-									{formatNumber(convertMetersToKm(weeklyDistance))}
-								</Text>
-								<Text>
-									Monthly Distance:{" "}
-									{formatNumber(convertMetersToKm(monthlyDistance))}
-								</Text>
-								<Text>
-									Yearly Distance:{" "}
-									{formatNumber(convertMetersToKm(yearlyDistance))}
-								</Text>
-							</>
+							<StatsTable
+								filter="Distance"
+								daily={formatNumber(convertMetersToKm(dailyDistance))}
+								weekly={formatNumber(convertMetersToKm(weeklyDistance))}
+								monthly={formatNumber(convertMetersToKm(monthlyDistance))}
+								yearly={formatNumber(convertMetersToKm(yearlyDistance))}
+							/>
 						)}
 					</Box>
 				</Layout>

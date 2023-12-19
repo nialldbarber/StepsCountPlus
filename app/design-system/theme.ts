@@ -56,6 +56,11 @@ export const lightTheme = {
 		buttonSecondaryBackgroundColor: colors.secondary,
 		buttonSecondaryTextColor: colors.black,
 		/**
+		 * @type Table
+		 */
+		tableEvenBackgroundColor: colors.black,
+		tableOddBackgroundColor: colors.blackTwo,
+		/**
 		 * @type Bottom tabs
 		 */
 		bottomTabsBackgroundColor: colors.pureWhite,
@@ -122,6 +127,11 @@ export const darkTheme = {
 		buttonPrimaryTextColor: colors.white,
 		buttonSecondaryBackgroundColor: colors.secondary,
 		buttonSecondaryTextColor: colors.black,
+		/**
+		 * @type Table
+		 */
+		tableEvenBackgroundColor: colors.black,
+		tableOddBackgroundColor: colors.blackTwo,
 		/**
 		 * @type Bottom tabs
 		 */

@@ -1,4 +1,5 @@
 import { hitSlopLarge } from "@/app/constants/hit-slop";
+import { colors } from "@/app/design-system/colors";
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Stack } from "@/app/design-system/components/stack";
@@ -17,7 +18,7 @@ export function InfoBlock({ title, infoBlock, link }: InfoBlockProps) {
 		<Stack gutter="5px">
 			<Box flexDirection="row" alignItems="center">
 				<Pressable hitSlop={hitSlopLarge} onPress={() => Linking.openURL(link)}>
-					<Link color="dodgerblue" size={16} />
+					<Link color={colors.primary} size={16} />
 				</Pressable>
 				<Box paddingLeft="10px">
 					<Text textStyles={{ lineHeight: 25 }}>{title}: </Text>

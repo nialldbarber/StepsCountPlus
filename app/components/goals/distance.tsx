@@ -7,11 +7,13 @@ export function DailyDistanceGoal() {
 	const { distanceGoal, setDistanceGoal } = useGoalsStore();
 	const { distance } = useMeasurementsStore();
 
+	const getDistance = distance === "km" ? "km" : "mls";
+
 	const dailyDistanceOptions = [
-		{ id: `daily-distance-${1}`, label: `5 ${distance}`, value: 5 },
-		{ id: `daily-distance-${2}`, label: `7 ${distance}`, value: 7 },
-		{ id: `daily-distance-${3}`, label: `10 ${distance}`, value: 10 },
-		{ id: `daily-distance-${4}`, label: `15 ${distance}`, value: 15 },
+		{ id: `daily-distance-${1}`, label: `5 ${getDistance}`, value: 5 },
+		{ id: `daily-distance-${2}`, label: `7 ${getDistance}`, value: 7 },
+		{ id: `daily-distance-${3}`, label: `10 ${getDistance}`, value: 10 },
+		{ id: `daily-distance-${4}`, label: `15 ${getDistance}`, value: 15 },
 	];
 
 	const pluralisation = useMemo(() => {

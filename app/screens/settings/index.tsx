@@ -165,7 +165,7 @@ const stylesheet = createStyleSheet((theme) => ({
 		backgroundColor: "pureWhite",
 	},
 	text: (isSelected: boolean) => ({
-		paddingTop: 10,
+		paddingTop: 5,
 		color: isSelected
 			? theme.colors.settingsScreenTextActive
 			: theme.colors.settingsScreenTextInactive,

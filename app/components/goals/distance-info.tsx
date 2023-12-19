@@ -6,7 +6,7 @@ export function DistanceInfo() {
 	return (
 		<Box paddingBottom="38px">
 			<Box marginBottom="28px">
-				<Text level="heading" size="30px">
+				<Text level="heading" size="28px">
 					Distance
 				</Text>
 			</Box>
