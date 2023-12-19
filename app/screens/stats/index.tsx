@@ -139,7 +139,7 @@ export function StatsScreen() {
 								isSelected={index === value}
 								size="16px"
 								height="36px"
-								mode="dark"
+								mode="light"
 							/>
 						);
 					})}

@@ -1,4 +1,3 @@
-import { colors } from "@/app/design-system/colors";
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
@@ -125,7 +124,7 @@ export function SettingsScreen() {
 					<Box flexDirection="row" alignItems="center">
 						<Text
 							size="14px"
-							color={distance === "miles" ? "primary" : "pureWhite"}
+							textStyles={styles.distanceText(distance === "miles")}
 						>
 							miles
 						</Text>
@@ -139,7 +138,7 @@ export function SettingsScreen() {
 						</Box>
 						<Text
 							size="14px"
-							color={distance === "km" ? "primary" : "pureWhite"}
+							textStyles={styles.distanceText(distance === "km")}
 						>
 							km
 						</Text>
@@ -159,7 +158,7 @@ export function SettingsScreen() {
 	);
 }
 
-const stylesheet = createStyleSheet(() => ({
+const stylesheet = createStyleSheet((theme) => ({
 	button: {
 		padding: 5,
 		alignItems: "center",
@@ -167,6 +166,13 @@ const stylesheet = createStyleSheet(() => ({
 	},
 	text: (isSelected: boolean) => ({
 		paddingTop: 10,
-		color: isSelected ? colors.primary : colors.pureWhite,
+		color: isSelected
+			? theme.colors.settingsScreenTextActive
+			: theme.colors.settingsScreenTextInactive,
+	}),
+	distanceText: (isSelected: boolean) => ({
+		color: isSelected
+			? theme.colors.settingsScreenTextActive
+			: theme.colors.settingsScreenTextInactive,
 	}),
 }));

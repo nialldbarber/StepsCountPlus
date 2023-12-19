@@ -7,6 +7,8 @@ export const lightTheme = {
 		 * @type Text color
 		 */
 		textColor: colors.black,
+		settingsScreenTextInactive: colors.black,
+		settingsScreenTextActive: colors.primary,
 		/**
 		 * @type Background colors
 		 */
@@ -15,7 +17,7 @@ export const lightTheme = {
 		/**
 		 * @type Card
 		 */
-		cardBackgroundColor: colors.whiteThree,
+		cardBackgroundColor: colors.pureWhite,
 		settingsCardBackgroundColor: colors.pureWhite,
 		/**
 		 * @type Bottom tabs
@@ -34,7 +36,7 @@ export const lightTheme = {
 		chipDarkInactiveBackgroundColor: colors.white,
 		chipDarkActiveBackgroundColor: colors.primary,
 		chipActiveColor: colors.pureWhite,
-		chipInactiveColor: colors.pureWhite,
+		chipInactiveColor: colors.black,
 		/**
 		 * @type Icon
 		 */
@@ -45,6 +47,7 @@ export const lightTheme = {
 		settingsStroke: colors.black,
 		settingsStrokeBackground: colors.pureWhite,
 		plusStroke: colors.black,
+		infoStroke: colors.primary,
 		/**
 		 * @type Button
 		 */
@@ -71,6 +74,8 @@ export const darkTheme = {
 		 * @type Text color
 		 */
 		textColor: colors.white,
+		settingsScreenTextInactive: colors.pureWhite,
+		settingsScreenTextActive: colors.primary,
 		/**
 		 * @type Background colors
 		 */
@@ -109,6 +114,7 @@ export const darkTheme = {
 		settingsStroke: colors.white,
 		settingsStrokeBackground: colors.blackTwo,
 		plusStroke: colors.black,
+		infoStroke: colors.primary,
 		/**
 		 * @type Button
 		 */

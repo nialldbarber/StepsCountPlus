@@ -8,11 +8,7 @@ import { Pressable } from "@/app/design-system/components/pressable";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
-import {
-	BottomSheetBackdrop,
-	BottomSheetModal,
-	BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
+import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useRef } from "react";
 
 export function GoalsScreen() {
@@ -21,19 +17,22 @@ export function GoalsScreen() {
 		useBottomSheet(bottomSheetRef);
 
 	return (
-		<BottomSheetModalProvider>
+		<>
 			<Layout>
 				<Stack gutter="10px">
 					<Text level="heading">
 						Set your steps, flights, and distance goals and track your{" "}
 						<Pressable onPress={handlePresentModalPress}>
-							<Text level="heading" color="primary">
+							<Text
+								level="heading"
+								color="primary"
+								textStyles={{ paddingTop: 23 }}
+							>
 								progress
 							</Text>
 						</Pressable>
 						.
 					</Text>
-					{/* </Text> */}
 					<DailyStepsGoal />
 					<DailyFlightsGoal />
 					<DailyDistanceGoal />
@@ -51,6 +50,6 @@ export function GoalsScreen() {
 					</Box>
 				</Stack>
 			</BottomSheetModal>
-		</BottomSheetModalProvider>
+		</>
 	);
 }

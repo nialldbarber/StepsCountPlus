@@ -93,7 +93,7 @@ export const typeHierarchy: TypeHierarchyTypes = {
 		"16px": {
 			fontSize: 16,
 			letterSpacing: 0.6,
-			lineHeight: 22,
+			lineHeight: 27, // @todo: maybe change this amount?
 		},
 		"18px": {
 			fontSize: 18,
