@@ -18,3 +18,8 @@ export function convertMinutes(totalMinutes: number) {
 
 	return result.trim();
 }
+
+export function convertKmToMiles(km: number) {
+	const milesPerKm = 0.621371;
+	return km * milesPerKm;
+}

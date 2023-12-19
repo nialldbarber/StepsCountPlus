@@ -22,6 +22,7 @@ interface ChipProps extends PressableProps {
 	isSelected?: boolean;
 	width?: Width;
 	icon?: React.ReactNode;
+	selectedIcon?: React.ReactNode;
 	onPress?: (...args: any[]) => void;
 }
 
@@ -33,6 +34,7 @@ export function Chip({
 	label,
 	width,
 	icon,
+	selectedIcon,
 	onPress,
 	...rest
 }: ChipProps) {
@@ -80,7 +82,8 @@ export function Chip({
 
 	return (
 		<Pressable style={styles.container} onPress={handleOnPress} {...rest}>
-			{icon && <Box paddingRight="5px">{icon}</Box>}
+			{icon && isSelected && <Box paddingRight="5px">{selectedIcon}</Box>}
+			{icon && !isSelected && <Box paddingRight="5px">{icon}</Box>}
 			<Text textStyles={styles.text} weight="bold" size={size}>
 				{label}
 			</Text>

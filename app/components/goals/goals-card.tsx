@@ -79,11 +79,11 @@ export function GoalsCard({
 				snapPoints={["60%", "70%"]}
 				backdropComponent={BottomSheetBackdrop}
 				backgroundStyle={{
-					backgroundColor: theme.colors.screenBackgroundColor,
+					backgroundColor: theme.colors.modalBackgroundColor,
 				}}
 			>
 				<Stack margin="20px">
-					<ScrollView>
+					<ScrollView showsVerticalScrollIndicator={false}>
 						{title === "Steps" ? (
 							<StepsInfo />
 						) : title === "Flights" ? (

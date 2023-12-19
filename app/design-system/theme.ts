@@ -13,6 +13,7 @@ export const lightTheme = {
 		 * @type Background colors
 		 */
 		screenBackgroundColor: colors.whiteTwo,
+		modalBackgroundColor: colors.pureWhite,
 		statsBottomSectionBackgroundColor: "pureWhite",
 		/**
 		 * @type Card
@@ -58,12 +59,16 @@ export const lightTheme = {
 		/**
 		 * @type Table
 		 */
-		tableEvenBackgroundColor: colors.black,
-		tableOddBackgroundColor: colors.blackTwo,
+		tableEvenBackgroundColor: colors.white,
+		tableOddBackgroundColor: colors.pureWhite,
 		/**
 		 * @type Bottom tabs
 		 */
 		bottomTabsBackgroundColor: colors.pureWhite,
+		/**
+		 * @type Settings screen
+		 */
+		settingsScreenSeparatorColor: colors.white,
 	},
 	dimensions: {
 		/**
@@ -85,6 +90,7 @@ export const darkTheme = {
 		 * @type Background colors
 		 */
 		screenBackgroundColor: colors.black,
+		modalBackgroundColor: colors.black,
 		statsBottomSectionBackgroundColor: "black",
 		/**
 		 * @type Card
@@ -136,6 +142,10 @@ export const darkTheme = {
 		 * @type Bottom tabs
 		 */
 		bottomTabsBackgroundColor: colors.black,
+		/**
+		 * @type Settings screen
+		 */
+		settingsScreenSeparatorColor: colors.greyFour,
 	},
 	dimensions: {
 		/**

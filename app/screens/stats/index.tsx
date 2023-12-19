@@ -129,12 +129,13 @@ export function StatsScreen() {
 					a11yRole="tablist"
 					scroll
 				>
-					{goalTypes.map(({ id, label, view, icon }, index) => {
+					{goalTypes.map(({ id, label, view, icon, selectedIcon }, index) => {
 						return (
 							<Chip
 								key={id}
 								label={label}
 								icon={icon}
+								selectedIcon={selectedIcon}
 								onPress={() => {
 									handleActiveValue(index);
 									setCurrentFilter(view);

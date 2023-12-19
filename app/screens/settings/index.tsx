@@ -5,12 +5,33 @@ import { storage } from "@/app/storage/mmkv";
 import { useMeasurementsStore } from "@/app/store/measurements";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
+import { PropsWithChildren } from "react";
 import { Switch } from "react-native";
 import {
 	UnistylesRuntime,
 	createStyleSheet,
 	useStyles,
 } from "react-native-unistyles";
+
+function Row({ children }: PropsWithChildren) {
+	const { theme } = useStyles();
+
+	return (
+		<Box
+			backgroundColor={theme.colors.settingsCardBackgroundColor}
+			padding="20px"
+			marginHorizontal="20px"
+			marginVertical="10px"
+			borderRadius="large"
+			flexDirection="row"
+			justifyContent="space-between"
+			alignItems="center"
+			shadow
+		>
+			{children}
+		</Box>
+	);
+}
 
 function invokeChangeTheme(
 	theme: "light" | "dark" | "system",
@@ -58,19 +79,11 @@ export function SettingsScreen() {
 			</Box>
 			<Box paddingTop="20px">
 				<Box paddingHorizontal="30px" paddingTop="15px">
-					<Text color="greyFour">Appearance</Text>
+					<Text color="greyFour" size="14px">
+						Appearance
+					</Text>
 				</Box>
-				<Box
-					backgroundColor={theme.colors.settingsCardBackgroundColor}
-					padding="20px"
-					marginHorizontal="20px"
-					marginVertical="10px"
-					borderRadius="large"
-					flexDirection="row"
-					justifyContent="space-between"
-					alignItems="center"
-					shadow
-				>
+				<Row>
 					<Text>Color mode</Text>
 					<Pressable
 						style={styles.button}
@@ -105,21 +118,13 @@ export function SettingsScreen() {
 							Dark
 						</Text>
 					</Pressable>
-				</Box>
+				</Row>
 				<Box paddingHorizontal="30px" paddingTop="15px">
-					<Text color="greyFour">Distance</Text>
+					<Text color="greyFour" size="14px">
+						Distance
+					</Text>
 				</Box>
-				<Box
-					backgroundColor={theme.colors.settingsCardBackgroundColor}
-					padding="20px"
-					marginHorizontal="20px"
-					marginVertical="10px"
-					borderRadius="large"
-					flexDirection="row"
-					justifyContent="space-between"
-					alignItems="center"
-					shadow
-				>
+				<Row>
 					<Text>Units</Text>
 					<Box flexDirection="row" alignItems="center">
 						<Text
@@ -142,6 +147,38 @@ export function SettingsScreen() {
 						>
 							km
 						</Text>
+					</Box>
+				</Row>
+
+				<Box paddingHorizontal="30px" paddingTop="15px">
+					<Text color="greyFour" size="14px">
+						More
+					</Text>
+				</Box>
+				<Box
+					backgroundColor={theme.colors.settingsCardBackgroundColor}
+					padding="20px"
+					marginHorizontal="20px"
+					marginVertical="10px"
+					borderRadius="large"
+					shadow
+				>
+					<Box>
+						<Text>Privacy Policy</Text>
+						<Box
+							height="1px"
+							width="full"
+							backgroundColor={theme.colors.settingsScreenSeparatorColor}
+							marginVertical="15px"
+						/>
+						<Text>Give Feedback</Text>
+						<Box
+							height="1px"
+							width="full"
+							backgroundColor={theme.colors.settingsScreenSeparatorColor}
+							marginVertical="15px"
+						/>
+						<Text>Rate App</Text>
 					</Box>
 				</Box>
 

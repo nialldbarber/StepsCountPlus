@@ -7,18 +7,21 @@ export const goalTypes = [
 		label: "Steps",
 		view: "Steps",
 		icon: <StatusUp color={colors.black} size={18} />,
+		selectedIcon: <StatusUp color={colors.pureWhite} size={18} />,
 	},
 	{
 		id: 2,
 		label: "Flights",
 		view: "Flights",
 		icon: <AlignBottom color={colors.black} size={18} />,
+		selectedIcon: <AlignBottom color={colors.pureWhite} size={18} />,
 	},
 	{
 		id: 3,
 		label: "Distance",
 		view: "Distance",
 		icon: <Ruler color={colors.black} size={18} />,
+		selectedIcon: <Ruler color={colors.pureWhite} size={18} />,
 	},
 ] as const;
 

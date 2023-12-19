@@ -11,6 +11,7 @@ import type {
 	HealthValue,
 } from "react-native-health";
 import AppleHealthKit from "react-native-health";
+import { convertKmToMiles } from "../format/measurements";
 
 const { Permissions } = AppleHealthKit.Constants;
 const permissions = {
@@ -224,7 +225,11 @@ export function useGetHealthData(date: Date) {
 					dailyDistanceOptions,
 					(error, results: HealthValue) => {
 						if (error) return;
-						setDailyDistance(results.value);
+						setDailyDistance(
+							distance === "km"
+								? results.value
+								: convertKmToMiles(results.value),
+						);
 					},
 				);
 
@@ -239,7 +244,12 @@ export function useGetHealthData(date: Date) {
 					AppleHealthKit.getDailyDistanceWalkingRunningSamples,
 					(error, totalDistance, segments) => {
 						if (error) return;
-						setWeeklyDistance(totalDistance, segments);
+						setWeeklyDistance(
+							distance === "km"
+								? totalDistance
+								: convertKmToMiles(totalDistance),
+							segments,
+						);
 					},
 				);
 
@@ -254,7 +264,12 @@ export function useGetHealthData(date: Date) {
 					AppleHealthKit.getDailyDistanceWalkingRunningSamples,
 					(error, totalDistance, segments) => {
 						if (error) return;
-						setMonthlyDistance(totalDistance, segments);
+						setMonthlyDistance(
+							distance === "km"
+								? totalDistance
+								: convertKmToMiles(totalDistance),
+							segments,
+						);
 					},
 				);
 
@@ -269,7 +284,12 @@ export function useGetHealthData(date: Date) {
 					AppleHealthKit.getDailyDistanceWalkingRunningSamples,
 					(error, totalDistance, segments) => {
 						if (error) return;
-						setYearlyDistance(totalDistance, segments);
+						setYearlyDistance(
+							distance === "km"
+								? totalDistance
+								: convertKmToMiles(totalDistance),
+							segments,
+						);
 					},
 				);
 			} catch (error) {
@@ -279,7 +299,7 @@ export function useGetHealthData(date: Date) {
 			}
 		}
 		invokeHealthData();
-	}, [hasPermission]);
+	}, [hasPermission, distance]);
 
 	return { isLoading };
 }

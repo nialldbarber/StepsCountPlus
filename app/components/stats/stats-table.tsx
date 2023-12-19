@@ -17,25 +17,25 @@ export function StatsTable({ filter, daily, weekly, monthly, yearly }: Props) {
 	return (
 		<Table>
 			<Box flexDirection="row" justifyContent="space-between">
-				<Text>Daily </Text>
+				<Text>Today</Text>
 				<Text>
 					{daily} {filter === "Distance" && distance}
 				</Text>
 			</Box>
 			<Box flexDirection="row" justifyContent="space-between">
-				<Text>Weekly </Text>
+				<Text>Last 7 days</Text>
 				<Text>
 					{weekly} {filter === "Distance" && distance}
 				</Text>
 			</Box>
 			<Box flexDirection="row" justifyContent="space-between">
-				<Text>Monthly </Text>
+				<Text>Last month</Text>
 				<Text>
 					{monthly} {filter === "Distance" && distance}
 				</Text>
 			</Box>
 			<Box flexDirection="row" justifyContent="space-between">
-				<Text>Yearly </Text>
+				<Text>Last year</Text>
 				<Text>
 					{yearly} {filter === "Distance" && distance}
 				</Text>
