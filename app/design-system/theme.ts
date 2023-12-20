@@ -43,6 +43,12 @@ export const lightTheme = {
 		 */
 		donutBackgroundColor: colors.whiteTwo,
 		/**
+		 * @type Input
+		 */
+		inputBackgroundColor: colors.pureWhite,
+		inputIconColor: colors.black,
+		inputPlaceholderColor: colors.black,
+		/**
 		 * @type Icon
 		 */
 		goBackStroke: colors.black,
@@ -134,6 +140,12 @@ export const darkTheme = {
 		 * @type Donut
 		 */
 		donutBackgroundColor: colors.black,
+		/**
+		 * @type Input
+		 */
+		inputBackgroundColor: colors.blackTwo,
+		inputIconColor: colors.pureWhite,
+		inputPlaceholderColor: colors.pureWhite,
 		/**
 		 * @type Icons
 		 */
