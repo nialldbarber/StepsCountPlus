@@ -11,17 +11,36 @@ import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Props = NativeStackScreenProps<RootChallengesScreen, "SingleChallenge">;
 
+type ChallengeType =
+	| "distance"
+	| "flights"
+	| "long-distance-runs"
+	| "f1-tracks";
+
+type Challenge = {
+	id: string;
+	title: string;
+	difficulty: "easy" | "medium" | "hard";
+	emoji: string;
+};
+
 export function SingleChallengeScreen({ route: { params } }: Props) {
 	const { styles, theme } = useStyles(stylesheet);
-	const types: any = data.challenges.types[params.challengeType];
+	const challengeType = params.challengeType as ChallengeType;
+	const challenges: Challenge[] = Array.isArray(
+		data.challenges.types[challengeType],
+	)
+		? (data.challenges.types[challengeType] as Challenge[])
+		: [];
 
 	return (
 		<Layout>
 			<ScreenHeader title={params.challengeType} />
 			<Box marginTop="32px">
 				<Stack gutter="10px">
-					{types.map(({ title }) => (
+					{challenges.map(({ id, title, difficulty, emoji }) => (
 						<Box
+							key={id}
 							backgroundColor={theme.colors.cardBackgroundColor}
 							padding="20px"
 							borderRadius="medium"
@@ -30,18 +49,34 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 								<Text level="heading" size="18px">
 									{title} Challenge
 								</Text>
-								<Box
-									backgroundColor="greyFour"
-									borderRadius="full"
-									paddingVertical="6px"
-									paddingHorizontal="6px"
-									alignItems="center"
-									justifyContent="center"
-								>
-									<Text size="12px">{title}</Text>
+								<Box>
+									<Box
+										backgroundColor="greyFour"
+										borderRadius="full"
+										paddingVertical="6px"
+										paddingHorizontal="6px"
+										alignItems="center"
+										justifyContent="center"
+										marginBottom="10px"
+										styles={styles.difficultyBadge(difficulty)}
+									>
+										<Text size="12px" color="black">
+											{difficulty}
+										</Text>
+									</Box>
+									<Box
+										backgroundColor="greyFour"
+										borderRadius="full"
+										paddingVertical="6px"
+										paddingHorizontal="6px"
+										alignItems="center"
+										justifyContent="center"
+									>
+										<Text size="12px">{title}</Text>
+									</Box>
 								</Box>
 							</Box>
-							<Box alignSelf="flex-start" paddingTop="20px">
+							<Box alignSelf="center" paddingTop="20px">
 								<Button shape="small" size="12px">
 									Accept challenge
 								</Button>
@@ -54,8 +89,16 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 	);
 }
 
-const stylesheet = createStyleSheet(() => ({
+const stylesheet = createStyleSheet((theme) => ({
 	heading: {
 		textTransform: "capitalize",
 	},
+	difficultyBadge: (difficulty) => ({
+		backgroundColor:
+			difficulty === "easy"
+				? theme.colors.cardSuccess
+				: difficulty === "medium"
+				  ? theme.colors.cardWarning
+				  : theme.colors.cardError,
+	}),
 }));

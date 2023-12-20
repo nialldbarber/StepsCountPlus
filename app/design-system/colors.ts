@@ -23,6 +23,9 @@ export const coreColors = {
 	secondary: "#f5f5f5",
 	tertiary: "",
 	destructive: "#ef4444",
+	success: "#DCFCE6",
+	warning: "#FEF9C3",
+	error: "#FDE2E1",
 } as const;
 
 export const tonalColors = {

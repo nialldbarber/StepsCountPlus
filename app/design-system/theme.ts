@@ -77,6 +77,12 @@ export const lightTheme = {
 		 * @type Stats screen
 		 */
 		statsScreenChipBackgroundColor: colors.pureWhite,
+		/**
+		 * @type RAG
+		 */
+		cardSuccess: colors.success,
+		cardWarning: colors.warning,
+		cardError: colors.error,
 	},
 	dimensions: {
 		/**
@@ -162,6 +168,12 @@ export const darkTheme = {
 		 * @type Stats screen
 		 */
 		statsScreenChipBackgroundColor: colors.black,
+		/**
+		 * @type RAG
+		 */
+		cardSuccess: colors.success,
+		cardWarning: colors.warning,
+		cardError: colors.error,
 	},
 	dimensions: {
 		/**
