@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/react-native";
 import React from "react";
 import Config from "react-native-config";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 
 Sentry.init({
 	dsn: Config.SENTRY_DSN,
@@ -12,11 +13,14 @@ Sentry.init({
 
 function App() {
 	return (
-		<GestureHandlerRootView style={{ flex: 1 }}>
-			<BottomSheetModalProvider>
-				<RootNavigator />
-			</BottomSheetModalProvider>
-		</GestureHandlerRootView>
+		<>
+			<GestureHandlerRootView style={{ flex: 1 }}>
+				<BottomSheetModalProvider>
+					<RootNavigator />
+				</BottomSheetModalProvider>
+			</GestureHandlerRootView>
+			<Toast />
+		</>
 	);
 }
 

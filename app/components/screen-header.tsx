@@ -1,10 +1,11 @@
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
+import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import type { A11y } from "@/app/lib/misc-types";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "iconsax-react-native";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { useStyles } from "react-native-unistyles";
 
 interface Props extends A11y {
 	title: string;
@@ -17,7 +18,7 @@ export function ScreenHeader({
 	a11yLabel,
 	a11yState,
 }: Props) {
-	const { styles, theme } = useStyles(stylesheet);
+	const { theme } = useStyles();
 	const { goBack } = useNavigation();
 
 	return (
@@ -32,21 +33,10 @@ export function ScreenHeader({
 				</Pressable>
 			</Box>
 			<Box paddingLeft="10px" alignSelf="center">
-				<Text
-					level="heading"
-					size="23px"
-					weight="bold"
-					textStyles={styles.text}
-				>
-					{title}
+				<Text level="heading" size="23px" weight="bold">
+					{capitaliseFirstLetter(title)}
 				</Text>
 			</Box>
 		</>
 	);
 }
-
-const stylesheet = createStyleSheet(() => ({
-	text: {
-		textTransform: "capitalize",
-	},
-}));

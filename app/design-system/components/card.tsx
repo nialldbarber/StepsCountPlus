@@ -23,6 +23,17 @@ const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
 	"f1-tracks": "🏎️",
 };
 
+const CHALLENGE_DESC_TYPES: Record<string, string> = {
+	distance:
+		"Embark on a journey of endurance and discovery, measuring your progress one step at a time.",
+	flights:
+		"Travel the world through fitness, connecting iconic landmarks like the Statue of Liberty and Burj Khalifa with each workout.",
+	"long-distance-runs":
+		"Channel your inner Olympian with challenges inspired by legendary runs, from swift sprints to marathons.",
+	"f1-tracks":
+		"Experience the thrill of Formula 1 by tackling challenges modeled on world-famous tracks, blending speed with strategy.",
+};
+
 export function Card({ challengeType }: Props) {
 	const { navigate } = useNavigation();
 	const { styles, theme } = useStyles(stylesheet);
@@ -65,8 +76,8 @@ export function Card({ challengeType }: Props) {
 					</Box>
 					<Box flex={1} paddingRight="20px">
 						<Text>{CHALLENGE_TYPES[challengeType]}</Text>
-						<Text size="11px">
-							Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+						<Text textStyles={styles.text} size="11px">
+							{CHALLENGE_DESC_TYPES[challengeType]}
 						</Text>
 					</Box>
 				</Box>
@@ -84,5 +95,8 @@ const stylesheet = createStyleSheet(() => ({
 		right: 0,
 		alignItems: "center",
 		justifyContent: "center",
+	},
+	text: {
+		lineHeight: 14,
 	},
 }));

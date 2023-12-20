@@ -1,13 +1,14 @@
+import { ChallengeCard } from "@/app/components/challenge/card";
 import { ScreenHeader } from "@/app/components/screen-header";
 import data from "@/app/data/challenges.json";
 import { Box } from "@/app/design-system/components/box";
-import { Button } from "@/app/design-system/components/button";
 import { Layout } from "@/app/design-system/components/layout";
 import { Stack } from "@/app/design-system/components/stack";
-import { Text } from "@/app/design-system/components/text";
 import type { RootChallengesScreen } from "@/app/navigation/types";
+import { useChallengesStore } from "@/app/store/challenges";
+import { useNavigation } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import Toast from "react-native-toast-message";
 
 type Props = NativeStackScreenProps<RootChallengesScreen, "SingleChallenge">;
 
@@ -25,80 +26,60 @@ type Challenge = {
 };
 
 export function SingleChallengeScreen({ route: { params } }: Props) {
-	const { styles, theme } = useStyles(stylesheet);
+	const { navigate } = useNavigation();
+	const { challenges, setAddChallenge } = useChallengesStore();
+
 	const challengeType = params.challengeType as ChallengeType;
-	const challenges: Challenge[] = Array.isArray(
+	// @ts-expect-error
+	const allAvailableChallenges: Challenge[] = Array.isArray(
 		data.challenges.types[challengeType],
 	)
-		? (data.challenges.types[challengeType] as Challenge[])
+		? data.challenges.types[challengeType]
 		: [];
+
+	const availableChallenges = allAvailableChallenges.filter(
+		(ac) => !challenges.some((c) => c.id === ac.id),
+	);
+
+	function invokeAddNewChallenge(challenge: Challenge) {
+		try {
+			setAddChallenge(challenge);
+			Toast.show({
+				type: "success",
+				text1: "Added successfully!",
+				text2: "Click here to check it out 🚀",
+				position: "bottom",
+				onPress: () => navigate("ChallengesRoot"),
+			});
+		} catch (error) {
+			Toast.show({
+				type: "error",
+				text1: "Oops!",
+				text2:
+					"Looks like there was an error 😔 - try adding the challenge again",
+				position: "bottom",
+			});
+		}
+	}
 
 	return (
 		<Layout>
 			<ScreenHeader title={params.challengeType} />
 			<Box marginTop="32px">
 				<Stack gutter="10px">
-					{challenges.map(({ id, title, difficulty, emoji }) => (
-						<Box
-							key={id}
-							backgroundColor={theme.colors.cardBackgroundColor}
-							padding="20px"
-							borderRadius="medium"
-						>
-							<Box flexDirection="row" justifyContent="space-between">
-								<Text level="heading" size="18px">
-									{title} Challenge
-								</Text>
-								<Box>
-									<Box
-										backgroundColor="greyFour"
-										borderRadius="full"
-										paddingVertical="6px"
-										paddingHorizontal="6px"
-										alignItems="center"
-										justifyContent="center"
-										marginBottom="10px"
-										styles={styles.difficultyBadge(difficulty)}
-									>
-										<Text size="12px" color="black">
-											{difficulty}
-										</Text>
-									</Box>
-									<Box
-										backgroundColor="greyFour"
-										borderRadius="full"
-										paddingVertical="6px"
-										paddingHorizontal="6px"
-										alignItems="center"
-										justifyContent="center"
-									>
-										<Text size="12px">{title}</Text>
-									</Box>
-								</Box>
-							</Box>
-							<Box alignSelf="center" paddingTop="20px">
-								<Button shape="small" size="12px">
-									Accept challenge
-								</Button>
-							</Box>
-						</Box>
-					))}
+					{availableChallenges.map((challenge) => {
+						const { id, title, difficulty, emoji } = challenge;
+						return (
+							<ChallengeCard
+								key={id}
+								title={title}
+								difficulty={difficulty}
+								fn={() => invokeAddNewChallenge(challenge)}
+							/>
+						);
+					})}
 				</Stack>
 			</Box>
 		</Layout>
 	);
 }
-
-const stylesheet = createStyleSheet((theme) => ({
-	heading: {
-		textTransform: "capitalize",
-	},
-	difficultyBadge: (difficulty) => ({
-		backgroundColor:
-			difficulty === "easy"
-				? theme.colors.cardSuccess
-				: difficulty === "medium"
-				  ? theme.colors.cardWarning
-				  : theme.colors.cardError,
-	}),
-}));

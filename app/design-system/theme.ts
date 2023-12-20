@@ -53,6 +53,7 @@ export const lightTheme = {
 		settingsStrokeBackground: colors.pureWhite,
 		plusStroke: colors.black,
 		infoStroke: colors.primary,
+		trashIconStroke: colors.destructive,
 		/**
 		 * @type Button
 		 */
@@ -144,6 +145,7 @@ export const darkTheme = {
 		settingsStrokeBackground: colors.blackTwo,
 		plusStroke: colors.black,
 		infoStroke: colors.primary,
+		trashIconStroke: colors.destructive,
 		/**
 		 * @type Button
 		 */
