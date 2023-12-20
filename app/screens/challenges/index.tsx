@@ -44,7 +44,7 @@ export function ChallengesScreen() {
 					<Box>
 						<Box justifyContent="center" paddingVertical="20px">
 							<Text weight="bold">
-								Looks like you havent started a challenge!
+								Looks like you haven't started a challenge!
 							</Text>
 						</Box>
 						<Box
