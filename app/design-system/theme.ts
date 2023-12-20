@@ -12,7 +12,7 @@ export const lightTheme = {
 		/**
 		 * @type Background colors
 		 */
-		screenBackgroundColor: colors.whiteTwo,
+		screenBackgroundColor: colors.white,
 		modalBackgroundColor: colors.pureWhite,
 		statsBottomSectionBackgroundColor: "pureWhite",
 		/**
@@ -38,6 +38,10 @@ export const lightTheme = {
 		chipDarkActiveBackgroundColor: colors.primary,
 		chipActiveColor: colors.pureWhite,
 		chipInactiveColor: colors.black,
+		/**
+		 * @type Donut
+		 */
+		donutBackgroundColor: colors.whiteTwo,
 		/**
 		 * @type Icon
 		 */
@@ -72,7 +76,7 @@ export const lightTheme = {
 		/**
 		 * @type Stats screen
 		 */
-		statsScreenChipBackgroundColor: colors.white,
+		statsScreenChipBackgroundColor: colors.pureWhite,
 	},
 	dimensions: {
 		/**
@@ -119,6 +123,10 @@ export const darkTheme = {
 		chipDarkActiveBackgroundColor: colors.primary,
 		chipActiveColor: colors.pureWhite,
 		chipInactiveColor: colors.black,
+		/**
+		 * @type Donut
+		 */
+		donutBackgroundColor: colors.black,
 		/**
 		 * @type Icons
 		 */

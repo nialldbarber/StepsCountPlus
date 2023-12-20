@@ -29,6 +29,13 @@ export type RootChallengesScreen = {
 	SingleChallenge: { challengeType: ChallengeTypes };
 };
 
+export type RootSettingsScreen = {
+	SettingsRoot: undefined;
+	PrivacyPolicy: undefined;
+	GiveFeedback: undefined;
+	RateApp: undefined;
+};
+
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
 	StackScreenProps<RootStackParamsList, T>;
 
@@ -43,6 +50,7 @@ declare global {
 		interface RootParamList
 			extends RootStackParamsList,
 				RootBottomTabsParamList,
-				RootChallengesScreen {}
+				RootChallengesScreen,
+				RootSettingsScreen {}
 	}
 }

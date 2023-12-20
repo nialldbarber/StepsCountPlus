@@ -1,6 +1,7 @@
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
+import { space } from "@/app/design-system/space";
 import { storage } from "@/app/storage/mmkv";
 import { useMeasurementsStore } from "@/app/store/measurements";
 import { useNavigation } from "@react-navigation/native";
@@ -72,12 +73,12 @@ function invokeChangeTheme(
 
 export function SettingsScreen() {
 	const { styles, theme } = useStyles(stylesheet);
-	const { goBack } = useNavigation();
+	const { goBack, navigate } = useNavigation();
 	const { distance, setDistance } = useMeasurementsStore();
 	const currentTheme = storage.getString("theme");
 
 	return (
-		<ScrollView style={styles.container}>
+		<ScrollView>
 			<Box paddingBottom="42px">
 				<Box
 					flexDirection="row"
@@ -101,42 +102,32 @@ export function SettingsScreen() {
 					</Box>
 					<Row>
 						<Text>Color mode</Text>
-						<Pressable
-							style={styles.button}
-							onPress={() => invokeChangeTheme("system", UnistylesRuntime)}
-						>
-							<Text size="20px">⚙️</Text>
-							<Text
-								textStyles={styles.text(currentTheme === "system")}
-								size="12px"
+						<Box flexDirection="row">
+							<Pressable
+								style={styles.button}
+								onPress={() => invokeChangeTheme("light", UnistylesRuntime)}
 							>
-								System
-							</Text>
-						</Pressable>
-						<Pressable
-							style={styles.button}
-							onPress={() => invokeChangeTheme("light", UnistylesRuntime)}
-						>
-							<Text size="20px">☀️</Text>
-							<Text
-								textStyles={styles.text(currentTheme === "light")}
-								size="12px"
+								<Text size="20px">☀️</Text>
+								<Text
+									textStyles={styles.text(currentTheme === "light")}
+									size="12px"
+								>
+									Light
+								</Text>
+							</Pressable>
+							<Pressable
+								style={styles.button}
+								onPress={() => invokeChangeTheme("dark", UnistylesRuntime)}
 							>
-								Light
-							</Text>
-						</Pressable>
-						<Pressable
-							style={styles.button}
-							onPress={() => invokeChangeTheme("dark", UnistylesRuntime)}
-						>
-							<Text size="20px">🌚</Text>
-							<Text
-								textStyles={styles.text(currentTheme === "dark")}
-								size="12px"
-							>
-								Dark
-							</Text>
-						</Pressable>
+								<Text size="20px">🌚</Text>
+								<Text
+									textStyles={styles.text(currentTheme === "dark")}
+									size="12px"
+								>
+									Dark
+								</Text>
+							</Pressable>
+						</Box>
 					</Row>
 
 					<Box paddingHorizontal="30px" paddingTop="15px">
@@ -234,21 +225,27 @@ export function SettingsScreen() {
 						shadow
 					>
 						<Box>
-							<Text>Privacy Policy</Text>
+							<Pressable onPress={() => navigate("PrivacyPolicy")}>
+								<Text>Privacy Policy</Text>
+							</Pressable>
 							<Box
 								height="1px"
 								width="full"
 								backgroundColor={theme.colors.settingsScreenSeparatorColor}
 								marginVertical="15px"
 							/>
-							<Text>Give Feedback</Text>
+							<Pressable onPress={() => navigate("GiveFeedback")}>
+								<Text>Give Feedback</Text>
+							</Pressable>
 							<Box
 								height="1px"
 								width="full"
 								backgroundColor={theme.colors.settingsScreenSeparatorColor}
 								marginVertical="15px"
 							/>
-							<Text>Rate App</Text>
+							<Pressable onPress={() => navigate("RateApp")}>
+								<Text>Rate App</Text>
+							</Pressable>
 						</Box>
 					</Box>
 
@@ -268,13 +265,11 @@ export function SettingsScreen() {
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-	container: {
-		backgroundColor: theme.colors.screenBackgroundColor,
-	},
 	button: {
 		padding: 5,
 		alignItems: "center",
 		backgroundColor: "pureWhite",
+		marginLeft: space["32px"],
 	},
 	text: (isSelected: boolean) => ({
 		paddingTop: 5,

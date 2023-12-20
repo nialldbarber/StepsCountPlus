@@ -6,6 +6,7 @@ import type { RootStackParamsList } from "@/app/navigation/types";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Setting2 } from "iconsax-react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
@@ -24,10 +25,7 @@ export function Header({ header }: Props) {
 	const { navigate } = useNavigation<SettingsModalScreenNavigationProp>();
 
 	return (
-		<Box
-			styles={{ paddingTop: insets.top }}
-			backgroundColor={theme.colors.screenBackgroundColor}
-		>
+		<View style={[styles.container, { paddingTop: insets.top }]}>
 			<Box
 				flexDirection="row"
 				alignItems="center"
@@ -56,11 +54,14 @@ export function Header({ header }: Props) {
 					</Box>
 				</Pressable>
 			</Box>
-		</Box>
+		</View>
 	);
 }
 
 const stylesheet = createStyleSheet((theme) => ({
+	container: {
+		backgroundColor: theme.colors.settingsStrokeBackground,
+	},
 	background: {
 		backgroundColor: theme.colors.settingsStrokeBackground,
 		...shadow(),

@@ -24,8 +24,11 @@ export type Variant =
 	| "link"
 	| "destructive";
 
+export type Shape = "small" | "medium" | "large";
+
 interface ButtonProps extends PressableProps, BaseTextProps {
 	variant?: Variant;
+	shape?: Shape;
 	isLoading?: boolean;
 	isDisabled?: boolean;
 	children: string;
@@ -33,6 +36,7 @@ interface ButtonProps extends PressableProps, BaseTextProps {
 
 export function Button({
 	variant = "primary",
+	shape = "medium",
 	isLoading = false,
 	isDisabled = false,
 	// isActive = false,
@@ -42,7 +46,7 @@ export function Button({
 	color,
 	...rest
 }: ButtonProps) {
-	const { styles } = useStyles(stylesheet, { variant });
+	const { styles } = useStyles(stylesheet, { variant, shape });
 	const { onPress, animatedStyle } = useButtonAnimation();
 	const accessibilityLabel = `${children} button`;
 
@@ -89,8 +93,6 @@ const stylesheet = createStyleSheet((theme) => ({
 	button: {
 		position: "relative",
 		alignItems: "center",
-		height: space["60px"],
-		paddingHorizontal: space["20px"],
 		justifyContent: "center",
 		borderRadius: theme.dimensions.buttonBorderRadius,
 		...shadow(),
@@ -107,6 +109,20 @@ const stylesheet = createStyleSheet((theme) => ({
 				tertiary: {},
 				link: {},
 				destructive: {},
+			},
+			shape: {
+				small: {
+					height: space["38px"],
+					paddingHorizontal: space["15px"],
+				},
+				medium: {
+					height: space["60px"],
+					paddingHorizontal: space["20px"],
+				},
+				large: {
+					height: space["60px"],
+					paddingHorizontal: space["20px"],
+				},
 			},
 		},
 	},

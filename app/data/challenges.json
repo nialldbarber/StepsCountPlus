@@ -1,0 +1,29 @@
+{
+	"challenges": {
+		"types": {
+			"distance": [
+				{
+					"id": "distance-1",
+					"title": "5km",
+					"difficulty": "easy",
+					"emoji": "🏃"
+				},
+				{
+					"id": "distance-2",
+					"title": "7km",
+					"difficulty": "easy",
+					"emoji": "🏃"
+				},
+				{
+					"id": "distance-3",
+					"title": "10km",
+					"difficulty": "medium",
+					"emoji": "🏃"
+				}
+			],
+			"flights": {},
+			"long-distance-runs": {},
+			"f1-tracks": {}
+		}
+	}
+}

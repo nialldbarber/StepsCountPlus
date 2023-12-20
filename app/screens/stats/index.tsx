@@ -20,6 +20,7 @@ import { useFlightsStore } from "@/app/store/flights";
 import type { Goals } from "@/app/store/goal-types";
 import { goalTypes } from "@/app/store/goal-types";
 import { useGoalsStore } from "@/app/store/goals";
+import { useMeasurementsStore } from "@/app/store/measurements";
 import { useStepsStore } from "@/app/store/steps";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
@@ -31,11 +32,13 @@ import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 const RADIUS = PixelRatio.roundToNearestPixel(160);
 const STROKE_WIDTH = 12;
+const pathToFonts = "../../../assets/fonts";
 
 export function StatsScreen() {
 	const { navigate } = useNavigation();
 	const bottomSheetRef = useRef(null);
 	const { isLoading } = useGetHealthData(new Date());
+	const { distance } = useMeasurementsStore();
 	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
 	const { value, handleActiveValue } = useActiveValue();
 
@@ -43,13 +46,10 @@ export function StatsScreen() {
 		useBottomSheet(bottomSheetRef);
 
 	const { theme } = useStyles(stylesheet);
-	const font = useFont(
-		require("../../../assets/fonts/PlusJakartaSans-Bold.ttf"),
-		65,
-	);
+	const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 65);
 	const smallerFont = useFont(
-		require("../../../assets/fonts/PlusJakartaSans-Bold.ttf"),
-		18,
+		require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`),
+		15,
 	);
 
 	const { dailySteps, weeklySteps, monthlySteps, yearlySteps } =
@@ -91,24 +91,56 @@ export function StatsScreen() {
 		return formatNumber(convertMetersToKm(dailyDistance));
 	}, [currentFilter, dailySteps, dailyFlights, dailyDistance]);
 
-	const determineGoal =
-		currentFilter === "Steps"
-			? stepsGoal
-			: currentFilter === "Flights"
-			  ? flightsGoal
-			  : currentFilter === "Distance"
-				  ? distanceGoal
-				  : "";
+	const determineRemainingAmount = useMemo(() => {
+		if (currentFilter === "Steps") {
+			return dailySteps >= stepsGoal
+				? "Woo"
+				: `${formatNumber(stepsGoal - dailySteps)} steps remaining`;
+		}
+		if (currentFilter === "Flights") {
+			return dailyFlights >= flightsGoal
+				? "Woo"
+				: `${formatNumber(flightsGoal - dailyFlights)} flights remaining`;
+		}
+		if (currentFilter === "Distance") {
+			const dailyDistanceKm = convertMetersToKm(dailyDistance);
+			const remainingDistanceKm = distanceGoal - dailyDistanceKm;
+			return dailyDistanceKm >= distanceGoal
+				? "Woo"
+				: `${formatNumber(remainingDistanceKm)} ${distance} remaining`;
+		}
+	}, [
+		currentFilter,
+		dailySteps,
+		stepsGoal,
+		dailyFlights,
+		flightsGoal,
+		dailyDistance,
+		distanceGoal,
+		distance,
+	]);
+
+	const determineGoal = useMemo(() => {
+		// Steps
+		if (currentFilter === "Steps") {
+			return `Goal: ${formatNumber(stepsGoal)} steps`;
+		}
+		// Flights
+		if (currentFilter === "Flights") {
+			return `Goal: ${formatNumber(flightsGoal)} flights`;
+		}
+		// Distance
+		if (currentFilter === "Distance") {
+			return `Goal: ${formatNumber(distanceGoal)} ${distance}`;
+		}
+	}, [currentFilter, stepsGoal, flightsGoal, distanceGoal, distance]);
 
 	if (!font || !smallerFont) return <Box />;
 
 	return (
 		<>
 			<Layout backgroundColor={theme.colors.statsBottomSectionBackgroundColor}>
-				<Box
-					alignItems="center"
-					backgroundColor={theme.colors.screenBackgroundColor}
-				>
+				<Box alignItems="center">
 					<Box alignSelf="flex-start">
 						<Text level="heading" size="26px">
 							{timeBasedGreeting()} 👋
@@ -128,7 +160,8 @@ export function StatsScreen() {
 							font={font}
 							smallerFont={smallerFont}
 							amount={determineAmount}
-							message={`Goal ${formatNumber(determineGoal)}`}
+							message={determineGoal}
+							remainingText={determineRemainingAmount}
 						/>
 					</Box>
 				</Box>
@@ -167,7 +200,7 @@ export function StatsScreen() {
 										isSelected={index === value}
 										size="16px"
 										height="36px"
-										mode="light"
+										mode="dark"
 									/>
 								);
 							},
@@ -179,7 +212,7 @@ export function StatsScreen() {
 					flexDirection="row"
 					paddingHorizontal="10px"
 					alignItems="center"
-					paddingTop="38px"
+					paddingTop="24px"
 					justifyContent="space-between"
 					position="relative"
 				>
@@ -225,7 +258,7 @@ export function StatsScreen() {
 			<BottomSheetModal
 				ref={bottomSheetRef}
 				index={1}
-				snapPoints={["35%", "40%"]}
+				snapPoints={["35%", "45%"]}
 				backdropComponent={BottomSheetBackdrop}
 				backgroundStyle={{
 					backgroundColor: theme.colors.modalBackgroundColor,
