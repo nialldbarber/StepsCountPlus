@@ -7,21 +7,24 @@
 					"title": "10,000 steps",
 					"difficulty": "easy",
 					"emoji": "👟",
-					"target": 10000
+					"target": 10000,
+					"category": "steps"
 				},
 				{
 					"id": "steps-2",
 					"title": "20,000 steps",
 					"difficulty": "medium",
 					"emoji": "👟",
-					"target": 20000
+					"target": 20000,
+					"category": "steps"
 				},
 				{
 					"id": "steps-3",
 					"title": "30,000 steps",
 					"difficulty": "hard",
 					"emoji": "👟",
-					"target": 30000
+					"target": 30000,
+					"category": "steps"
 				}
 			],
 			"distance": [
@@ -30,21 +33,24 @@
 					"title": "5km",
 					"difficulty": "easy",
 					"emoji": "🏃",
-					"target": 5
+					"target": 5,
+					"category": "distance"
 				},
 				{
 					"id": "distance-2",
 					"title": "7km",
 					"difficulty": "easy",
 					"emoji": "🏃",
-					"target": 7
+					"target": 7,
+					"category": "distance"
 				},
 				{
 					"id": "distance-3",
 					"title": "10km",
 					"difficulty": "medium",
 					"emoji": "🏃",
-					"target": 10
+					"target": 10,
+					"category": "distance"
 				}
 			],
 			"flights": [
@@ -53,26 +59,70 @@
 					"title": "Empire State Building",
 					"difficulty": "medium",
 					"emoji": "🪜",
-					"target": 86
+					"target": 86,
+					"category": "flights"
 				},
 				{
 					"id": "flights-2",
 					"title": "Burj Khalifa",
 					"difficulty": "hard",
 					"emoji": "🪜",
-					"target": 160
+					"target": 160,
+					"category": "flights"
 				}
 			],
 			"long-distance-runs": [
 				{
-					"id": "long-distance-runs-1",
+					"id": "long-distance-runs-2",
 					"title": "London Marathon",
 					"difficulty": "hard",
 					"emoji": "🏃",
-					"target": 42
+					"target": 42,
+					"category": "long-distance-runs"
+				},
+				{
+					"id": "long-distance-runs-3",
+					"title": "Ultra Trail du Mont Blanc",
+					"difficulty": "hard",
+					"emoji": "🏃",
+					"target": 168,
+					"category": "long-distance-runs"
+				},
+				{
+					"id": "long-distance-runs-4",
+					"title": "Trans-Siberian Railway",
+					"difficulty": "hard",
+					"emoji": "🏃",
+					"target": 9289,
+					"category": "long-distance-runs"
 				}
 			],
-			"f1-tracks": []
+			"f1-tracks": [
+				{
+					"id": "f1-tracks-1",
+					"title": "Bahrain Grand Prix",
+					"difficulty": "medium",
+					"emoji": "🇧🇭",
+					"target": 308,
+					"category": "f1-tracks"
+				},
+				{
+					"id": "f1-tracks-2",
+					"title": "Saudi Arabian Grand Prix",
+					"difficulty": "medium",
+					"emoji": "🇸🇦",
+					"target": 308,
+					"category": "f1-tracks"
+				},
+				{
+					"id": "f1-tracks-3",
+					"title": "Australian Grand Prix",
+					"difficulty": "medium",
+					"emoji": "🇦🇺",
+					"target": 306,
+					"category": "f1-tracks"
+				},
+			]
 		}
 	}
 }

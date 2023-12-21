@@ -29,17 +29,22 @@ export function ChallengesScreen({ route }: Props) {
 	const f = route?.params?.currentFilter;
 	const filter = f === undefined ? "steps" : f;
 
-	console.log(filter);
-
-	const [currentFilter, setCurrentFilter] = useState<ChallengeType>("steps");
+	const [currentFilter, setCurrentFilter] = useState<ChallengeType>(filter);
 	const { navigate } = useNavigation();
 	const { challenges, setRemoveChallenge } = useChallengesStore();
 	const { value, handleActiveValue } = useActiveValue();
 
 	const filterChallengesByCategory = useMemo(() => {
+		if (currentFilter.toLowerCase() === "all") {
+			return challenges;
+		}
+
 		const filteredResults = challenges.filter((item) => {
-			const formattedValue = item.id.split("-")[0];
-			return formattedValue === currentFilter.toLowerCase();
+			const category = item.category || item.id.split("-")[0];
+			return (
+				category.toLowerCase() ===
+				currentFilter.toLowerCase().replaceAll(" ", "-")
+			);
 		});
 		return filteredResults;
 	}, [challenges, currentFilter]);

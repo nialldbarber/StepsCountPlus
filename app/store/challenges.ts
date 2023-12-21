@@ -4,6 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 export const challengeTypes = [
+	{ id: `${0}-challengeTypes`, type: "All" },
 	{ id: `${1}-challengeTypes`, type: "Steps" },
 	{ id: `${2}-challengeTypes`, type: "Distance" },
 	{ id: `${3}-challengeTypes`, type: "Flights" },
@@ -25,6 +26,7 @@ export type Challenge = {
 	emoji: string;
 	startDate?: string;
 	target: number;
+	category: ChallengeType;
 };
 
 type ChallengesState = {

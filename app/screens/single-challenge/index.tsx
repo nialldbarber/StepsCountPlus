@@ -47,6 +47,8 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 	}
 
 	function invokeAddNewChallenge(challenge: Challenge) {
+		console.log("HELLO", challenge.category);
+
 		try {
 			setAddChallenge(challenge);
 			Toast.show({
@@ -54,7 +56,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 				text1: "Added successfully!",
 				text2: "Click here to check it out 🚀",
 				position: "bottom",
-				onPress: () => navigate("ChallengesRoot", challenge.title), // this should go back to
+				onPress: () => navigate("ChallengesRoot", challenge.category),
 				bottomOffset: 100,
 			});
 		} catch (error) {
@@ -87,8 +89,10 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 							<Text>hello</Text>
 						</Box>
 					) : (
+						// TODO: option to randomise (thinking runs and f1 tracks)
 						availableChallenges.map((challenge) => {
-							const { id, title, difficulty, emoji, target } = challenge;
+							const { id, title, difficulty, emoji, target, category } =
+								challenge;
 							const timestamp = new Date().toISOString();
 							return (
 								<ChallengeCard
@@ -96,6 +100,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 									title={title}
 									difficulty={difficulty}
 									target={target}
+									category={category}
 									fn={() =>
 										invokeAddNewChallenge({
 											...challenge,

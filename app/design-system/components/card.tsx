@@ -13,7 +13,7 @@ const CHALLENGE_TYPES: Record<string, string> = {
 	steps: "Steps",
 	distance: "Distance",
 	flights: "Flights",
-	"long-distance-runs": "Long Distance Runs",
+	"long-distance-runs": "Long Distances",
 	"f1-tracks": "F1 Tracks",
 };
 

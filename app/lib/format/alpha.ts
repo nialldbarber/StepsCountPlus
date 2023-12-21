@@ -5,3 +5,7 @@ export function capitaliseFirstLetter(str: string) {
 	const whole = [...first, ...rest].join("");
 	return whole;
 }
+
+export function removeDashes(str: string) {
+	return str.replaceAll("-", " ");
+}

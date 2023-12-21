@@ -16,6 +16,7 @@ import { createStyleSheet, useStyles } from "react-native-unistyles";
 interface Props extends Challenge {
 	isSet?: boolean;
 	fn: () => void;
+	category: any;
 }
 
 export function ChallengeCard({
@@ -25,6 +26,7 @@ export function ChallengeCard({
 	isSet = false,
 	startDate,
 	target,
+	category,
 	fn,
 }: Props) {
 	const { styles, theme } = useStyles(stylesheet);

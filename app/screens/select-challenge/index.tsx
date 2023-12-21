@@ -6,7 +6,7 @@ import { Layout } from "@/app/design-system/components/layout";
 export function SelectChallengeScreen() {
 	return (
 		<Layout>
-			<ScreenHeader title="Select a challenge" />
+			<ScreenHeader title="Choose a category" />
 			<Box gap="20px" justifyContent="center" marginTop="20px">
 				<Card challengeType="steps" />
 				<Card challengeType="distance" />
