@@ -6,7 +6,9 @@ import { Text } from "@/app/design-system/components/text";
 import { useEffectOnce } from "@/app/hooks/useEffectOnce";
 import { getMeasurementFromDate } from "@/app/lib/activity/challenge";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
+import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { determinePercentage } from "@/app/lib/format/numbers";
+import type { ChallengeType } from "@/app/store/challenges";
 import { Challenge } from "@/app/store/challenges";
 import { Trash } from "iconsax-react-native";
 import { useEffect, useState } from "react";
@@ -16,7 +18,7 @@ import { createStyleSheet, useStyles } from "react-native-unistyles";
 interface Props extends Challenge {
 	isSet?: boolean;
 	fn: () => void;
-	category: any;
+	category: ChallengeType;
 }
 
 export function ChallengeCard({
@@ -30,7 +32,7 @@ export function ChallengeCard({
 	fn,
 }: Props) {
 	const { styles, theme } = useStyles(stylesheet);
-	const [percentage, setPercentage] = useState(null);
+	const [percentage, setPercentage] = useState(0);
 
 	useEffect(() => {
 		new NativeEventEmitter(NativeModules.AppleHealthKit).addListener(
@@ -45,14 +47,30 @@ export function ChallengeCard({
 		async function getPercentage() {
 			try {
 				if (!startDate) return;
-				const p = await getMeasurementFromDate("steps", startDate);
-				setPercentage(p);
+				const finalPercentage = await getMeasurementFromDate(
+					category,
+					startDate,
+				);
+
+				// @TODO: make sure this works for flights
+
+				if (
+					category === "distance" ||
+					category === "f1-tracks" ||
+					category === "long-distance-runs"
+				) {
+					setPercentage(convertMetersToKm(finalPercentage));
+				} else {
+					setPercentage(finalPercentage);
+				}
 			} catch (error) {
 				console.error("shit");
 			}
 		}
 		getPercentage();
 	});
+
+	console.log("YOL", { percentage, target, category });
 
 	return (
 		<Box

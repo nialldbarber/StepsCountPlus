@@ -104,6 +104,7 @@ export function ChallengesScreen({ route }: Props) {
 										fn={() => setRemoveChallenge(item.id)}
 										startDate={item.startDate}
 										target={item.target}
+										category={item.category}
 									/>
 								)}
 							/>

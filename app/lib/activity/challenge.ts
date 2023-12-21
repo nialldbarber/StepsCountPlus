@@ -1,10 +1,8 @@
+import { ChallengeType } from "@/app/store/challenges";
 import type { HealthInputOptions } from "react-native-health";
 import HealthKit from "react-native-health";
 
-export function getMeasurementFromDate(
-	type: "steps" | "flights" | "distance",
-	startDate: string,
-) {
+export function getMeasurementFromDate(type: ChallengeType, startDate: string) {
 	const formattedStartDate = new Date(startDate).toISOString();
 	const formattedEndDate = new Date().toISOString();
 	const options: HealthInputOptions = {

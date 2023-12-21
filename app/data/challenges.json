@@ -25,7 +25,7 @@
 					"emoji": "👟",
 					"target": 30000,
 					"category": "steps"
-				}
+				},
 			],
 			"distance": [
 				{
@@ -50,6 +50,22 @@
 					"difficulty": "medium",
 					"emoji": "🏃",
 					"target": 10,
+					"category": "distance"
+				},
+				{
+					"id": "distance-4",
+					"title": "15km",
+					"difficulty": "hard",
+					"emoji": "🏃",
+					"target": 15,
+					"category": "distance"
+				},
+				{
+					"id": "distance-5",
+					"title": "20km",
+					"difficulty": "hard",
+					"emoji": "🏃",
+					"target": 20,
 					"category": "distance"
 				}
 			],
