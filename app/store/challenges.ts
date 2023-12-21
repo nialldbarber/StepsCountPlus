@@ -11,7 +11,7 @@ export const challengeTypes = [
 	{ id: `${5}-challengeTypes`, type: "F1 tracks" },
 ] as const;
 type Item = (typeof challengeTypes)[number];
-type Value = Item["type"];
+export type Value = Item["type"];
 type FormatValue<T extends string> = T extends `${infer Word} ${infer Rest}`
 	? `${Lowercase<Word>}-${FormatValue<Rest>}`
 	: Lowercase<T>;

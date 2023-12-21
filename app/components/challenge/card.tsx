@@ -1,7 +1,9 @@
+import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
+import { useEffectOnce } from "@/app/hooks/useEffectOnce";
 import { getMeasurementFromDate } from "@/app/lib/activity/challenge";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { determinePercentage } from "@/app/lib/format/numbers";
@@ -19,6 +21,7 @@ interface Props extends Challenge {
 export function ChallengeCard({
 	title,
 	difficulty,
+	emoji,
 	isSet = false,
 	startDate,
 	target,
@@ -36,7 +39,7 @@ export function ChallengeCard({
 		);
 	});
 
-	useEffect(() => {
+	useEffectOnce(() => {
 		async function getPercentage() {
 			try {
 				if (!startDate) return;
@@ -57,9 +60,14 @@ export function ChallengeCard({
 			marginBottom="28px"
 		>
 			<Box flexDirection="row" justifyContent="space-between" flexWrap="wrap">
-				<Text level="heading" size="18px">
-					{title} {"\n"}challenge
-				</Text>
+				<Box flexDirection="row">
+					<Box paddingRight="20px">
+						<Text>{emoji}</Text>
+					</Box>
+					<Text level="heading" size="18px">
+						{title} {"\n"}challenge
+					</Text>
+				</Box>
 				<Box>
 					<Box
 						backgroundColor="greyFour"
@@ -80,7 +88,7 @@ export function ChallengeCard({
 			{isSet ? (
 				<>
 					<Box position="absolute" bottom="15px" right="15px">
-						<Pressable onPress={fn}>
+						<Pressable onPress={fn} hitSlop={hitSlopLarge}>
 							<Trash color={theme.colors.trashIconStroke} />
 						</Pressable>
 					</Box>
@@ -89,7 +97,9 @@ export function ChallengeCard({
 						justifyContent="space-between"
 						paddingTop="30px"
 					>
-						<Text>{determinePercentage(percentage, target)}% complete</Text>
+						<Text size="14px">
+							{determinePercentage(percentage, target)}% complete
+						</Text>
 					</Box>
 				</>
 			) : (

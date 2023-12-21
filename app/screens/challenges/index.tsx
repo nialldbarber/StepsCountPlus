@@ -9,18 +9,28 @@ import { Row } from "@/app/design-system/components/row";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
 import { useActiveValue } from "@/app/hooks/useActiveValue";
+import { RootChallengesScreen } from "@/app/navigation/types";
 import {
 	ChallengeType,
 	challengeTypes,
 	useChallengesStore,
 } from "@/app/store/challenges";
 import { useNavigation } from "@react-navigation/native";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FlashList } from "@shopify/flash-list";
 import { useMemo, useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-export function ChallengesScreen() {
+type Props = NativeStackScreenProps<RootChallengesScreen, "ChallengesRoot">;
+
+export function ChallengesScreen({ route }: Props) {
 	const { styles, theme } = useStyles(stylesheet);
+
+	const f = route?.params?.currentFilter;
+	const filter = f === undefined ? "steps" : f;
+
+	console.log(filter);
+
 	const [currentFilter, setCurrentFilter] = useState<ChallengeType>("steps");
 	const { navigate } = useNavigation();
 	const { challenges, setRemoveChallenge } = useChallengesStore();
@@ -84,6 +94,7 @@ export function ChallengesScreen() {
 										key={item.id}
 										title={item.title}
 										difficulty={item.difficulty}
+										emoji={item.emoji}
 										isSet
 										fn={() => setRemoveChallenge(item.id)}
 										startDate={item.startDate}

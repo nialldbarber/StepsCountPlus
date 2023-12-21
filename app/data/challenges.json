@@ -47,9 +47,32 @@
 					"target": 10
 				}
 			],
-			"flights": {},
-			"long-distance-runs": {},
-			"f1-tracks": {}
+			"flights": [
+				{
+					"id": "flights-1",
+					"title": "Empire State Building",
+					"difficulty": "medium",
+					"emoji": "🪜",
+					"target": 86
+				},
+				{
+					"id": "flights-2",
+					"title": "Burj Khalifa",
+					"difficulty": "hard",
+					"emoji": "🪜",
+					"target": 160
+				}
+			],
+			"long-distance-runs": [
+				{
+					"id": "long-distance-runs-1",
+					"title": "London Marathon",
+					"difficulty": "hard",
+					"emoji": "🏃",
+					"target": 42
+				}
+			],
+			"f1-tracks": []
 		}
 	}
 }

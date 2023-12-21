@@ -53,10 +53,7 @@ export function Card({ challengeType }: Props) {
 		>
 			<Pressable
 				style={styles.button}
-				onPress={() => {
-					console.log("hello");
-					navigate("SingleChallenge", { challengeType });
-				}}
+				onPress={() => navigate("SingleChallenge", { challengeType })}
 			>
 				<Box
 					flexDirection="row"

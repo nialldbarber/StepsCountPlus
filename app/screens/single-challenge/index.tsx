@@ -54,7 +54,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 				text1: "Added successfully!",
 				text2: "Click here to check it out 🚀",
 				position: "bottom",
-				onPress: () => navigate("ChallengesRoot"),
+				onPress: () => navigate("ChallengesRoot", challenge.title), // this should go back to
 				bottomOffset: 100,
 			});
 		} catch (error) {
@@ -81,7 +81,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 				/>
 			</Box>
 			<Box marginTop="32px">
-				<Stack gutter="10px">
+				<Stack>
 					{availableChallenges.length === 0 ? (
 						<Box>
 							<Text>hello</Text>

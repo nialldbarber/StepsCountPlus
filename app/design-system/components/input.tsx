@@ -15,7 +15,6 @@ interface Props extends TextInputProps {
 export function Input({
 	value,
 	placeholder,
-	placeholderTextColor,
 	keyboardType,
 	onChangeText,
 	handleDeleteValue,
@@ -33,7 +32,7 @@ export function Input({
 				keyboardType={keyboardType}
 			/>
 			{value?.length > 0 && (
-				<Box position="absolute" right="10px" top="12px">
+				<Box position="absolute" right="12px" top="12px">
 					<Pressable onPress={handleDeleteValue}>
 						<CloseCircle color={theme.colors.inputIconColor} />
 					</Pressable>
