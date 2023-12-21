@@ -1,79 +1,139 @@
 import { ChallengeCard } from "@/app/components/challenge/card";
+import { hitSlopLarge } from "@/app/constants/hit-slop";
+import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
+import { Chip } from "@/app/design-system/components/chip";
 import { Layout } from "@/app/design-system/components/layout";
+import { Row } from "@/app/design-system/components/row";
 import { Text } from "@/app/design-system/components/text";
-import { useChallengesStore } from "@/app/store/challenges";
+import { space } from "@/app/design-system/space";
+import { useActiveValue } from "@/app/hooks/useActiveValue";
+import {
+	ChallengeType,
+	challengeTypes,
+	useChallengesStore,
+} from "@/app/store/challenges";
 import { useNavigation } from "@react-navigation/native";
+import { FlashList } from "@shopify/flash-list";
+import { useMemo, useState } from "react";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export function ChallengesScreen() {
+	const { styles, theme } = useStyles(stylesheet);
+	const [currentFilter, setCurrentFilter] = useState<ChallengeType>("steps");
 	const { navigate } = useNavigation();
 	const { challenges, setRemoveChallenge } = useChallengesStore();
+	const { value, handleActiveValue } = useActiveValue();
+
+	const filterChallengesByCategory = useMemo(() => {
+		const filteredResults = challenges.filter((item) => {
+			const formattedValue = item.id.split("-")[0];
+			return formattedValue === currentFilter.toLowerCase();
+		});
+		return filteredResults;
+	}, [challenges, currentFilter]);
 
 	return (
-		<Layout>
-			<Box flex={1}>
-				<Text level="heading" size="26px" weight="bold">
-					My challenges
-				</Text>
-				{challenges.length > 0 ? (
-					<Box>
-						{challenges.map(({ id, title, difficulty, startDate, target }) => {
-							return (
-								<>
-									<ChallengeCard
-										key={id}
-										title={title}
-										difficulty={difficulty}
-										isSet
-										fn={() => setRemoveChallenge(id)}
-										startDate={startDate}
-										target={target}
-									/>
-								</>
-							);
-						})}
-						<Box>
-							<Button
-								size="20px"
-								weight="bold"
-								color="white"
-								onPress={() => navigate("SelectChallenge")}
-							>
-								Take on new challenge
-							</Button>
-						</Box>
+		<>
+			<Layout>
+				<Box flex={1}>
+					<Box marginBottom="20px">
+						<Text level="heading" size="26px" weight="bold">
+							My challenges
+						</Text>
 					</Box>
-				) : (
-					<Box>
-						<Box justifyContent="center" paddingVertical="20px">
-							<Text weight="bold">
-								Looks like you haven't started a challenge!
-							</Text>
-						</Box>
-						<Box
-							justifyContent="center"
-							alignItems="center"
-							paddingTop="20px"
-							paddingBottom="42px"
+
+					<Bleed left="-20px" right="-20px" style={styles.bleed}>
+						<Row
+							marginHorizontal="15px"
+							marginTop="12px"
+							marginBottom="10px"
+							gutter="6px"
+							a11yRole="tablist"
+							scroll
 						>
-							<Text level="heading" weight="bold" size="44px">
-								🙈
-							</Text>
-						</Box>
+							{challengeTypes.map(({ id, type }, index) => {
+								return (
+									<Chip
+										key={id}
+										label={type}
+										onPress={() => {
+											handleActiveValue(index);
+											setCurrentFilter(type);
+										}}
+										a11yLabel="test"
+										a11yRole="menu"
+										hitSlop={hitSlopLarge}
+										isSelected={index === value}
+										size="16px"
+										height="36px"
+									/>
+								);
+							})}
+						</Row>
+					</Bleed>
+
+					{challenges.length > 0 ? (
 						<Box>
-							<Button
-								size="18px"
-								weight="bold"
-								color="white"
-								onPress={() => navigate("SelectChallenge")}
-							>
-								Take on new challenge
-							</Button>
+							<FlashList
+								data={filterChallengesByCategory}
+								estimatedItemSize={300}
+								renderItem={({ item }) => (
+									<ChallengeCard
+										key={item.id}
+										title={item.title}
+										difficulty={item.difficulty}
+										isSet
+										fn={() => setRemoveChallenge(item.id)}
+										startDate={item.startDate}
+										target={item.target}
+									/>
+								)}
+							/>
 						</Box>
-					</Box>
-				)}
+					) : (
+						<Box>
+							<Box justifyContent="center" paddingVertical="20px">
+								<Text weight="bold">
+									Looks like you haven't started a challenge!
+								</Text>
+							</Box>
+							<Box
+								justifyContent="center"
+								alignItems="center"
+								paddingTop="20px"
+								paddingBottom="42px"
+							>
+								<Text level="heading" weight="bold" size="44px">
+									🙈
+								</Text>
+							</Box>
+						</Box>
+					)}
+				</Box>
+			</Layout>
+			<Box
+				backgroundColor={theme.colors.screenBackgroundColor}
+				paddingHorizontal="20px"
+				paddingVertical="15px"
+				shadow
+			>
+				<Button
+					size="18px"
+					weight="bold"
+					color="white"
+					onPress={() => navigate("SelectChallenge")}
+				>
+					Take on new challenge
+				</Button>
 			</Box>
-		</Layout>
+		</>
 	);
 }
+
+const stylesheet = createStyleSheet(() => ({
+	bleed: {
+		marginBottom: space["15px"],
+	},
+}));

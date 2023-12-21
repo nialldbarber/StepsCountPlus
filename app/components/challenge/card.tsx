@@ -3,6 +3,8 @@ import { Button } from "@/app/design-system/components/button";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { getMeasurementFromDate } from "@/app/lib/activity/challenge";
+import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
+import { determinePercentage } from "@/app/lib/format/numbers";
 import { Challenge } from "@/app/store/challenges";
 import { Trash } from "iconsax-react-native";
 import { useEffect, useState } from "react";
@@ -23,7 +25,6 @@ export function ChallengeCard({
 	fn,
 }: Props) {
 	const { styles, theme } = useStyles(stylesheet);
-
 	const [percentage, setPercentage] = useState(null);
 
 	useEffect(() => {
@@ -53,6 +54,7 @@ export function ChallengeCard({
 			backgroundColor={theme.colors.cardBackgroundColor}
 			padding="20px"
 			borderRadius="medium"
+			marginBottom="28px"
 		>
 			<Box flexDirection="row" justifyContent="space-between" flexWrap="wrap">
 				<Text level="heading" size="18px">
@@ -70,38 +72,31 @@ export function ChallengeCard({
 						styles={styles.difficultyBadge(difficulty)}
 					>
 						<Text size="12px" color="black">
-							{difficulty}
+							{capitaliseFirstLetter(difficulty)}
 						</Text>
-					</Box>
-					<Box
-						backgroundColor="greyFour"
-						borderRadius="full"
-						paddingVertical="6px"
-						paddingHorizontal="6px"
-						alignItems="center"
-						justifyContent="center"
-					>
-						<Text size="12px">{title}</Text>
 					</Box>
 				</Box>
 			</Box>
 			{isSet ? (
-				<Box>
-					<Pressable onPress={fn}>
-						<Trash color={theme.colors.trashIconStroke} />
-					</Pressable>
-				</Box>
+				<>
+					<Box position="absolute" bottom="15px" right="15px">
+						<Pressable onPress={fn}>
+							<Trash color={theme.colors.trashIconStroke} />
+						</Pressable>
+					</Box>
+					<Box
+						flexDirection="row"
+						justifyContent="space-between"
+						paddingTop="30px"
+					>
+						<Text>{determinePercentage(percentage, target)}% complete</Text>
+					</Box>
+				</>
 			) : (
 				<Box alignSelf="center" paddingTop="20px">
 					<Button shape="small" size="12px" onPress={fn}>
 						Accept challenge
 					</Button>
-				</Box>
-			)}
-
-			{isSet && (
-				<Box height="30px" flexDirection="row" justifyContent="space-between">
-					<Text>Percentage: {(percentage / target) * 100}%</Text>
 				</Box>
 			)}
 		</Box>

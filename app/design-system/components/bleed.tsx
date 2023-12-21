@@ -1,6 +1,7 @@
 import type { NegativeSpace } from "@/app/design-system/space";
 import { negativeSpace } from "@/app/design-system/space";
 import type { PropsWithChildren } from "react";
+import type { ViewStyle } from "react-native";
 import { View } from "react-native";
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 	right?: NegativeSpace;
 	horizontal?: NegativeSpace;
 	vertical?: NegativeSpace;
+	style?: ViewStyle;
 };
 
 export function Bleed({
@@ -20,6 +22,7 @@ export function Bleed({
 	horizontal,
 	vertical,
 	children,
+	style,
 	...rest
 }: PropsWithChildren<Props>) {
 	return (
@@ -31,6 +34,7 @@ export function Bleed({
 				marginRight: negativeSpace[right],
 				marginHorizontal: negativeSpace[horizontal],
 				marginVertical: negativeSpace[vertical],
+				...style,
 			}}
 			{...rest}
 		>

@@ -81,7 +81,11 @@ export function Row({
 	children,
 }: RowProps) {
 	return scroll ? (
-		<ScrollView scrollEnabled={scroll} horizontal>
+		<ScrollView
+			scrollEnabled={scroll}
+			horizontal
+			showsHorizontalScrollIndicator={false}
+		>
 			<InnerRow
 				margin={margin}
 				marginVertical={marginVertical}

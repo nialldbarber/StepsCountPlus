@@ -4,3 +4,7 @@ export function formatNumber(num: number | string) {
 	}
 	return Intl.NumberFormat().format(num);
 }
+
+export function determinePercentage(percentage: number, target: number) {
+	return ((percentage / target) * 100).toFixed(0);
+}

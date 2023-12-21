@@ -3,11 +3,20 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-export type ChallengeType =
-	| "distance"
-	| "flights"
-	| "long-distance-runs"
-	| "f1-tracks";
+export const challengeTypes = [
+	{ id: `${1}-challengeTypes`, type: "Steps" },
+	{ id: `${2}-challengeTypes`, type: "Distance" },
+	{ id: `${3}-challengeTypes`, type: "Flights" },
+	{ id: `${4}-challengeTypes`, type: "Long distance runs" },
+	{ id: `${5}-challengeTypes`, type: "F1 tracks" },
+] as const;
+type Item = (typeof challengeTypes)[number];
+type Value = Item["type"];
+type FormatValue<T extends string> = T extends `${infer Word} ${infer Rest}`
+	? `${Lowercase<Word>}-${FormatValue<Rest>}`
+	: Lowercase<T>;
+
+export type ChallengeType = FormatValue<Value>;
 
 export type Challenge = {
 	id: string;

@@ -27,7 +27,6 @@ const permissions = {
 } as HealthKitPermissions;
 
 export function useGetHealthData(date: Date) {
-	const [isLoading, setIsLoading] = useState(true);
 	const [hasPermission, setHasPermission] = useState(false);
 
 	const { distance } = useMeasurementsStore();
@@ -312,6 +311,4 @@ export function useGetHealthData(date: Date) {
 		invokeFlightsData();
 		invokeDistanceData();
 	}, [hasPermission, distance]);
-
-	return { isLoading };
 }

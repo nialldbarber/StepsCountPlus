@@ -35,16 +35,14 @@ const STROKE_WIDTH = 12;
 const pathToFonts = "../../../assets/fonts";
 
 export function StatsScreen() {
-	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
-	const { navigate } = useNavigation();
-	const bottomSheetRef = useRef(null);
 	useGetHealthData(new Date());
+	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
+	const bottomSheetRef = useRef(null);
+	const { navigate } = useNavigation();
 	const { distance } = useMeasurementsStore();
 	const { value, handleActiveValue } = useActiveValue();
-
 	const { handlePresentModalPress, handleCloseModal } =
 		useBottomSheet(bottomSheetRef);
-
 	const { theme } = useStyles(stylesheet);
 	const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 65);
 	const smallerFont = useFont(
