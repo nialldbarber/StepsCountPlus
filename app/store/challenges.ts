@@ -14,6 +14,8 @@ export type Challenge = {
 	title: string;
 	difficulty: "easy" | "medium" | "hard";
 	emoji: string;
+	startDate?: string;
+	target: number;
 };
 
 type ChallengesState = {

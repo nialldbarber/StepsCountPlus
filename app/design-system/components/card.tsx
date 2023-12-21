@@ -10,6 +10,7 @@ type Props = {
 };
 
 const CHALLENGE_TYPES: Record<string, string> = {
+	steps: "Steps",
 	distance: "Distance",
 	flights: "Flights",
 	"long-distance-runs": "Long Distance Runs",
@@ -17,6 +18,7 @@ const CHALLENGE_TYPES: Record<string, string> = {
 };
 
 const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
+	steps: "👟",
 	distance: "📍",
 	flights: "🪜",
 	"long-distance-runs": "🏃",
@@ -24,14 +26,16 @@ const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
 };
 
 const CHALLENGE_DESC_TYPES: Record<string, string> = {
+	steps:
+		"Make every step count in a quest for fitness, turning daily strides into exciting mini-adventures",
 	distance:
-		"Embark on a journey of endurance and discovery, measuring your progress one step at a time.",
+		"Embark on a journey of endurance and discovery, measuring your progress one step at a time",
 	flights:
-		"Travel the world through fitness, connecting iconic landmarks like the Statue of Liberty and Burj Khalifa with each workout.",
+		"Travel the world through fitness, connecting iconic landmarks like the Statue of Liberty and Burj Khalifa with each workout",
 	"long-distance-runs":
-		"Channel your inner Olympian with challenges inspired by legendary runs, from swift sprints to marathons.",
+		"Channel your inner Olympian with challenges inspired by legendary runs, from swift sprints to marathons",
 	"f1-tracks":
-		"Experience the thrill of Formula 1 by tackling challenges modeled on world-famous tracks, blending speed with strategy.",
+		"Experience the thrill of Formula 1 by tackling challenges modeled on world-famous tracks, blending speed with strategy",
 };
 
 export function Card({ challengeType }: Props) {

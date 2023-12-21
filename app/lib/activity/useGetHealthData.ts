@@ -80,7 +80,7 @@ export function useGetHealthData(date: Date) {
 			return;
 		}
 
-		async function invokeHealthData() {
+		async function invokeStepsData() {
 			try {
 				/**
 				 * =====================================================================
@@ -147,7 +147,13 @@ export function useGetHealthData(date: Date) {
 						setYearlySteps(totalSteps, segments);
 					},
 				);
+			} catch (error) {
+				console.error("Failed to invoke steps data");
+			}
+		}
 
+		async function invokeFlightsData() {
+			try {
 				/**
 				 * =====================================================================
 				 * @type Flights
@@ -210,7 +216,12 @@ export function useGetHealthData(date: Date) {
 						setYearlyFlights(totalFlights, segments);
 					},
 				);
-
+			} catch (error) {
+				console.error("Failed to invoke flights data");
+			}
+		}
+		async function invokeDistanceData() {
+			try {
 				/**
 				 * =====================================================================
 				 * @type Distance
@@ -293,12 +304,13 @@ export function useGetHealthData(date: Date) {
 					},
 				);
 			} catch (error) {
-				console.error(error);
-			} finally {
-				setIsLoading(false);
+				console.error("Failed to invoke distance data");
 			}
 		}
-		invokeHealthData();
+
+		invokeStepsData();
+		invokeFlightsData();
+		invokeDistanceData();
 	}, [hasPermission, distance]);
 
 	return { isLoading };

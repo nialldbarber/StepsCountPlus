@@ -35,11 +35,11 @@ const STROKE_WIDTH = 12;
 const pathToFonts = "../../../assets/fonts";
 
 export function StatsScreen() {
+	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
 	const { navigate } = useNavigation();
 	const bottomSheetRef = useRef(null);
-	const { isLoading } = useGetHealthData(new Date());
+	useGetHealthData(new Date());
 	const { distance } = useMeasurementsStore();
-	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
 	const { value, handleActiveValue } = useActiveValue();
 
 	const { handlePresentModalPress, handleCloseModal } =
@@ -68,7 +68,6 @@ export function StatsScreen() {
 			return dailyFlights / flightsGoal;
 		}
 		if (currentFilter === "Distance") {
-			console.log(dailyDistance, distanceGoal);
 			return convertMetersToKm(dailyDistance) / distanceGoal;
 		}
 	}, [

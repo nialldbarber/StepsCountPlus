@@ -5,10 +5,8 @@ import { Layout } from "@/app/design-system/components/layout";
 import { Text } from "@/app/design-system/components/text";
 import { useChallengesStore } from "@/app/store/challenges";
 import { useNavigation } from "@react-navigation/native";
-import { useStyles } from "react-native-unistyles";
 
 export function ChallengesScreen() {
-	const { theme } = useStyles();
 	const { navigate } = useNavigation();
 	const { challenges, setRemoveChallenge } = useChallengesStore();
 
@@ -20,15 +18,21 @@ export function ChallengesScreen() {
 				</Text>
 				{challenges.length > 0 ? (
 					<Box>
-						{challenges.map(({ id, title, difficulty }) => (
-							<ChallengeCard
-								key={id}
-								title={title}
-								difficulty={difficulty}
-								isSet
-								fn={() => setRemoveChallenge(id)}
-							/>
-						))}
+						{challenges.map(({ id, title, difficulty, startDate, target }) => {
+							return (
+								<>
+									<ChallengeCard
+										key={id}
+										title={title}
+										difficulty={difficulty}
+										isSet
+										fn={() => setRemoveChallenge(id)}
+										startDate={startDate}
+										target={target}
+									/>
+								</>
+							);
+						})}
 						<Box>
 							<Button
 								size="20px"

@@ -18,6 +18,7 @@
 		"@react-navigation/native": "^6.1.9",
 		"@react-navigation/native-stack": "^6.9.17",
 		"@sentry/react-native": "^5.15.1",
+		"@shopify/flash-list": "^1.6.3",
 		"@shopify/react-native-performance": "^4.1.2",
 		"@shopify/react-native-skia": "^0.1.230",
 		"ContextMenu": "file:context-menu",

@@ -7,12 +7,8 @@ export function SelectChallengeScreen() {
 	return (
 		<Layout>
 			<ScreenHeader title="Select a challenge" />
-			<Box
-				gap="20px"
-				justifyContent="center"
-				marginTop="20px"
-				paddingBottom="150px"
-			>
+			<Box gap="20px" justifyContent="center" marginTop="20px">
+				<Card challengeType="steps" />
 				<Card challengeType="distance" />
 				<Card challengeType="flights" />
 				<Card challengeType="long-distance-runs" />

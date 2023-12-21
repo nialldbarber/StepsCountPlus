@@ -1,24 +1,50 @@
 {
 	"challenges": {
 		"types": {
+			"steps": [
+				{
+					"id": "steps-1",
+					"title": "10,000 steps",
+					"difficulty": "easy",
+					"emoji": "👟",
+					"target": 10000
+				},
+				{
+					"id": "steps-2",
+					"title": "20,000 steps",
+					"difficulty": "medium",
+					"emoji": "👟",
+					"target": 20000
+				},
+				{
+					"id": "steps-3",
+					"title": "30,000 steps",
+					"difficulty": "hard",
+					"emoji": "👟",
+					"target": 30000
+				}
+			],
 			"distance": [
 				{
 					"id": "distance-1",
 					"title": "5km",
 					"difficulty": "easy",
-					"emoji": "🏃"
+					"emoji": "🏃",
+					"target": 5
 				},
 				{
 					"id": "distance-2",
 					"title": "7km",
 					"difficulty": "easy",
-					"emoji": "🏃"
+					"emoji": "🏃",
+					"target": 7
 				},
 				{
 					"id": "distance-3",
 					"title": "10km",
 					"difficulty": "medium",
-					"emoji": "🏃"
+					"emoji": "🏃",
+					"target": 10
 				}
 			],
 			"flights": {},
