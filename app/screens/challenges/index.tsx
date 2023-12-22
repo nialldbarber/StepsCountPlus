@@ -55,6 +55,8 @@ export function ChallengesScreen({ route }: Props) {
 		return filteredResults;
 	}, [challenges, currentFilter]);
 
+	console.log(JSON.stringify(challenges, null, 2));
+
 	return (
 		<Layout>
 			<Box flex={1}>
@@ -136,26 +138,6 @@ export function ChallengesScreen({ route }: Props) {
 					</Row>
 				</Bleed>
 
-				{/* <Box
-						flexDirection="row"
-						paddingBottom="15px"
-						justifyContent="flex-end"
-					>
-						<Box alignItems="center" paddingRight="20px">
-							<Filter size={25} color={theme.colors.challengeConfigStroke} />
-							<Text size="10px" color="greyFour" textStyles={styles.text}>
-								Filter
-							</Text>
-						</Box>
-						<Box alignItems="center">
-							<Medal size={25} color={theme.colors.challengeConfigStroke} />
-							<Text size="10px" color="greyFour" textStyles={styles.text}>
-								Completed
-							</Text>
-						</Box>
-					</Box> */}
-
-				{/* Show completed list here? */}
 				{currentFilterScreen === "completed" ? (
 					<Box>
 						<Text>COMPLETED</Text>
@@ -166,18 +148,22 @@ export function ChallengesScreen({ route }: Props) {
 							data={filterChallengesByCategory}
 							estimatedItemSize={300}
 							renderItem={({ item }) => (
-								<ChallengeCard
-									id={item.id}
-									key={item.id}
-									title={item.title}
-									difficulty={item.difficulty}
-									emoji={item.emoji}
-									isSet
-									fn={() => setRemoveChallenge(item.id)}
-									startDate={item.startDate}
-									target={item.target}
-									category={item.category}
-								/>
+								<Pressable
+									onPress={() => navigate("CurrentChallenge", { challenge: 1 })}
+								>
+									<ChallengeCard
+										id={item.id}
+										key={item.id}
+										title={item.title}
+										difficulty={item.difficulty}
+										emoji={item.emoji}
+										isSet
+										fn={() => setRemoveChallenge(item.id)}
+										startDate={item.startDate}
+										target={item.target}
+										category={item.category}
+									/>
+								</Pressable>
 							)}
 						/>
 					</Box>

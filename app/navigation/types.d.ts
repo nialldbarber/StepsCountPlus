@@ -29,6 +29,7 @@ export type RootChallengesScreen = {
 	ChallengesRoot: { currentFilter: Value };
 	SelectChallenge: undefined;
 	SingleChallenge: { challengeType: ChallengeTypes };
+	CurrentChallenge: { challenge: number };
 };
 
 export type RootSettingsScreen = {

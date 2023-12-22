@@ -54,9 +54,9 @@ export function ChallengeCard({
 				);
 
 				// @TODO: make sure this works for flights
-				console.log({
-					finalPercentage,
-				});
+				// console.log({
+				// 	finalPercentage,
+				// });
 
 				if (
 					category === "distance" ||
