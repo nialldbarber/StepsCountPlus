@@ -61,6 +61,7 @@ export const lightTheme = {
 		plusStroke: colors.black,
 		infoStroke: colors.primary,
 		trashIconStroke: colors.destructive,
+		challengeConfigStroke: colors.greyFour,
 		/**
 		 * @type Button
 		 */
@@ -160,6 +161,7 @@ export const darkTheme = {
 		plusStroke: colors.black,
 		infoStroke: colors.primary,
 		trashIconStroke: colors.destructive,
+		challengeConfigStroke: colors.greyFour,
 		/**
 		 * @type Button
 		 */

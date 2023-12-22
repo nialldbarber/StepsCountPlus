@@ -31,6 +31,7 @@ export type Challenge = {
 
 type ChallengesState = {
 	challenges: Array<Challenge>;
+	completedChallenges: Array<Challenge>;
 };
 
 type ChallengesActions = {
@@ -42,6 +43,7 @@ export const useChallengesStore = create(
 	persist(
 		immer<ChallengesState & ChallengesActions>((set, get) => ({
 			challenges: [],
+			completedChallenges: [],
 			setAddChallenge: (challenge: Challenge) => {
 				set((state) => {
 					state.challenges.push(challenge);
