@@ -7,7 +7,7 @@ import { Layout } from "@/app/design-system/components/layout";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
 import type { RootChallengesScreen } from "@/app/navigation/types";
-import type { Challenge } from "@/app/store/challenges";
+import type { Challenge, ChallengeType } from "@/app/store/challenges";
 import { useChallengesStore } from "@/app/store/challenges";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -16,12 +16,6 @@ import Toast from "react-native-toast-message";
 
 type Props = NativeStackScreenProps<RootChallengesScreen, "SingleChallenge">;
 
-type ChallengeType =
-	| "distance"
-	| "flights"
-	| "long-distance-runs"
-	| "f1-tracks";
-
 export function SingleChallengeScreen({ route: { params } }: Props) {
 	const [filterValue, setFilterValue] = useState("");
 
@@ -29,7 +23,6 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 	const { challenges, setAddChallenge } = useChallengesStore();
 
 	const challengeType = params.challengeType as ChallengeType;
-	// @ts-expect-error
 	const allAvailableChallenges: Challenge[] = Array.isArray(
 		data.challenges.types[challengeType],
 	)
@@ -47,7 +40,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 	}
 
 	function invokeAddNewChallenge(challenge: Challenge) {
-		console.log("HELLO", challenge.category);
+		// console.log("HELLO", challenge.category);
 
 		try {
 			setAddChallenge(challenge);
@@ -56,7 +49,9 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 				text1: "Added successfully!",
 				text2: "Click here to check it out 🚀",
 				position: "bottom",
-				onPress: () => navigate("ChallengesRoot", challenge.category),
+				onPress: () =>
+					// @TODO: this doesn't work correctly
+					navigate("ChallengesRoot", { currentFilter: challenge.category }),
 				bottomOffset: 100,
 			});
 		} catch (error) {
@@ -96,11 +91,13 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 							const timestamp = new Date().toISOString();
 							return (
 								<ChallengeCard
+									id={id}
 									key={id}
 									title={title}
 									difficulty={difficulty}
 									target={target}
 									category={category}
+									emoji={emoji}
 									fn={() =>
 										invokeAddNewChallenge({
 											...challenge,

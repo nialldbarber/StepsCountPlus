@@ -87,30 +87,30 @@
 					"category": "flights"
 				}
 			],
-			"long-distance-runs": [
+			"long-distance": [
 				{
-					"id": "long-distance-runs-2",
+					"id": "long-distance-2",
 					"title": "London Marathon",
 					"difficulty": "hard",
 					"emoji": "🏃",
 					"target": 42,
-					"category": "long-distance-runs"
+					"category": "long-distance"
 				},
 				{
-					"id": "long-distance-runs-3",
+					"id": "long-distance-3",
 					"title": "Ultra Trail du Mont Blanc",
 					"difficulty": "hard",
 					"emoji": "🏃",
 					"target": 168,
-					"category": "long-distance-runs"
+					"category": "long-distance"
 				},
 				{
-					"id": "long-distance-runs-4",
+					"id": "long-distance-4",
 					"title": "Trans-Siberian Railway",
 					"difficulty": "hard",
 					"emoji": "🏃",
 					"target": 9289,
-					"category": "long-distance-runs"
+					"category": "long-distance"
 				}
 			],
 			"f1-tracks": [

@@ -11,7 +11,7 @@ export function SelectChallengeScreen() {
 				<Card challengeType="steps" />
 				<Card challengeType="distance" />
 				<Card challengeType="flights" />
-				<Card challengeType="long-distance-runs" />
+				<Card challengeType="long-distance" />
 				<Card challengeType="f1-tracks" />
 			</Box>
 		</Layout>

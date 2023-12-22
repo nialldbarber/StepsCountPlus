@@ -25,9 +25,10 @@ type Props = NativeStackScreenProps<RootChallengesScreen, "ChallengesRoot">;
 
 export function ChallengesScreen({ route }: Props) {
 	const { styles, theme } = useStyles(stylesheet);
-
 	const f = route?.params?.currentFilter;
-	const filter = f === undefined ? "steps" : f;
+	const filter = route?.params?.currentFilter ?? "Steps";
+
+	console.log(f, filter);
 
 	const [currentFilter, setCurrentFilter] = useState<ChallengeType>(filter);
 	const { navigate } = useNavigation();
@@ -53,16 +54,9 @@ export function ChallengesScreen({ route }: Props) {
 		<>
 			<Layout>
 				<Box flex={1}>
-					<Box marginBottom="20px">
-						<Text level="heading" size="26px" weight="bold">
-							My challenges
-						</Text>
-					</Box>
-
 					<Bleed left="-20px" right="-20px" style={styles.bleed}>
 						<Row
 							marginHorizontal="15px"
-							marginTop="12px"
 							marginBottom="10px"
 							gutter="6px"
 							a11yRole="tablist"
@@ -96,6 +90,7 @@ export function ChallengesScreen({ route }: Props) {
 								estimatedItemSize={300}
 								renderItem={({ item }) => (
 									<ChallengeCard
+										id={item.id}
 										key={item.id}
 										title={item.title}
 										difficulty={item.difficulty}

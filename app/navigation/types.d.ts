@@ -21,7 +21,7 @@ export type ChallengeTypes =
 	| "steps"
 	| "distance"
 	| "flights"
-	| "long-distance-runs"
+	| "long-distance"
 	| "f1-tracks"
 	| "emphasise";
 

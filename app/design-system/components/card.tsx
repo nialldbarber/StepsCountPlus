@@ -13,7 +13,7 @@ const CHALLENGE_TYPES: Record<string, string> = {
 	steps: "Steps",
 	distance: "Distance",
 	flights: "Flights",
-	"long-distance-runs": "Long Distances",
+	"long-distance": "Long Distances",
 	"f1-tracks": "F1 Tracks",
 };
 
@@ -21,7 +21,7 @@ const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
 	steps: "👟",
 	distance: "📍",
 	flights: "🪜",
-	"long-distance-runs": "🏃",
+	"long-distance": "🏃",
 	"f1-tracks": "🏎️",
 };
 
@@ -32,8 +32,8 @@ const CHALLENGE_DESC_TYPES: Record<string, string> = {
 		"Embark on a journey of endurance and discovery, measuring your progress one step at a time",
 	flights:
 		"Travel the world through fitness, connecting iconic landmarks like the Statue of Liberty and Burj Khalifa with each workout",
-	"long-distance-runs":
-		"Channel your inner Olympian with challenges inspired by legendary runs, from swift sprints to marathons",
+	"long-distance":
+		"Test your limits with epic adventures, where each stride spans vast distances and landscapes, from serene trails to rugged terrains",
 	"f1-tracks":
 		"Experience the thrill of Formula 1 by tackling challenges modeled on world-famous tracks, blending speed with strategy",
 };

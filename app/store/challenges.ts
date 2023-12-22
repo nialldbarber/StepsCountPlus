@@ -8,7 +8,7 @@ export const challengeTypes = [
 	{ id: `${1}-challengeTypes`, type: "Steps" },
 	{ id: `${2}-challengeTypes`, type: "Distance" },
 	{ id: `${3}-challengeTypes`, type: "Flights" },
-	{ id: `${4}-challengeTypes`, type: "Long distance runs" },
+	{ id: `${4}-challengeTypes`, type: "Long distance" },
 	{ id: `${5}-challengeTypes`, type: "F1 tracks" },
 ] as const;
 type Item = (typeof challengeTypes)[number];

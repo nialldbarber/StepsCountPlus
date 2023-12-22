@@ -20,6 +20,7 @@ export const lightTheme = {
 		 */
 		cardBackgroundColor: colors.pureWhite,
 		settingsCardBackgroundColor: colors.pureWhite,
+		cardPercentStroke: colors.primary,
 		/**
 		 * @type Bottom tabs
 		 */
@@ -118,6 +119,7 @@ export const darkTheme = {
 		 */
 		cardBackgroundColor: colors.blackTwo,
 		settingsCardBackgroundColor: colors.blackTwo,
+		cardPercentStroke: colors.primary,
 		/**
 		 * @type Bottom tabs
 		 */
