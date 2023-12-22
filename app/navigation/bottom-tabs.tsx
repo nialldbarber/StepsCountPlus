@@ -3,9 +3,10 @@ import { ChallengeStack } from "@/app/navigation/challenges-stack";
 import { Header } from "@/app/navigation/header";
 import type { RootBottomTabsParamList } from "@/app/navigation/types";
 import { GoalsScreen } from "@/app/screens/goals";
+import { ProfileScreen } from "@/app/screens/profile";
 import { StatsScreen } from "@/app/screens/stats";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Award, Chart, StatusUp } from "iconsax-react-native";
+import { Award, Chart, ProfileCircle, StatusUp } from "iconsax-react-native";
 import { useStyles } from "react-native-unistyles";
 
 const Tab = createBottomTabNavigator<RootBottomTabsParamList>();
@@ -44,6 +45,14 @@ export function BottomTabs() {
 			),
 			header: () => <Header header="goals" />,
 		},
+		PROFILE: {
+			tabBarIcon: ({ focused }: Focused) => (
+				<ProfileCircle
+					color={focused ? colors.primary : theme.colors.bottomTabsIconStroke}
+				/>
+			),
+			header: () => <Header header="profile" />,
+		},
 	};
 
 	return (
@@ -79,6 +88,14 @@ export function BottomTabs() {
 				component={GoalsScreen}
 				options={{
 					...TABS.GOALS,
+					...tabBarTintColors,
+				}}
+			/>
+			<Tab.Screen
+				name="Profile"
+				component={ProfileScreen}
+				options={{
+					...TABS.PROFILE,
 					...tabBarTintColors,
 				}}
 			/>

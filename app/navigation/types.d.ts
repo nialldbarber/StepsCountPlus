@@ -13,7 +13,7 @@ export type RootStackParamsList = {
 export type RootBottomTabsParamList = {
 	Stats: undefined;
 	Goals: undefined;
-	Insights: undefined;
+	Profile: undefined;
 	Challenges: undefined;
 };
 

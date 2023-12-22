@@ -11,7 +11,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Props = {
-	header: "stats" | "challenges" | "goals";
+	header: "stats" | "challenges" | "goals" | "profile";
 };
 
 type SettingsModalScreenNavigationProp = NativeStackNavigationProp<
