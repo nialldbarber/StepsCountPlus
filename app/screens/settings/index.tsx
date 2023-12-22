@@ -7,7 +7,7 @@ import { useMeasurementsStore } from "@/app/store/measurements";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
 import { PropsWithChildren } from "react";
-import { ScrollView, Switch } from "react-native";
+import { Image, ScrollView, Switch } from "react-native";
 import {
 	UnistylesRuntime,
 	createStyleSheet,
@@ -249,7 +249,15 @@ export function SettingsScreen() {
 						</Box>
 					</Box>
 
-					<Box alignItems="center" paddingTop="38px" paddingBottom="20px">
+					<Box alignItems="center" paddingTop="38px" shadow>
+						<Text>IF NOT SUBBED 👇</Text>
+						<Image
+							style={styles.image}
+							source={require("../../../assets/images/bmc-button.png")}
+						/>
+					</Box>
+
+					<Box alignItems="center" paddingTop="20px" paddingBottom="20px">
 						<Text color="greyFour" size="12px" withEmoji>
 							Built with ❤️ by Niall Barber
 						</Text>
@@ -282,4 +290,8 @@ const stylesheet = createStyleSheet((theme) => ({
 			? theme.colors.settingsScreenTextActive
 			: theme.colors.settingsScreenTextInactive,
 	}),
+	image: {
+		height: 42,
+		width: 150,
+	},
 }));
