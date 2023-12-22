@@ -6,6 +6,7 @@ import { Input } from "@/app/design-system/components/input";
 import { Layout } from "@/app/design-system/components/layout";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
+import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import type { RootChallengesScreen } from "@/app/navigation/types";
 import type { Challenge, ChallengeType } from "@/app/store/challenges";
 import { useChallengesStore } from "@/app/store/challenges";
@@ -40,7 +41,22 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 	}
 
 	function invokeAddNewChallenge(challenge: Challenge) {
-		// console.log("HELLO", challenge.category);
+		const checkIfUserHasOtherChallengesInProgress = !!challenges.find(
+			(c) => c.category === challenge.category,
+		);
+
+		if (checkIfUserHasOtherChallengesInProgress) {
+			Toast.show({
+				type: "info",
+				text1: `${capitaliseFirstLetter(
+					challenge.category,
+				)} already in progress`,
+				text2: "You can only accept 1 challenge per category",
+				position: "bottom",
+				bottomOffset: 100,
+			});
+			return;
+		}
 
 		try {
 			setAddChallenge(challenge);
