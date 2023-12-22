@@ -7,7 +7,7 @@ import { useMeasurementsStore } from "@/app/store/measurements";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
 import { PropsWithChildren } from "react";
-import { Image, ScrollView, Switch } from "react-native";
+import { Image, Linking, ScrollView, Switch } from "react-native";
 import {
 	UnistylesRuntime,
 	createStyleSheet,
@@ -249,13 +249,19 @@ export function SettingsScreen() {
 						</Box>
 					</Box>
 
-					<Box alignItems="center" paddingTop="38px" shadow>
-						<Text>IF NOT SUBBED 👇</Text>
-						<Image
-							style={styles.image}
-							source={require("../../../assets/images/bmc-button.png")}
-						/>
-					</Box>
+					<Pressable
+						onPress={() =>
+							Linking.openURL("https://www.buymeacoffee.com/nialldbarber")
+						}
+					>
+						<Box alignItems="center" paddingTop="38px" shadow>
+							<Text>IF NOT SUBBED 👇</Text>
+							<Image
+								style={styles.image}
+								source={require("../../../assets/images/bmc-button.png")}
+							/>
+						</Box>
+					</Pressable>
 
 					<Box alignItems="center" paddingTop="20px" paddingBottom="20px">
 						<Text color="greyFour" size="12px" withEmoji>
