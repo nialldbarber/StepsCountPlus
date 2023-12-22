@@ -1,4 +1,5 @@
 import { DonutChart } from "@/app/components/donut-chart";
+import { InfoModal } from "@/app/components/info-modal";
 import { StatsTable } from "@/app/components/stats/stats-table";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Bleed } from "@/app/design-system/components/bleed";
@@ -25,7 +26,6 @@ import { useStepsStore } from "@/app/store/steps";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
 import { useFont } from "@shopify/react-native-skia";
-import { InfoCircle } from "iconsax-react-native";
 import { useMemo, useRef, useState } from "react";
 import { PixelRatio, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
@@ -217,9 +217,7 @@ export function StatsScreen() {
 						{currentFilter} Stats
 					</Text>
 					<Box paddingLeft="10px">
-						<Pressable onPress={handlePresentModalPress} hitSlop={hitSlopLarge}>
-							<InfoCircle color={theme.colors.infoStroke} size={22} />
-						</Pressable>
+						<InfoModal handlePresentModalPress={handlePresentModalPress} />
 					</Box>
 				</Box>
 				<Box paddingVertical="10px">
@@ -255,7 +253,7 @@ export function StatsScreen() {
 			<BottomSheetModal
 				ref={bottomSheetRef}
 				index={1}
-				snapPoints={["35%", "45%"]}
+				snapPoints={["35%", "35%"]}
 				backdropComponent={BottomSheetBackdrop}
 				backgroundStyle={{
 					backgroundColor: theme.colors.modalBackgroundColor,
@@ -264,11 +262,6 @@ export function StatsScreen() {
 				<Stack margin="20px">
 					<ScrollView showsVerticalScrollIndicator={false}>
 						<Box paddingBottom="38px">
-							<Box marginBottom="28px">
-								<Text level="heading" size="26px" withEmoji>
-									A note on this app 🙋
-								</Text>
-							</Box>
 							<Text weight="medium" size="14px" withEmoji>
 								The official Apple Health app (amongst others) already present
 								these data points beautifully and in far greater detail 🙏

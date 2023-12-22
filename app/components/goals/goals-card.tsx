@@ -1,10 +1,10 @@
 import { DistanceInfo } from "@/app/components/goals/distance-info";
 import { FlightsInfo } from "@/app/components/goals/flights-info";
 import { StepsInfo } from "@/app/components/goals/steps-info";
+import { InfoModal } from "@/app/components/info-modal";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Box } from "@/app/design-system/components/box";
 import { Chip } from "@/app/design-system/components/chip";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
@@ -13,7 +13,6 @@ import { useBottomSheet } from "@/app/hooks/useBottomSheet";
 import { useShakeAnimation } from "@/app/hooks/useShakeAnimation";
 import { formatNumber } from "@/app/lib/format/numbers";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
-import { InfoCircle } from "iconsax-react-native";
 import { useMemo, useRef } from "react";
 import { ScrollView } from "react-native";
 import Animated from "react-native-reanimated";
@@ -28,7 +27,7 @@ type GoalsCardProps = {
 	decrementBy: string;
 	lowerLimit: number;
 	upperLimit: number;
-	goalCallback: any;
+	goalCallback: (num: number) => void;
 	options: Array<{ id: string; label: string; value: number }>;
 };
 
@@ -106,9 +105,7 @@ export function GoalsCard({
 				shadow
 			>
 				<Box position="absolute" right="19px" top="19px">
-					<Pressable onPress={handlePresentModalPress} hitSlop={hitSlopLarge}>
-						<InfoCircle color={theme.colors.infoStroke} size={25} />
-					</Pressable>
+					<InfoModal handlePresentModalPress={handlePresentModalPress} />
 				</Box>
 				<Stack gutter="5px">
 					<Box alignItems="center" paddingBottom="20px">
