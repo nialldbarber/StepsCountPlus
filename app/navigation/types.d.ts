@@ -1,4 +1,4 @@
-import { Value } from "@/app/store/challenges";
+import type { Challenge, Value } from "@/app/store/challenges";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 
 export type RootStackParamsList = {
@@ -29,7 +29,7 @@ export type RootChallengesScreen = {
 	ChallengesRoot: { currentFilter: Value };
 	SelectChallenge: undefined;
 	SingleChallenge: { challengeType: ChallengeTypes };
-	CurrentChallenge: { challenge: number };
+	CurrentChallenge: { challenge: Challenge };
 };
 
 export type RootSettingsScreen = {

@@ -149,7 +149,9 @@ export function ChallengesScreen({ route }: Props) {
 							estimatedItemSize={300}
 							renderItem={({ item }) => (
 								<Pressable
-									onPress={() => navigate("CurrentChallenge", { challenge: 1 })}
+									onPress={() =>
+										navigate("CurrentChallenge", { challenge: item })
+									}
 								>
 									<ChallengeCard
 										id={item.id}
