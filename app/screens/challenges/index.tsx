@@ -29,7 +29,7 @@ export function ChallengesScreen({ route }: Props) {
 	const f = route?.params?.currentFilter;
 	const filter = route?.params?.currentFilter ?? "Steps";
 
-	console.log(f, filter);
+	// console.log(f, filter);
 
 	const [currentFilter, setCurrentFilter] = useState<ChallengeType>(filter);
 	const [currentFilterScreen, setCurrentFilterScreen] = useState<
@@ -55,7 +55,7 @@ export function ChallengesScreen({ route }: Props) {
 		return filteredResults;
 	}, [challenges, currentFilter]);
 
-	console.log(JSON.stringify(challenges, null, 2));
+	// console.log(JSON.stringify(challenges, null, 2));
 
 	return (
 		<Layout>

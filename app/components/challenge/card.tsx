@@ -12,8 +12,7 @@ import { determinePercentage } from "@/app/lib/format/numbers";
 import type { ChallengeType } from "@/app/store/challenges";
 import { Challenge } from "@/app/store/challenges";
 import { Trash } from "iconsax-react-native";
-import { useEffect, useMemo, useState } from "react";
-import { NativeEventEmitter, NativeModules } from "react-native";
+import { useMemo, useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface Props extends Challenge {
@@ -35,14 +34,14 @@ export function ChallengeCard({
 	const { styles, theme } = useStyles(stylesheet);
 	const [percentage, setPercentage] = useState(0);
 
-	useEffect(() => {
-		new NativeEventEmitter(NativeModules.AppleHealthKit).addListener(
-			"healthKit:Running:new",
-			async () => {
-				console.log("--> Running observer triggered");
-			},
-		);
-	});
+	// useEffect(() => {
+	// 	new NativeEventEmitter(NativeModules.AppleHealthKit).addListener(
+	// 		"healthKit:Running:new",
+	// 		async () => {
+	// 			console.log("--> Running observer triggered");
+	// 		},
+	// 	);
+	// });
 
 	useEffectOnce(() => {
 		async function getPercentage() {
