@@ -1,9 +1,5 @@
 export function capitaliseFirstLetter(str: string) {
-	const formatted = str.split("");
-	const first = formatted.at(0).toUpperCase();
-	const rest = formatted.slice(1);
-	const whole = [...first, ...rest].join("");
-	return whole;
+	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export function removeDashes(str: string) {
