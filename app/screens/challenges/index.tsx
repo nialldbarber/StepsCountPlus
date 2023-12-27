@@ -27,7 +27,7 @@ type Props = NativeStackScreenProps<RootChallengesScreen, "ChallengesRoot">;
 export function ChallengesScreen({ route }: Props) {
 	const { styles, theme } = useStyles(stylesheet);
 	const f = route?.params?.currentFilter;
-	const filter = route?.params?.currentFilter ?? "Steps";
+	const filter = route?.params?.currentFilter ?? "All";
 
 	// console.log(f, filter);
 
