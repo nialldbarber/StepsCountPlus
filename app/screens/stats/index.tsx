@@ -118,18 +118,17 @@ export function StatsScreen() {
 	]);
 
 	const determineGoal = useMemo(() => {
-		// Steps
 		if (currentFilter === "Steps") {
 			return `Goal: ${formatNumber(stepsGoal)} steps`;
 		}
-		// Flights
 		if (currentFilter === "Flights") {
 			return `Goal: ${formatNumber(flightsGoal)} flights`;
 		}
-		// Distance
 		if (currentFilter === "Distance") {
 			return `Goal: ${formatNumber(distanceGoal)} ${distance}`;
 		}
+
+		return "";
 	}, [currentFilter, stepsGoal, flightsGoal, distanceGoal, distance]);
 
 	if (!font || !smallerFont) return <Box />;
