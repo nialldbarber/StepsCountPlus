@@ -13,11 +13,7 @@ export const challengeTypes = [
 ] as const;
 type Item = (typeof challengeTypes)[number];
 export type Value = Item["type"];
-type FormatValue<T extends string> = T extends `${infer Word} ${infer Rest}`
-	? `${Lowercase<Word>}-${FormatValue<Rest>}`
-	: Lowercase<T>;
-
-export type ChallengeType = FormatValue<Value>;
+export type ChallengeType = (typeof challengeTypes)[number]["type"];
 
 export type Challenge = {
 	id: string;
