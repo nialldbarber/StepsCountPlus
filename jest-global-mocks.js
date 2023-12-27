@@ -10,3 +10,19 @@ jest.mock("react-native-unistyles", () => {
 		createStyleSheet: jest.fn(() => ({})),
 	};
 });
+
+jest.mock("react-native-gesture-handler", () => {
+	return {
+		State: {},
+		PanGestureHandler: "View",
+		BaseButton: "View",
+		Directions: {},
+	};
+});
+
+jest.mock("@gorhom/bottom-sheet", () => {
+	return {
+		BottomSheetModal: "View",
+		BottomSheetBackdrop: "View",
+	};
+});
