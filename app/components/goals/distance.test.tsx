@@ -8,7 +8,7 @@ describe("DailyDistanceGoal", () => {
 	});
 
 	test("renders the GoalsCard component", () => {
-		expect(screen.getByText(/distance/i)).toBeTruthy();
+		expect(screen.getByText(/Distance 📍/i)).toBeTruthy();
 	});
 
 	test("renders the correct distance goal", () => {
