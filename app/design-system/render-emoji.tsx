@@ -30,7 +30,7 @@ export const renderStringWithEmoji = (stringNode: ReactNode) => {
 				if (emojis === null) return string;
 
 				return string.split(emojiRegex).map((stringPart, index) => (
-					<Fragment key={index}>
+					<Fragment key={`emoji-${index}`}>
 						{stringPart}
 						{emojis[index] ? (
 							<Text style={styles.emoji}>{emojis[index]}</Text>
