@@ -62,9 +62,9 @@ export function ChallengeCard({
 					category === "f1-tracks" ||
 					category === "long-distance"
 				) {
-					setPercentage(convertMetersToKm(finalPercentage));
+					setPercentage(convertMetersToKm(finalPercentage as number));
 				} else {
-					setPercentage(finalPercentage);
+					setPercentage(finalPercentage as number);
 				}
 			} catch (error) {
 				console.error("shit");
