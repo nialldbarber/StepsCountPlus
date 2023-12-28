@@ -170,7 +170,7 @@ export function ChallengesScreen({ route }: Props) {
 						/>
 					</Box>
 				) : (
-					<Box>
+					<>
 						<Box justifyContent="center" paddingVertical="20px">
 							<Text weight="bold">
 								Looks like you haven't started a challenge!
@@ -186,7 +186,7 @@ export function ChallengesScreen({ route }: Props) {
 								🙈
 							</Text>
 						</Box>
-					</Box>
+					</>
 				)}
 			</Box>
 		</Layout>
