@@ -24,10 +24,11 @@ export function CurrentChallengeScreen({
 	const [period, setPeriod] = useState<PeriodIntervals>("24hours");
 
 	useEffect(() => {
+		let isMounted = true;
 		async function getPercentage() {
 			try {
 				if (!challenge.startDate) return;
-				const [finalPercentage, segments] = await getMeasurementFromDate(
+				const segments = await getMeasurementFromDate(
 					challenge.category,
 					challenge.startDate,
 					true,
@@ -53,6 +54,10 @@ export function CurrentChallengeScreen({
 			}
 		}
 		getPercentage();
+
+		return () => {
+			isMounted = false;
+		};
 	}, [period]);
 
 	const percent = useMemo(

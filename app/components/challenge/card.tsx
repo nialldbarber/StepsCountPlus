@@ -44,6 +44,8 @@ export function ChallengeCard({
 	// });
 
 	useEffectOnce(() => {
+		let isMounted = true;
+
 		async function getPercentage() {
 			try {
 				if (!startDate) return;
@@ -51,11 +53,6 @@ export function ChallengeCard({
 					category,
 					startDate,
 				);
-
-				// @TODO: make sure this works for flights
-				// console.log({
-				// 	finalPercentage,
-				// });
 
 				if (
 					category === "distance" ||
@@ -71,6 +68,10 @@ export function ChallengeCard({
 			}
 		}
 		getPercentage();
+
+		return () => {
+			isMounted = false;
+		};
 	});
 
 	const percent = useMemo(

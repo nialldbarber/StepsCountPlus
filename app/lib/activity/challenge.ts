@@ -27,20 +27,11 @@ function getHealthData(
 				if (useSegments) {
 					const segments = results
 						.map((segment) => ({
-							timestamp: new Date().getTime(),
+							timestamp: new Date(segment.startDate).getTime(),
 							value: segment?.value,
 						}))
 						.reverse();
-
-					const totalSteps = results.reduce((total, current) => {
-						if (!results) {
-							console.error("An individual segment is undefined");
-							return total;
-						}
-						return total + current?.value;
-					}, 0);
-
-					res([totalSteps, segments]);
+					res(segments);
 				} else {
 					const totalSteps = results.reduce(
 						(sum, sample) => sum + sample.value,
@@ -56,8 +47,8 @@ function getHealthData(
 export function getMeasurementFromDate(
 	type: ChallengeType,
 	startDate: string,
-	useSegments?: boolean,
-	intervalName?: PeriodIntervals = "24hours",
+	useSegments = false,
+	intervalName: PeriodIntervals = "24hours",
 ) {
 	const formattedStartDate = new Date(startDate).toISOString();
 	const formattedEndDate = new Date().toISOString();
