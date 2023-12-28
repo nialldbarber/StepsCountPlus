@@ -1,27 +1,26 @@
-import { colors } from "@/app/design-system/colors";
-import { AlignBottom, Ruler, StatusUp } from "iconsax-react-native";
+import { Text } from "../design-system/components/text";
 
 export const goalTypes = [
 	{
 		id: 1,
 		label: "Steps",
 		view: "Steps",
-		icon: <StatusUp color={colors.black} size={18} />,
-		selectedIcon: <StatusUp color={colors.pureWhite} size={18} />,
+		icon: <Text withEmoji>👟</Text>,
+		selectedIcon: <Text withEmoji>👟</Text>,
 	},
 	{
 		id: 2,
 		label: "Flights",
 		view: "Flights",
-		icon: <AlignBottom color={colors.black} size={18} />,
-		selectedIcon: <AlignBottom color={colors.pureWhite} size={18} />,
+		icon: <Text withEmoji>🪜</Text>,
+		selectedIcon: <Text withEmoji>🪜</Text>,
 	},
 	{
 		id: 3,
 		label: "Distance",
 		view: "Distance",
-		icon: <Ruler color={colors.black} size={18} />,
-		selectedIcon: <Ruler color={colors.pureWhite} size={18} />,
+		icon: <Text withEmoji>📍</Text>,
+		selectedIcon: <Text withEmoji>📍</Text>,
 	},
 ] as const;
 
