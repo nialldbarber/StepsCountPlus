@@ -8,10 +8,9 @@ export function renderWithNavigation(
 	ui: React.ReactElement,
 	renderOptions: ExtendedRenderOptions = {},
 ) {
-	function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+	function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
 		return <NavigationContainer>{children}</NavigationContainer>;
 	}
 
-	// Return all of RTL's query functions
 	return render(ui, { wrapper: Wrapper, ...renderOptions });
 }
