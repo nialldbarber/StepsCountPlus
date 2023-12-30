@@ -39,6 +39,10 @@ export const lightTheme = {
     chipDarkActiveBackgroundColor: colors.primary,
     chipActiveColor: colors.pureWhite,
     chipInactiveColor: colors.black,
+    chipChallengesBackground: colors.pureWhite,
+    chipChallengesBorder: colors.white,
+    chipChallengesActiveBorder: colors.primary,
+    chipChallengesColor: colors.black,
     /**
      * @type Donut
      */
@@ -144,6 +148,10 @@ export const darkTheme = {
     chipDarkActiveBackgroundColor: colors.primary,
     chipActiveColor: colors.pureWhite,
     chipInactiveColor: colors.black,
+    chipChallengesBackground: colors.blackTwo,
+    chipChallengesBorder: colors.blackTwo,
+    chipChallengesActiveBorder: colors.primary,
+    chipChallengesColor: colors.white,
     /**
      * @type Donut
      */

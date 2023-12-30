@@ -1,6 +1,5 @@
 import { ChallengeCard } from "@/app/components/challenge/card";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
-import { colors } from "@/app/design-system/colors";
 import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Chip } from "@/app/design-system/components/chip";
@@ -91,7 +90,7 @@ export function ChallengesScreen({ route }: Props) {
             <Box flexDirection="row" marginBottom="20px">
               <Pressable onPress={() => setCurrentFilterScreen("in-progress")}>
                 <Box
-                  backgroundColor="blackTwo"
+                  backgroundColor={theme.colors.chipChallengesBackground}
                   paddingVertical="5px"
                   paddingHorizontal="15px"
                   borderRadius="full"
@@ -101,12 +100,12 @@ export function ChallengesScreen({ route }: Props) {
                     currentFilterScreen === "in-progress"
                   )}
                 >
-                  <Text>In Progress</Text>
+                  <Text textStyles={styles.challengeChipText}>In Progress</Text>
                 </Box>
               </Pressable>
               <Pressable onPress={() => setCurrentFilterScreen("completed")}>
                 <Box
-                  backgroundColor="blackTwo"
+                  backgroundColor={theme.colors.chipChallengesBackground}
                   paddingVertical="5px"
                   paddingHorizontal="15px"
                   borderRadius="full"
@@ -116,19 +115,20 @@ export function ChallengesScreen({ route }: Props) {
                     currentFilterScreen === "completed"
                   )}
                 >
-                  <Text>Completed</Text>
+                  <Text textStyles={styles.challengeChipText}>Completed</Text>
                 </Box>
               </Pressable>
               <Pressable onPress={() => navigate("SelectChallenge")}>
                 <Box
-                  backgroundColor="blackTwo"
+                  backgroundColor={theme.colors.chipChallengesBackground}
                   paddingVertical="5px"
                   paddingHorizontal="15px"
                   borderRadius="full"
                   marginHorizontal="5px"
                   borderWidth={1}
+                  borderColor="pureWhite"
                 >
-                  <Text>Add New</Text>
+                  <Text textStyles={styles.challengeChipText}>Add New</Text>
                 </Box>
               </Pressable>
             </Box>
@@ -190,7 +190,7 @@ export function ChallengesScreen({ route }: Props) {
   );
 }
 
-const stylesheet = createStyleSheet(() => ({
+const stylesheet = createStyleSheet((theme) => ({
   bleed: {
     marginBottom: space["15px"],
   },
@@ -198,6 +198,11 @@ const stylesheet = createStyleSheet(() => ({
     marginTop: space["6px"],
   },
   currentFilterScreen: (isActive) => ({
-    borderColor: isActive ? colors.primary : colors.blackTwo,
+    borderColor: isActive
+      ? theme.colors.chipChallengesActiveBorder
+      : theme.colors.chipChallengesBorder,
   }),
+  challengeChipText: {
+    color: theme.colors.chipChallengesColor,
+  },
 }));
