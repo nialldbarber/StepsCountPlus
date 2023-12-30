@@ -19,9 +19,12 @@ import { useNavigation } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FlashList } from "@shopify/flash-list";
 import { useMemo, useState } from "react";
+import { Dimensions } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Props = NativeStackScreenProps<RootChallengesScreen, "ChallengesRoot">;
+
+const { height } = Dimensions.get("screen");
 
 export function ChallengesScreen({ route }: Props) {
   const { styles, theme } = useStyles(stylesheet);
@@ -55,7 +58,7 @@ export function ChallengesScreen({ route }: Props) {
 
   return (
     <Layout>
-      <Box flex={1}>
+      <Box>
         <Bleed left="-20px" right="-20px" style={styles.bleed}>
           <Row
             marginHorizontal="20px"
@@ -151,6 +154,7 @@ export function ChallengesScreen({ route }: Props) {
                 //   }
                 // >
                 <ChallengeCard
+                  challenge={filterChallengesByCategory}
                   id={item.id}
                   key={item.id}
                   title={item.title}
@@ -167,10 +171,15 @@ export function ChallengesScreen({ route }: Props) {
             />
           </Box>
         ) : (
-          <>
+          <Box
+            flex={1}
+            styles={{ height: height / 2 }}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Box justifyContent="center" paddingVertical="20px">
               <Text weight="bold">
-                Looks like you haven't started a challenge!
+                Looks like you haven't {"\n"} started a challenge!
               </Text>
             </Box>
             <Box
@@ -183,7 +192,7 @@ export function ChallengesScreen({ route }: Props) {
                 🙈
               </Text>
             </Box>
-          </>
+          </Box>
         )}
       </Box>
     </Layout>

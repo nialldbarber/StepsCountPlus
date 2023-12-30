@@ -10,18 +10,20 @@ import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { determinePercentage } from "@/app/lib/format/numbers";
 import type { ChallengeType } from "@/app/store/challenges";
-import { Challenge } from "@/app/store/challenges";
+import { Challenge, useChallengesStore } from "@/app/store/challenges";
 import { Trash } from "iconsax-react-native";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface Props extends Challenge {
+  challenge: Challenge;
   isSet?: boolean;
   fn: () => void;
   category: ChallengeType;
 }
 
 export function ChallengeCard({
+  challenge,
   title,
   difficulty,
   emoji,
@@ -33,6 +35,7 @@ export function ChallengeCard({
 }: Props) {
   const { styles, theme } = useStyles(stylesheet);
   const [percentage, setPercentage] = useState(0);
+  const { setCompletedChallenge } = useChallengesStore();
 
   // useEffect(() => {
   // 	new NativeEventEmitter(NativeModules.AppleHealthKit).addListener(
@@ -78,6 +81,17 @@ export function ChallengeCard({
     () => determinePercentage(percentage, target),
     [percentage, target]
   );
+
+  useEffect(() => {
+    if (percentage >= 100) {
+      // move the challenge to completed list
+      // setCompletedChallenge({
+      //   ...challenge,
+      //   endDate: "",
+      //   timeTaken: "",
+      // });
+    }
+  }, [percentage, challenge]);
 
   return (
     <Box

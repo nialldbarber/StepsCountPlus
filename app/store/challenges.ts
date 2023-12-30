@@ -31,6 +31,11 @@ export type Challenge = {
   category: ChallengeType;
 };
 
+export type ChallengeComplete = {
+  endDate: string;
+  timeTaken: string;
+} & Challenge;
+
 type ChallengesState = {
   challenges: Array<Challenge>;
   completedChallenges: Array<Challenge>;
@@ -39,6 +44,7 @@ type ChallengesState = {
 type ChallengesActions = {
   setAddChallenge: (challenge: Challenge) => void;
   setRemoveChallenge: (id: string) => void;
+  setCompletedChallenge: (challenge: ChallengeComplete) => void;
 };
 
 export const useChallengesStore = create(
@@ -55,6 +61,14 @@ export const useChallengesStore = create(
         set((state) => {
           state.challenges = state.challenges.filter(
             (challenge) => challenge.id !== id
+          );
+        });
+      },
+      setCompletedChallenge: (completedChallenge: ChallengeComplete) => {
+        set((state) => {
+          state.completedChallenges.push(completedChallenge);
+          state.challenges = state.challenges.filter(
+            (challenge) => challenge.id !== completedChallenge.id
           );
         });
       },
