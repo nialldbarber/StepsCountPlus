@@ -145,24 +145,24 @@ export function ChallengesScreen({ route }: Props) {
               data={filterChallengesByCategory}
               estimatedItemSize={300}
               renderItem={({ item }) => (
-                <Pressable
-                  onPress={() =>
-                    navigate("CurrentChallenge", { challenge: item })
-                  }
-                >
-                  <ChallengeCard
-                    id={item.id}
-                    key={item.id}
-                    title={item.title}
-                    difficulty={item.difficulty}
-                    emoji={item.emoji}
-                    isSet
-                    fn={() => setRemoveChallenge(item.id)}
-                    startDate={item.startDate}
-                    target={item.target}
-                    category={item.category}
-                  />
-                </Pressable>
+                // <Pressable
+                //   onPress={() =>
+                //     navigate("CurrentChallenge", { challenge: item })
+                //   }
+                // >
+                <ChallengeCard
+                  id={item.id}
+                  key={item.id}
+                  title={item.title}
+                  difficulty={item.difficulty}
+                  emoji={item.emoji}
+                  isSet
+                  fn={() => setRemoveChallenge(item.id)}
+                  startDate={item.startDate}
+                  target={item.target}
+                  category={item.category}
+                />
+                // </Pressable>
               )}
             />
           </Box>
