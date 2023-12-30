@@ -1,108 +1,61 @@
-import { Box } from "@/app/design-system/components/box";
-import { Canvas, Path, Skia, Text, useFont } from "@shopify/react-native-skia";
-import * as d3 from "d3";
-import { useEffect } from "react";
-import { Easing, View } from "react-native";
-import { useSharedValue, withTiming } from "react-native-reanimated";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
-import { colors } from "../design-system/colors";
+import { LinearGradient, useFont, vec } from "@shopify/react-native-skia";
+import { useStyles } from "react-native-unistyles";
+import { Bar, CartesianChart } from "victory-native";
+import { Box } from "../design-system/components/box";
 
-const GRAPH_MARGIN = 20;
-const GRAPH_BAR_WIDTH = 12;
-const CANVAS_HEIGHT = 350;
-const CANVAS_WIDTH = 350;
-const GRAPH_HEIGHT = CANVAS_HEIGHT - 2 * GRAPH_MARGIN;
-const GRAPH_WIDTH = CANVAS_WIDTH - 2;
+const data = Array.from({ length: 6 }, (_, index) => ({
+  month: index + 1,
+  listenCount: Math.floor(Math.random() * (100 - 50 + 1)) + 50,
+}));
+
+/**
+ * if the time period is:
+ * 24 hours, then data should be hours (0-23)
+ * 7 days, then data should be days (0-6)
+ * 30 days, then data should be days (0-29)
+ * 365 days, then data should be months (0-11)
+ */
 
 const pathToFonts = "../../assets/fonts";
 
-interface DataPoint {
-	label: string;
-	value: number;
-}
-
-const data: DataPoint[] = [
-	{ label: "Jan", value: 50 },
-	{ label: "Feb", value: 100 },
-	{ label: "Mar", value: 350 },
-	{ label: "Apr", value: 200 },
-	{ label: "May", value: 550 },
-	{ label: "Jun", value: 300 },
-	{ label: "Jul", value: 150 },
-	{ label: "Aug", value: 400 },
-	{ label: "Sep", value: 450 },
-	{ label: "Oct", value: 500 },
-	{ label: "Nov", value: 250 },
-	{ label: "Dec", value: 600 },
-];
-
 export function BarChart() {
-	const { theme, styles } = useStyles(stylesheet);
-	const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 10);
+  const { theme } = useStyles();
+  const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 12);
 
-	const animationState = useSharedValue(1);
-
-	const xDomain = data.map((dataPoint: DataPoint) => dataPoint.label);
-	const xRange = [0, GRAPH_WIDTH];
-	const x = d3.scalePoint().domain(xDomain).range(xRange).padding(1);
-
-	const yDomain: number[] = [
-		0,
-		d3.max(data, (yDataPoint: DataPoint) => yDataPoint.value)!,
-	];
-
-	const yRange = [0, GRAPH_HEIGHT];
-	const y = d3.scaleLinear().domain(yDomain).range(yRange);
-
-	useEffect(() => {
-		animationState.value = withTiming(1, {
-			duration: 1600,
-			easing: Easing.inOut(Easing.exp),
-		});
-	}, []);
-
-	const path = Skia.Path.Make();
-
-	for (const dataPoint of data) {
-		const rect = Skia.XYWHRect(
-			x(dataPoint.label)! - GRAPH_BAR_WIDTH / 2,
-			GRAPH_HEIGHT,
-			GRAPH_BAR_WIDTH,
-			y(dataPoint.value * animationState.value) * -1,
-		);
-		const rrect = Skia.RRectXY(rect, 8, 8);
-		path.addRRect(rrect);
-	}
-
-	if (!font) return <Box />;
-
-	return (
-		<View style={styles.container}>
-			<Canvas style={styles.canvas}>
-				<Path path={path} color={colors.primary} />
-				{data.map((dataPoint: DataPoint) => (
-					<Text
-						key={dataPoint.label}
-						font={font}
-						x={x(dataPoint.label)! - 10}
-						y={CANVAS_HEIGHT - 25}
-						text={dataPoint.label}
-						color={theme.colors.textColor}
-					/>
-				))}
-			</Canvas>
-		</View>
-	);
+  return (
+    <Box height="400px" backgroundColor={theme.colors.chartBackgroundColor}>
+      <CartesianChart
+        data={data}
+        xKey="month"
+        yKeys={["listenCount"]}
+        domainPadding={{ left: 50, right: 50, top: 50 }}
+        axisOptions={{
+          font,
+          formatXLabel: (value) => {
+            const date = new Date(2023, value - 1);
+            return date.toLocaleString("default", { month: "short" });
+          },
+          lineColor: theme.colors.chartBackgroundColor,
+          labelColor: theme.colors.chartLabelColor,
+        }}
+      >
+        {({ points, chartBounds }) => (
+          <Bar
+            chartBounds={chartBounds}
+            points={points.listenCount}
+            roundedCorners={{
+              topLeft: 5,
+              topRight: 5,
+            }}
+          >
+            <LinearGradient
+              start={vec(0, 0)}
+              end={vec(0, 400)}
+              colors={["#00D632", "#00D63250"]}
+            />
+          </Bar>
+        )}
+      </CartesianChart>
+    </Box>
+  );
 }
-
-const stylesheet = createStyleSheet(() => ({
-	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	canvas: {
-		height: CANVAS_HEIGHT,
-		width: CANVAS_WIDTH,
-	},
-}));
