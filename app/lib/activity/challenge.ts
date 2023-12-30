@@ -96,16 +96,12 @@ export function getSegments(
           return;
         }
 
-        console.log("results: ", results);
-
         const segments = results
           .map((segment) => ({
             timestamp: new Date().getTime(),
             value: segment?.value,
           }))
           .reverse();
-
-        console.log("segments: ", segments);
 
         resolve(segments);
       }
@@ -125,7 +121,7 @@ export function getSegmentsFromPeriod(
   const options: HealthInputOptions = {
     startDate: formattedStartDate,
     endDate: formattedEndDate,
-    // period: 1444,
+    period: 1444,
   };
 
   switch (type) {

@@ -5,9 +5,11 @@ import { Layout } from "@/app/design-system/components/layout";
 import { Text } from "@/app/design-system/components/text";
 import {
   PeriodIntervals,
+  getPercentageFromPeriod,
   getSegmentsFromPeriod,
 } from "@/app/lib/activity/challenge";
 import { readableDate } from "@/app/lib/format/dates";
+import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { determinePercentage } from "@/app/lib/format/numbers";
 import type { RootChallengesScreen } from "@/app/navigation/types";
 import { MenuView } from "@react-native-menu/menu";
@@ -23,10 +25,11 @@ export function CurrentChallengeScreen({
 }: Props) {
   const [percentage, setPercentage] = useState(0);
   const [period, setPeriod] = useState<PeriodIntervals>("24hours");
+  const [segments, setSegments] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
-    async function getPercentage() {
+    async function getSegmentsAndPercentage() {
       try {
         if (!challenge.startDate) return;
         const segments = await getSegmentsFromPeriod(
@@ -35,25 +38,27 @@ export function CurrentChallengeScreen({
           period
         );
 
-        console.log("=======================================================");
-        console.log("SEGMENTS");
-        console.log("SEGMENTS", JSON.stringify(segments, null, 2));
-        console.log("=======================================================");
+        setSegments(segments);
 
-        // if (
-        // 	challenge.category === "distance" ||
-        // 	challenge.category === "f1-tracks" ||
-        // 	challenge.category === "long-distance"
-        // ) {
-        // 	setPercentage(convertMetersToKm(finalPercentage));
-        // } else {
-        // 	setPercentage(finalPercentage);
-        // }
+        const percentage = await getPercentageFromPeriod(
+          challenge.category,
+          challenge.startDate
+        );
+
+        if (
+          challenge.category === "distance" ||
+          challenge.category === "f1-tracks" ||
+          challenge.category === "long-distance"
+        ) {
+          setPercentage(convertMetersToKm(percentage as number));
+        } else {
+          setPercentage(percentage as number);
+        }
       } catch (error) {
-        console.error("shit");
+        console.error("Failed to get segments or percentage", error);
       }
     }
-    getPercentage();
+    getSegmentsAndPercentage();
 
     return () => {
       isMounted = false;
@@ -64,6 +69,8 @@ export function CurrentChallengeScreen({
     () => determinePercentage(percentage, challenge.target),
     [percentage, challenge.target]
   );
+
+  console.log("S E G M E N T S:", segments);
 
   return (
     <Layout>
@@ -108,10 +115,10 @@ export function CurrentChallengeScreen({
       <Box>
         <Text>{challenge.category}</Text>
         <Text>Target: {challenge.target}</Text>
-        <Text>Start date: {readableDate(challenge.startDate)}</Text>
+        <Text>Start date: {readableDate(challenge?.startDate)}</Text>
         <Text>Percent complete: {percent}%</Text>
       </Box>
-      <BarChart />
+      <BarChart data={segments} />
     </Layout>
   );
 }
