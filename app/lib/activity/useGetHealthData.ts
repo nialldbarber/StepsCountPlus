@@ -1,4 +1,5 @@
 import { getMeasurementsFromPeriod } from "@/app/lib/activity/steps";
+import { convertKmToMiles } from "@/app/lib/format/measurements";
 import { useDistanceStore } from "@/app/store/distance";
 import { useFlightsStore } from "@/app/store/flights";
 import { useMeasurementsStore } from "@/app/store/measurements";
@@ -6,309 +7,325 @@ import { useStepsStore } from "@/app/store/steps";
 import { useEffect, useState } from "react";
 import { Platform } from "react-native";
 import type {
-	HealthInputOptions,
-	HealthKitPermissions,
-	HealthValue,
+  HealthInputOptions,
+  HealthKitPermissions,
+  HealthValue,
 } from "react-native-health";
 import AppleHealthKit from "react-native-health";
-import { convertKmToMiles } from "../format/measurements";
 
 const { Permissions } = AppleHealthKit.Constants;
 const permissions = {
-	permissions: {
-		read: [
-			Permissions.Steps,
-			Permissions.StepCount,
-			Permissions.FlightsClimbed,
-			Permissions.DistanceWalkingRunning,
-		],
-		write: [],
-	},
+  permissions: {
+    read: [
+      Permissions.Steps,
+      Permissions.StepCount,
+      Permissions.FlightsClimbed,
+      Permissions.DistanceWalkingRunning,
+    ],
+    write: [],
+  },
 } as HealthKitPermissions;
 
 export function useGetHealthData(date: Date) {
-	const [hasPermission, setHasPermission] = useState(false);
+  const [hasPermission, setHasPermission] = useState(false);
 
-	const { distance } = useMeasurementsStore();
-	const { setDailySteps, setWeeklySteps, setMonthlySteps, setYearlySteps } =
-		useStepsStore();
-	const {
-		setDailyFlights,
-		setWeeklyFlights,
-		setMonthlyFlights,
-		setYearlyFlights,
-	} = useFlightsStore();
-	const {
-		setDailyDistance,
-		setWeeklyDistance,
-		setMonthlyDistance,
-		setYearlyDistance,
-	} = useDistanceStore();
+  const { distance } = useMeasurementsStore();
+  const { setDailySteps, setWeeklySteps, setMonthlySteps, setYearlySteps } =
+    useStepsStore();
+  const {
+    setDailyFlights,
+    setWeeklyFlights,
+    setMonthlyFlights,
+    setYearlyFlights,
+  } = useFlightsStore();
+  const {
+    setDailyDistance,
+    setWeeklyDistance,
+    setMonthlyDistance,
+    setYearlyDistance,
+  } = useDistanceStore();
 
-	/**
-	 * =====================================================================
-	 * @type Initialisaton
-	 * =====================================================================
-	 */
-	useEffect(() => {
-		if (Platform.OS !== "ios") return;
+  /**
+   * =====================================================================
+   * @type Initialisaton
+   * =====================================================================
+   */
+  useEffect(() => {
+    if (Platform.OS !== "ios") return;
 
-		AppleHealthKit.isAvailable((error, isAvailable) => {
-			if (error) {
-				console.error("Error checking availability", error);
-				return;
-			}
-			if (!isAvailable) {
-				console.error("Apple Health not available");
-				return;
-			}
+    AppleHealthKit.isAvailable((error, isAvailable) => {
+      if (error) {
+        console.error("Error checking availability", error);
+        return;
+      }
+      if (!isAvailable) {
+        console.error("Apple Health not available");
+        return;
+      }
 
-			AppleHealthKit.initHealthKit(permissions, (initError) => {
-				if (initError) {
-					console.error("Error getting permissions", initError);
-					return;
-				}
-				setHasPermission(true);
-			});
-		});
-	}, []);
+      AppleHealthKit.initHealthKit(permissions, (initError) => {
+        if (initError) {
+          console.error("Error getting permissions", initError);
+          return;
+        }
+        setHasPermission(true);
+      });
 
-	useEffect(() => {
-		if (!hasPermission) {
-			console.error("Do not have permission to access health data");
-			return;
-		}
+      AppleHealthKit.getAuthStatus(permissions, (error, results) => {
+        console.log("getAuthStatus", error, results);
+      });
+    });
+  }, []);
 
-		async function invokeStepsData() {
-			try {
-				/**
-				 * =====================================================================
-				 * @type Steps
-				 * @period Daily
-				 * =====================================================================
-				 */
-				const dailyStepsOptions: HealthInputOptions = {
-					date: date.toISOString(),
-					includeManuallyAdded: false,
-				};
-				AppleHealthKit.getStepCount(
-					dailyStepsOptions,
-					(error, results: HealthValue) => {
-						if (error) return;
-						setDailySteps(results.value);
-					},
-				);
+  useEffect(() => {
+    if (!hasPermission) {
+      console.error("Do not have permission to access health data");
+      return;
+    }
 
-				/**
-				 * =====================================================================
-				 * @type Steps
-				 * @period Weekly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					7,
-					AppleHealthKit.getDailyStepCountSamples,
-					(error, totalSteps, segments) => {
-						if (error) return;
-						setWeeklySteps(totalSteps, segments);
-					},
-				);
+    function invokeStepsData() {
+      try {
+        /**
+         * =====================================================================
+         * @type Steps
+         * @period Daily
+         * =====================================================================
+         */
+        const dailyStepsOptions: HealthInputOptions = {
+          date: date.toISOString(),
+          includeManuallyAdded: false,
+        };
+        AppleHealthKit.getStepCount(
+          dailyStepsOptions,
+          (error, results: HealthValue) => {
+            if (error) {
+              console.error("Error getting daily steps", error);
+              return;
+            }
+            setDailySteps(results.value);
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Steps
-				 * @period Monthly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					30,
-					AppleHealthKit.getDailyStepCountSamples,
-					(error, totalSteps, segments) => {
-						if (error) return;
-						setMonthlySteps(totalSteps, segments);
-					},
-				);
+        /**
+         * =====================================================================
+         * @type Steps
+         * @period Weekly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          7,
+          AppleHealthKit.getDailyStepCountSamples,
+          (error, totalSteps, segments) => {
+            if (error) return;
+            setWeeklySteps(totalSteps, segments);
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Steps
-				 * @period Yearly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					365,
-					AppleHealthKit.getDailyStepCountSamples,
-					(error, totalSteps, segments) => {
-						if (error) {
-							console.error("Error getting yearly steps", error);
-							return;
-						}
-						setYearlySteps(totalSteps, segments);
-					},
-				);
-			} catch (error) {
-				console.error("Failed to invoke steps data");
-			}
-		}
+        /**
+         * =====================================================================
+         * @type Steps
+         * @period Monthly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          30,
+          AppleHealthKit.getDailyStepCountSamples,
+          (error, totalSteps, segments) => {
+            if (error) return;
+            setMonthlySteps(totalSteps, segments);
+          }
+        );
 
-		async function invokeFlightsData() {
-			try {
-				/**
-				 * =====================================================================
-				 * @type Flights
-				 * @period Daily
-				 * =====================================================================
-				 */
-				const dailyFlightsOptions: HealthInputOptions = {
-					date: date.toISOString(),
-					includeManuallyAdded: false,
-				};
-				AppleHealthKit.getFlightsClimbed(
-					dailyFlightsOptions,
-					(error, results: HealthValue) => {
-						if (error) return;
-						setDailyFlights(results.value);
-					},
-				);
+        /**
+         * =====================================================================
+         * @type Steps
+         * @period Yearly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          365,
+          AppleHealthKit.getDailyStepCountSamples,
+          (error, totalSteps, segments) => {
+            if (error) {
+              console.error("Error getting yearly steps", error);
+              return;
+            }
+            setYearlySteps(totalSteps, segments);
+          }
+        );
+      } catch (error) {
+        console.error("Failed to invoke steps data", error);
+      }
+    }
 
-				/**
-				 * =====================================================================
-				 * @type Flights
-				 * @period Weekly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					7,
-					AppleHealthKit.getDailyFlightsClimbedSamples,
-					(error, totalFlights, segments) => {
-						if (error) return;
-						setWeeklyFlights(totalFlights, segments);
-					},
-				);
+    function invokeFlightsData() {
+      try {
+        /**
+         * =====================================================================
+         * @type Flights
+         * @period Daily
+         * =====================================================================
+         */
+        const dailyFlightsOptions: HealthInputOptions = {
+          date: date.toISOString(),
+          includeManuallyAdded: false,
+        };
+        AppleHealthKit.getFlightsClimbed(
+          dailyFlightsOptions,
+          (error, results: HealthValue) => {
+            if (error) {
+              console.error("Error getting daily flights", error);
+              return;
+            }
+            setDailyFlights(results.value);
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Flights
-				 * @period Monthly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					30,
-					AppleHealthKit.getDailyFlightsClimbedSamples,
-					(error, totalFlights, segments) => {
-						if (error) return;
-						setMonthlyFlights(totalFlights, segments);
-					},
-				);
+        /**
+         * =====================================================================
+         * @type Flights
+         * @period Weekly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          7,
+          AppleHealthKit.getDailyFlightsClimbedSamples,
+          (error, totalFlights, segments) => {
+            if (error) return;
+            setWeeklyFlights(totalFlights, segments);
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Flights
-				 * @period Yearly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					365,
-					AppleHealthKit.getDailyFlightsClimbedSamples,
-					(error, totalFlights, segments) => {
-						if (error) return;
-						setYearlyFlights(totalFlights, segments);
-					},
-				);
-			} catch (error) {
-				console.error("Failed to invoke flights data");
-			}
-		}
-		async function invokeDistanceData() {
-			try {
-				/**
-				 * =====================================================================
-				 * @type Distance
-				 * @period Daily
-				 * =====================================================================
-				 */
-				const dailyDistanceOptions: HealthInputOptions = {
-					date: date.toISOString(),
-					includeManuallyAdded: false,
-				};
-				AppleHealthKit.getDistanceWalkingRunning(
-					dailyDistanceOptions,
-					(error, results: HealthValue) => {
-						if (error) return;
-						setDailyDistance(
-							distance === "km"
-								? results.value
-								: convertKmToMiles(results.value),
-						);
-					},
-				);
+        /**
+         * =====================================================================
+         * @type Flights
+         * @period Monthly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          30,
+          AppleHealthKit.getDailyFlightsClimbedSamples,
+          (error, totalFlights, segments) => {
+            if (error) return;
+            setMonthlyFlights(totalFlights, segments);
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Distance
-				 * @period Weekly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					7,
-					AppleHealthKit.getDailyDistanceWalkingRunningSamples,
-					(error, totalDistance, segments) => {
-						if (error) return;
-						setWeeklyDistance(
-							distance === "km"
-								? totalDistance
-								: convertKmToMiles(totalDistance),
-							segments,
-						);
-					},
-				);
+        /**
+         * =====================================================================
+         * @type Flights
+         * @period Yearly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          365,
+          AppleHealthKit.getDailyFlightsClimbedSamples,
+          (error, totalFlights, segments) => {
+            if (error) return;
+            setYearlyFlights(totalFlights, segments);
+          }
+        );
+      } catch (error) {
+        console.error("Failed to invoke flights data");
+      }
+    }
+    function invokeDistanceData() {
+      try {
+        /**
+         * =====================================================================
+         * @type Distance
+         * @period Daily
+         * =====================================================================
+         */
+        const dailyDistanceOptions: HealthInputOptions = {
+          date: date.toISOString(),
+          includeManuallyAdded: false,
+        };
+        AppleHealthKit.getDistanceWalkingRunning(
+          dailyDistanceOptions,
+          (error, results: HealthValue) => {
+            if (error) {
+              console.error("Error getting daily distance", error);
+              return;
+            }
+            setDailyDistance(
+              distance === "km"
+                ? results.value
+                : convertKmToMiles(results.value)
+            );
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Distance
-				 * @period Monthly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					30,
-					AppleHealthKit.getDailyDistanceWalkingRunningSamples,
-					(error, totalDistance, segments) => {
-						if (error) return;
-						setMonthlyDistance(
-							distance === "km"
-								? totalDistance
-								: convertKmToMiles(totalDistance),
-							segments,
-						);
-					},
-				);
+        /**
+         * =====================================================================
+         * @type Distance
+         * @period Weekly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          7,
+          AppleHealthKit.getDailyDistanceWalkingRunningSamples,
+          (error, totalDistance, segments) => {
+            if (error) return;
+            setWeeklyDistance(
+              distance === "km"
+                ? totalDistance
+                : convertKmToMiles(totalDistance),
+              segments
+            );
+          }
+        );
 
-				/**
-				 * =====================================================================
-				 * @type Distance
-				 * @period Yearly
-				 * =====================================================================
-				 */
-				getMeasurementsFromPeriod(
-					365,
-					AppleHealthKit.getDailyDistanceWalkingRunningSamples,
-					(error, totalDistance, segments) => {
-						if (error) return;
-						setYearlyDistance(
-							distance === "km"
-								? totalDistance
-								: convertKmToMiles(totalDistance),
-							segments,
-						);
-					},
-				);
-			} catch (error) {
-				console.error("Failed to invoke distance data");
-			}
-		}
+        /**
+         * =====================================================================
+         * @type Distance
+         * @period Monthly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          30,
+          AppleHealthKit.getDailyDistanceWalkingRunningSamples,
+          (error, totalDistance, segments) => {
+            if (error) return;
+            setMonthlyDistance(
+              distance === "km"
+                ? totalDistance
+                : convertKmToMiles(totalDistance),
+              segments
+            );
+          }
+        );
 
-		invokeStepsData();
-		invokeFlightsData();
-		invokeDistanceData();
-	}, [hasPermission, distance]);
+        /**
+         * =====================================================================
+         * @type Distance
+         * @period Yearly
+         * =====================================================================
+         */
+        getMeasurementsFromPeriod(
+          365,
+          AppleHealthKit.getDailyDistanceWalkingRunningSamples,
+          (error, totalDistance, segments) => {
+            if (error) return;
+            setYearlyDistance(
+              distance === "km"
+                ? totalDistance
+                : convertKmToMiles(totalDistance),
+              segments
+            );
+          }
+        );
+      } catch (error) {
+        console.error("Failed to invoke distance data");
+      }
+    }
+
+    invokeStepsData();
+    invokeFlightsData();
+    invokeDistanceData();
+  }, [hasPermission, distance]);
 }
+
+/**
+ * color mode isn't defaulted when downloading the app
+ */
