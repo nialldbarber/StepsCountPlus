@@ -82,16 +82,20 @@ export function ChallengeCard({
     [percentage, target]
   );
 
+  // when you complete a challenge,
+
   useEffect(() => {
-    if (percentage >= 100) {
+    if (Number(percent) >= 100) {
       // move the challenge to completed list
       // setCompletedChallenge({
       //   ...challenge,
       //   endDate: "",
       //   timeTaken: "",
       // });
+
+      console.log(title, "it hath surpassed!");
     }
-  }, [percentage, challenge]);
+  }, [percent, challenge]);
 
   return (
     <Box

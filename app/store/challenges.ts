@@ -66,7 +66,9 @@ export const useChallengesStore = create(
       },
       setCompletedChallenge: (completedChallenge: ChallengeComplete) => {
         set((state) => {
+          // move challenge to completed challenges
           state.completedChallenges.push(completedChallenge);
+          // remove challenge from challenges
           state.challenges = state.challenges.filter(
             (challenge) => challenge.id !== completedChallenge.id
           );

@@ -38,7 +38,8 @@ export function ChallengesScreen({ route }: Props) {
   >("in-progress");
 
   const { navigate } = useNavigation();
-  const { challenges, setRemoveChallenge } = useChallengesStore();
+  const { challenges, completedChallenges, setRemoveChallenge } =
+    useChallengesStore();
   const { value, handleActiveValue } = useActiveValue();
 
   const filterChallengesByCategory = useMemo(() => {
@@ -55,6 +56,8 @@ export function ChallengesScreen({ route }: Props) {
     });
     return filteredResults;
   }, [challenges, currentFilter]);
+
+  console.log("completedChallenges:", completedChallenges);
 
   return (
     <Layout>
@@ -140,7 +143,40 @@ export function ChallengesScreen({ route }: Props) {
 
         {currentFilterScreen === "completed" ? (
           <Box>
-            <Text>COMPLETED</Text>
+            {completedChallenges.length > 0 ? (
+              <FlashList
+                data={completedChallenges}
+                estimatedItemSize={300}
+                renderItem={({ item }) => (
+                  <Box>
+                    <Text>{item.title}</Text>
+                  </Box>
+                )}
+              />
+            ) : (
+              <Box
+                flex={1}
+                styles={{ height: height / 2 }}
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Box justifyContent="center" paddingVertical="20px">
+                  <Text weight="bold">
+                    Looks like you haven't {"\n"} completed a challenge!
+                  </Text>
+                </Box>
+                <Box
+                  justifyContent="center"
+                  alignItems="center"
+                  paddingTop="20px"
+                  paddingBottom="42px"
+                >
+                  <Text level="heading" weight="bold" size="44px">
+                    🙈
+                  </Text>
+                </Box>
+              </Box>
+            )}
           </Box>
         ) : challenges.length > 0 ? (
           <Box>

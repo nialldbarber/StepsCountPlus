@@ -70,7 +70,7 @@ export function CurrentChallengeScreen({
     [percentage, challenge.target]
   );
 
-  console.log("S E G M E N T S:", segments);
+  // console.log("S E G M E N T S:", segments);
 
   return (
     <Layout>
