@@ -1,4 +1,5 @@
 import { Box } from "@/app/design-system/components/box";
+import { Button } from "@/app/design-system/components/button";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
@@ -227,6 +228,15 @@ export function SettingsScreen() {
               <Pressable onPress={() => navigate("RateApp")}>
                 <Text>Rate App</Text>
               </Pressable>
+            </Box>
+          </Box>
+
+          <Box alignItems="center" paddingTop="20px">
+            <Text>__DEV__ Mode</Text>
+            <Box paddingTop="15px">
+              <Button onPress={() => storage.clearAll()} color="white">
+                Remove all keys
+              </Button>
             </Box>
           </Box>
 
