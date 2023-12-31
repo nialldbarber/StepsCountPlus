@@ -35,285 +35,283 @@ const STROKE_WIDTH = 12;
 const pathToFonts = "../../../assets/fonts";
 
 export function StatsScreen() {
-	useGetHealthData(new Date());
-	const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
-	const bottomSheetRef = useRef(null);
-	const { navigate } = useNavigation();
-	const { distance } = useMeasurementsStore();
-	const { value, handleActiveValue } = useActiveValue();
-	const { handlePresentModalPress, handleCloseModal } =
-		useBottomSheet(bottomSheetRef);
-	const { theme } = useStyles(stylesheet);
-	const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 65);
-	const smallerFont = useFont(
-		require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`),
-		15,
-	);
+  useGetHealthData(new Date());
+  const [currentFilter, setCurrentFilter] = useState<Goals>("Steps");
+  const bottomSheetRef = useRef(null);
+  const { navigate } = useNavigation();
+  const { distance } = useMeasurementsStore();
+  const { value, handleActiveValue } = useActiveValue();
+  const { handlePresentModalPress, handleCloseModal } =
+    useBottomSheet(bottomSheetRef);
+  const { theme } = useStyles(stylesheet);
+  const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 65);
+  const smallerFont = useFont(
+    require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`),
+    15
+  );
 
-	const { dailySteps, weeklySteps, monthlySteps, yearlySteps } =
-		useStepsStore();
-	const { dailyFlights, weeklyFlights, monthlyFlights, yearlyFlights } =
-		useFlightsStore();
-	const { dailyDistance, weeklyDistance, monthlyDistance, yearlyDistance } =
-		useDistanceStore();
-	const { stepsGoal, flightsGoal, distanceGoal } = useGoalsStore();
+  const { dailySteps, weeklySteps, monthlySteps, yearlySteps } =
+    useStepsStore();
+  const { dailyFlights, weeklyFlights, monthlyFlights, yearlyFlights } =
+    useFlightsStore();
+  const { dailyDistance, weeklyDistance, monthlyDistance, yearlyDistance } =
+    useDistanceStore();
+  const { stepsGoal, flightsGoal, distanceGoal } = useGoalsStore();
 
-	const calculatePercentage = useMemo(() => {
-		if (currentFilter === "Steps") {
-			return dailySteps / stepsGoal;
-		}
-		if (currentFilter === "Flights") {
-			return dailyFlights / flightsGoal;
-		}
-		if (currentFilter === "Distance") {
-			return convertMetersToKm(dailyDistance) / distanceGoal;
-		}
-	}, [
-		currentFilter,
-		dailySteps,
-		dailyFlights,
-		dailyDistance,
-		stepsGoal,
-		flightsGoal,
-		distanceGoal,
-	]);
+  const calculatePercentage = useMemo(() => {
+    if (currentFilter === "Steps") {
+      return dailySteps / stepsGoal;
+    }
+    if (currentFilter === "Flights") {
+      return dailyFlights / flightsGoal;
+    }
+    if (currentFilter === "Distance") {
+      return convertMetersToKm(dailyDistance) / distanceGoal;
+    }
+  }, [
+    currentFilter,
+    dailySteps,
+    dailyFlights,
+    dailyDistance,
+    stepsGoal,
+    flightsGoal,
+    distanceGoal,
+  ]);
 
-	const determineAmount = useMemo(() => {
-		if (currentFilter === "Steps") {
-			return formatNumber(dailySteps);
-		}
-		if (currentFilter === "Flights") {
-			return dailyFlights;
-		}
-		return formatNumber(convertMetersToKm(dailyDistance));
-	}, [currentFilter, dailySteps, dailyFlights, dailyDistance]);
+  const determineAmount = useMemo(() => {
+    if (currentFilter === "Steps") {
+      return formatNumber(dailySteps);
+    }
+    if (currentFilter === "Flights") {
+      return dailyFlights;
+    }
+    return formatNumber(convertMetersToKm(dailyDistance));
+  }, [currentFilter, dailySteps, dailyFlights, dailyDistance]);
 
-	const determineRemainingAmount = useMemo(() => {
-		if (currentFilter === "Steps") {
-			return dailySteps >= stepsGoal
-				? "Woo"
-				: `${formatNumber(stepsGoal - dailySteps)} steps remaining`;
-		}
-		if (currentFilter === "Flights") {
-			return dailyFlights >= flightsGoal
-				? "Woo"
-				: `${formatNumber(flightsGoal - dailyFlights)} flights remaining`;
-		}
-		if (currentFilter === "Distance") {
-			const dailyDistanceKm = convertMetersToKm(dailyDistance);
-			const remainingDistanceKm = distanceGoal - dailyDistanceKm;
-			return dailyDistanceKm >= distanceGoal
-				? "Woo"
-				: `${formatNumber(remainingDistanceKm)} ${distance} remaining`;
-		}
-	}, [
-		currentFilter,
-		dailySteps,
-		stepsGoal,
-		dailyFlights,
-		flightsGoal,
-		dailyDistance,
-		distanceGoal,
-		distance,
-	]);
+  const determineRemainingAmount = useMemo(() => {
+    if (currentFilter === "Steps") {
+      return dailySteps >= stepsGoal
+        ? "Woo"
+        : `${formatNumber(stepsGoal - dailySteps)} steps remaining`;
+    }
+    if (currentFilter === "Flights") {
+      return dailyFlights >= flightsGoal
+        ? "Woo"
+        : `${formatNumber(flightsGoal - dailyFlights)} flights remaining`;
+    }
+    if (currentFilter === "Distance") {
+      const dailyDistanceKm = convertMetersToKm(dailyDistance);
+      const remainingDistanceKm = distanceGoal - dailyDistanceKm;
+      return dailyDistanceKm >= distanceGoal
+        ? "Woo"
+        : `${formatNumber(remainingDistanceKm)} ${distance} remaining`;
+    }
+  }, [
+    currentFilter,
+    dailySteps,
+    stepsGoal,
+    dailyFlights,
+    flightsGoal,
+    dailyDistance,
+    distanceGoal,
+    distance,
+  ]);
 
-	const determineGoal = useMemo(() => {
-		if (currentFilter === "Steps") {
-			return `Goal: ${formatNumber(stepsGoal)} steps`;
-		}
-		if (currentFilter === "Flights") {
-			return `Goal: ${formatNumber(flightsGoal)} flights`;
-		}
-		if (currentFilter === "Distance") {
-			return `Goal: ${formatNumber(distanceGoal)} ${distance}`;
-		}
+  const determineGoal = useMemo(() => {
+    if (currentFilter === "Steps") {
+      return `Goal: ${formatNumber(stepsGoal)} steps`;
+    }
+    if (currentFilter === "Flights") {
+      return `Goal: ${formatNumber(flightsGoal)} flights`;
+    }
+    if (currentFilter === "Distance") {
+      return `Goal: ${formatNumber(distanceGoal)} ${distance}`;
+    }
 
-		return "";
-	}, [currentFilter, stepsGoal, flightsGoal, distanceGoal, distance]);
+    return "";
+  }, [currentFilter, stepsGoal, flightsGoal, distanceGoal, distance]);
 
-	if (!font || !smallerFont) return <Box />;
+  if (!font || !smallerFont) return <Box />;
 
-	return (
-		<>
-			<Layout backgroundColor={theme.colors.statsBottomSectionBackgroundColor}>
-				<Box alignItems="center">
-					<Box alignSelf="flex-start">
-						<Text level="heading" size="26px">
-							{timeBasedGreeting()} 👋
-						</Text>
-					</Box>
-					<Box
-						marginVertical="30px"
-						styles={{
-							width: RADIUS * 2,
-							height: RADIUS * 2,
-						}}
-					>
-						<DonutChart
-							radius={RADIUS}
-							strokeWidth={STROKE_WIDTH}
-							targetPercentage={calculatePercentage}
-							font={font}
-							smallerFont={smallerFont}
-							amount={determineAmount}
-							message={determineGoal}
-							remainingText={determineRemainingAmount}
-						/>
-					</Box>
-				</Box>
+  return (
+    <>
+      <Layout backgroundColor={theme.colors.statsBottomSectionBackgroundColor}>
+        <Box alignItems="center">
+          <Box alignSelf="flex-start">
+            <Text level="heading" size="26px">
+              {timeBasedGreeting()} 👋
+            </Text>
+          </Box>
+          <Box
+            marginVertical="30px"
+            styles={{
+              width: RADIUS * 2,
+              height: RADIUS * 2,
+            }}
+          >
+            <DonutChart
+              radius={RADIUS}
+              strokeWidth={STROKE_WIDTH}
+              targetPercentage={calculatePercentage}
+              font={font}
+              smallerFont={smallerFont}
+              amount={determineAmount}
+              message={determineGoal}
+              remainingText={determineRemainingAmount}
+            />
+          </Box>
+        </Box>
 
-				{/* TODO: come back and fix this */}
-				<Bleed
-					alignItems="center"
-					left="-42px"
-					right="-42px"
-					backgroundColor={theme.colors.statsScreenChipBackgroundColor}
-					paddingVertical={10}
-					shadow
-				>
-					<Row
-						marginHorizontal="15px"
-						marginTop="12px"
-						marginBottom="10px"
-						gutter="10px"
-						a11yRole="tablist"
-					>
-						{goalTypes.map(
-							({ id, label, view, icon, selectedIcon }, index) => {
-								return (
-									<Chip
-										key={id}
-										label={label}
-										icon={icon}
-										selectedIcon={selectedIcon}
-										onPress={() => {
-											handleActiveValue(index);
-											setCurrentFilter(view);
-										}}
-										a11yLabel="test"
-										a11yRole="menu"
-										hitSlop={hitSlopLarge}
-										isSelected={index === value}
-										size="16px"
-										height="36px"
-										mode="dark"
-									/>
-								);
-							},
-						)}
-					</Row>
-				</Bleed>
+        {/* TODO: come back and fix this */}
+        <Bleed
+          alignItems="center"
+          left="-42px"
+          right="-42px"
+          backgroundColor={theme.colors.statsScreenChipBackgroundColor}
+          paddingVertical={10}
+          shadow
+        >
+          <Row
+            marginHorizontal="15px"
+            marginTop="12px"
+            marginBottom="10px"
+            gutter="10px"
+            a11yRole="tablist"
+          >
+            {goalTypes.map(({ id, label, view, icon, selectedIcon }, index) => {
+              return (
+                <Chip
+                  key={id}
+                  label={label}
+                  icon={icon}
+                  selectedIcon={selectedIcon}
+                  onPress={() => {
+                    handleActiveValue(index);
+                    setCurrentFilter(view);
+                  }}
+                  a11yLabel="test"
+                  a11yRole="menu"
+                  hitSlop={hitSlopLarge}
+                  isSelected={index === value}
+                  size="16px"
+                  height="36px"
+                  mode="dark"
+                />
+              );
+            })}
+          </Row>
+        </Bleed>
 
-				<Box
-					flexDirection="row"
-					paddingHorizontal="10px"
-					alignItems="center"
-					paddingTop="24px"
-					justifyContent="space-between"
-					position="relative"
-				>
-					<Text level="heading" size="20px" color="primary">
-						{currentFilter} Stats
-					</Text>
-					<Box paddingLeft="10px">
-						<InfoModal handlePresentModalPress={handlePresentModalPress} />
-					</Box>
-				</Box>
-				<Box paddingVertical="10px">
-					{currentFilter === "Steps" && (
-						<StatsTable
-							filter="Steps"
-							daily={formatNumber(dailySteps)}
-							weekly={formatNumber(weeklySteps)}
-							monthly={formatNumber(monthlySteps)}
-							yearly={formatNumber(yearlySteps)}
-						/>
-					)}
-					{currentFilter === "Flights" && (
-						<StatsTable
-							filter="Flights"
-							daily={dailyFlights}
-							weekly={weeklyFlights}
-							monthly={monthlyFlights}
-							yearly={yearlyFlights}
-						/>
-					)}
-					{currentFilter === "Distance" && (
-						<StatsTable
-							filter="Distance"
-							daily={formatNumber(convertMetersToKm(dailyDistance))}
-							weekly={formatNumber(convertMetersToKm(weeklyDistance))}
-							monthly={formatNumber(convertMetersToKm(monthlyDistance))}
-							yearly={formatNumber(convertMetersToKm(yearlyDistance))}
-						/>
-					)}
-				</Box>
-			</Layout>
-			<BottomSheetModal
-				ref={bottomSheetRef}
-				index={1}
-				snapPoints={["35%", "35%"]}
-				backdropComponent={BottomSheetBackdrop}
-				backgroundStyle={{
-					backgroundColor: theme.colors.modalBackgroundColor,
-				}}
-			>
-				<Stack margin="20px">
-					<ScrollView showsVerticalScrollIndicator={false}>
-						<Box paddingBottom="38px">
-							<Text weight="medium" size="14px" withEmoji>
-								The official Apple Health app (amongst others) already present
-								these data points beautifully and in far greater detail 🙏
-							</Text>
-							<Box height="20px" />
-							<Text weight="medium" size="14px" withEmoji>
-								This app is about taking on challenges! We have a currated list
-								of various categories that you can choose from. Accept them and
-								push yourself to hit your goals 💪
-							</Text>
-							<Box height="20px" />
-							<Box flexDirection="row" alignItems="center">
-								<Text weight="medium" size="14px" withEmoji>
-									Take on your first challenge
-								</Text>
-								<Pressable
-									onPress={() => {
-										navigate("Challenges");
-										handleCloseModal();
-									}}
-								>
-									<Text color="primary" weight="bold" size="14px" withEmoji>
-										{" "}
-										here! 🎉
-									</Text>
-								</Pressable>
-							</Box>
-							<Box height="20px" />
-							<Box flexDirection="row" alignItems="center">
-								<Text weight="medium" size="14px" withEmoji>
-									Want to change your goals? Change them{" "}
-								</Text>
-								<Pressable
-									onPress={() => {
-										navigate("Goals");
-										handleCloseModal();
-									}}
-								>
-									<Text color="primary" weight="medium" size="14px" withEmoji>
-										here!
-									</Text>
-								</Pressable>
-							</Box>
-						</Box>
-					</ScrollView>
-				</Stack>
-			</BottomSheetModal>
-		</>
-	);
+        <Box
+          flexDirection="row"
+          paddingHorizontal="10px"
+          alignItems="center"
+          paddingTop="24px"
+          justifyContent="space-between"
+          position="relative"
+        >
+          <Text level="heading" size="20px" color="primary">
+            {currentFilter} Stats
+          </Text>
+          <Box paddingLeft="10px">
+            <InfoModal handlePresentModalPress={handlePresentModalPress} />
+          </Box>
+        </Box>
+        <Box paddingVertical="10px">
+          {currentFilter === "Steps" && (
+            <StatsTable
+              filter="Steps"
+              daily={formatNumber(dailySteps)}
+              weekly={formatNumber(weeklySteps)}
+              monthly={formatNumber(monthlySteps)}
+              yearly={formatNumber(yearlySteps)}
+            />
+          )}
+          {currentFilter === "Flights" && (
+            <StatsTable
+              filter="Flights"
+              daily={dailyFlights}
+              weekly={weeklyFlights}
+              monthly={monthlyFlights}
+              yearly={yearlyFlights}
+            />
+          )}
+          {currentFilter === "Distance" && (
+            <StatsTable
+              filter="Distance"
+              daily={formatNumber(convertMetersToKm(dailyDistance))}
+              weekly={formatNumber(convertMetersToKm(weeklyDistance))}
+              monthly={formatNumber(convertMetersToKm(monthlyDistance))}
+              yearly={formatNumber(convertMetersToKm(yearlyDistance))}
+            />
+          )}
+        </Box>
+      </Layout>
+      <BottomSheetModal
+        ref={bottomSheetRef}
+        index={1}
+        snapPoints={["35%", "35%"]}
+        backdropComponent={BottomSheetBackdrop}
+        backgroundStyle={{
+          backgroundColor: theme.colors.modalBackgroundColor,
+        }}
+      >
+        <Stack margin="20px">
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Box paddingBottom="38px">
+              <Text weight="medium" size="14px" withEmoji>
+                The official Apple Health app (amongst others) already present
+                these data points beautifully and in far greater detail 🙏
+              </Text>
+              <Box height="20px" />
+              <Text weight="medium" size="14px" withEmoji>
+                This app is about taking on challenges! We have a currated list
+                of various categories that you can choose from. Accept them and
+                push yourself to hit your goals 💪
+              </Text>
+              <Box height="20px" />
+              <Box flexDirection="row" alignItems="center">
+                <Text weight="medium" size="14px" withEmoji>
+                  Take on your first challenge
+                </Text>
+                <Pressable
+                  onPress={() => {
+                    navigate("Challenges");
+                    handleCloseModal();
+                  }}
+                >
+                  <Text color="primary" weight="bold" size="14px" withEmoji>
+                    {" "}
+                    here! 🎉
+                  </Text>
+                </Pressable>
+              </Box>
+              <Box height="20px" />
+              <Box flexDirection="row" alignItems="center">
+                <Text weight="medium" size="14px" withEmoji>
+                  Want to change your goals? Change them{" "}
+                </Text>
+                <Pressable
+                  onPress={() => {
+                    navigate("Goals");
+                    handleCloseModal();
+                  }}
+                >
+                  <Text color="primary" weight="medium" size="14px" withEmoji>
+                    here!
+                  </Text>
+                </Pressable>
+              </Box>
+            </Box>
+          </ScrollView>
+        </Stack>
+      </BottomSheetModal>
+    </>
+  );
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-	container: {
-		flex: 1,
-	},
+  container: {
+    flex: 1,
+  },
 }));
