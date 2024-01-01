@@ -5,7 +5,6 @@ import { useFlightsStore } from "@/app/store/flights";
 import { useMeasurementsStore } from "@/app/store/measurements";
 import { useStepsStore } from "@/app/store/steps";
 import { useEffect, useState } from "react";
-import { Platform } from "react-native";
 import type {
   HealthInputOptions,
   HealthKitPermissions,
@@ -51,39 +50,30 @@ export function useGetHealthData(date: Date) {
    * =====================================================================
    */
   useEffect(() => {
-    if (Platform.OS !== "ios") return;
-
-    AppleHealthKit.isAvailable((error, isAvailable) => {
-      if (error) {
-        console.error("Error checking availability", error);
-        return;
-      }
-      if (!isAvailable) {
-        console.error("Apple Health not available");
-        return;
-      }
-
-      AppleHealthKit.initHealthKit(permissions, (initError) => {
-        if (initError) {
-          console.error("Error getting permissions", initError);
-          return;
-        }
+    AppleHealthKit.initHealthKit(permissions, (initError) => {
+      if (initError) {
+        console.error("Error getting permissions", initError);
+        setHasPermission(false);
+      } else {
+        console.log("WE HAVE THESE PERMISSIONS", permissions);
         setHasPermission(true);
-      });
+      }
 
-      AppleHealthKit.getAuthStatus(permissions, (error, results) => {
-        console.log("getAuthStatus", error, results);
-      });
+      // AppleHealthKit.isAvailable((error, isAvailable) => {
+      //   if (error) {
+      //     console.error("Error checking availability", error);
+      //     setIsAvailable(false);
+      //     return;
+      //   }
+      //   if (!isAvailable) {
+      //     console.error("Apple Health not available");
+      //     setIsAvailable(true);
+      //     return;
+      //   }
+      // });
     });
-  }, []);
 
-  useEffect(() => {
-    if (!hasPermission) {
-      console.error("Do not have permission to access health data");
-      return;
-    }
-
-    function invokeStepsData() {
+    async function invokeStepsData() {
       try {
         /**
          * =====================================================================
@@ -158,7 +148,7 @@ export function useGetHealthData(date: Date) {
       }
     }
 
-    function invokeFlightsData() {
+    async function invokeFlightsData() {
       try {
         /**
          * =====================================================================
@@ -229,7 +219,8 @@ export function useGetHealthData(date: Date) {
         console.error("Failed to invoke flights data");
       }
     }
-    function invokeDistanceData() {
+
+    async function invokeDistanceData() {
       try {
         /**
          * =====================================================================
@@ -320,12 +311,14 @@ export function useGetHealthData(date: Date) {
       }
     }
 
-    invokeStepsData();
-    invokeFlightsData();
-    invokeDistanceData();
+    try {
+      if (hasPermission) {
+        invokeStepsData();
+        invokeFlightsData();
+        invokeDistanceData();
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }, [hasPermission, distance]);
 }
-
-/**
- * color mode isn't defaulted when downloading the app
- */

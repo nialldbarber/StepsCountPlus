@@ -1,4 +1,3 @@
-import { DonutChart } from "@/app/components/donut-chart";
 import { InfoModal } from "@/app/components/info-modal";
 import { StatsTable } from "@/app/components/stats/stats-table";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
@@ -12,7 +11,6 @@ import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
 import { useActiveValue } from "@/app/hooks/useActiveValue";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
-import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { formatNumber } from "@/app/lib/format/numbers";
 import { timeBasedGreeting } from "@/app/lib/times/greeting";
@@ -29,6 +27,10 @@ import { useFont } from "@shopify/react-native-skia";
 import { useMemo, useRef, useState } from "react";
 import { PixelRatio, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+
+import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
+import { Fallback } from "@/app/screens/stats/fallback";
+import { ErrorBoundary } from "react-error-boundary";
 
 const RADIUS = PixelRatio.roundToNearestPixel(160);
 const STROKE_WIDTH = 12;
@@ -57,6 +59,14 @@ export function StatsScreen() {
   const { dailyDistance, weeklyDistance, monthlyDistance, yearlyDistance } =
     useDistanceStore();
   const { stepsGoal, flightsGoal, distanceGoal } = useGoalsStore();
+
+  console.log(
+    "dailySteps, weeklySteps, monthlySteps, yearlySteps",
+    dailySteps,
+    weeklySteps,
+    monthlySteps,
+    yearlySteps
+  );
 
   const calculatePercentage = useMemo(() => {
     if (currentFilter === "Steps") {
@@ -133,8 +143,19 @@ export function StatsScreen() {
 
   if (!font || !smallerFont) return <Box />;
 
+  const logError = (error: Error, info: { componentStack: string }) => {
+    console.log(error, info);
+  };
+
+  console.log(
+    `calculatePercentage: ${calculatePercentage}`,
+    `determineAmount: ${determineAmount}`,
+    `determineGoal: ${determineGoal}`,
+    `determineRemainingAmount: ${determineRemainingAmount}`
+  );
+
   return (
-    <>
+    <ErrorBoundary fallback={<Fallback />} onError={logError}>
       <Layout backgroundColor={theme.colors.statsBottomSectionBackgroundColor}>
         <Box alignItems="center">
           <Box alignSelf="flex-start">
@@ -149,7 +170,7 @@ export function StatsScreen() {
               height: RADIUS * 2,
             }}
           >
-            <DonutChart
+            {/* <DonutChart
               radius={RADIUS}
               strokeWidth={STROKE_WIDTH}
               targetPercentage={calculatePercentage}
@@ -158,7 +179,7 @@ export function StatsScreen() {
               amount={determineAmount}
               message={determineGoal}
               remainingText={determineRemainingAmount}
-            />
+            /> */}
           </Box>
         </Box>
 
@@ -306,7 +327,7 @@ export function StatsScreen() {
           </ScrollView>
         </Stack>
       </BottomSheetModal>
-    </>
+    </ErrorBoundary>
   );
 }
 
