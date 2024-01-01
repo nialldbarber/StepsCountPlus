@@ -69,15 +69,16 @@ export function StatsScreen() {
   );
 
   const calculatePercentage = useMemo(() => {
-    if (currentFilter === "Steps") {
+    if (currentFilter === "Steps" && stepsGoal !== 0) {
       return dailySteps / stepsGoal;
     }
-    if (currentFilter === "Flights") {
+    if (currentFilter === "Flights" && flightsGoal !== 0) {
       return dailyFlights / flightsGoal;
     }
-    if (currentFilter === "Distance") {
+    if (currentFilter === "Distance" && distanceGoal !== 0) {
       return convertMetersToKm(dailyDistance) / distanceGoal;
     }
+    return 0; // @TODO make this more robust in case of edge cases
   }, [
     currentFilter,
     dailySteps,
