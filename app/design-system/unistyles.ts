@@ -1,13 +1,13 @@
 import { darkTheme, lightTheme } from "@/app/design-system/theme";
 import { storage } from "@/app/storage/mmkv";
-import { UnistylesRegistry } from "react-native-unistyles";
+import { UnistylesRegistry, UnistylesThemes } from "react-native-unistyles";
 
-const currentTheme = storage.getString("theme");
+const currentTheme = storage.getString("theme") as keyof UnistylesThemes;
 
 UnistylesRegistry.addThemes({
-	light: lightTheme,
-	dark: darkTheme,
+  light: lightTheme,
+  dark: darkTheme,
 }).addConfig({
-	initialTheme: currentTheme,
-	adaptiveThemes: true,
+  initialTheme: currentTheme,
+  adaptiveThemes: true,
 });
