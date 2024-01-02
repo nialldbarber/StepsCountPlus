@@ -28,6 +28,7 @@ import { useMemo, useRef, useState } from "react";
 import { PixelRatio, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
+import { DonutChart } from "@/app/components/donut-chart";
 import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
 import { Fallback } from "@/app/screens/stats/fallback";
 import { ErrorBoundary } from "react-error-boundary";
@@ -102,19 +103,19 @@ export function StatsScreen() {
   const determineRemainingAmount = useMemo(() => {
     if (currentFilter === "Steps") {
       return dailySteps >= stepsGoal
-        ? "Woo"
+        ? "Woo 🎉"
         : `${formatNumber(stepsGoal - dailySteps)} steps remaining`;
     }
     if (currentFilter === "Flights") {
       return dailyFlights >= flightsGoal
-        ? "Woo"
+        ? "Woo 🎉"
         : `${formatNumber(flightsGoal - dailyFlights)} flights remaining`;
     }
     if (currentFilter === "Distance") {
       const dailyDistanceKm = convertMetersToKm(dailyDistance);
       const remainingDistanceKm = distanceGoal - dailyDistanceKm;
       return dailyDistanceKm >= distanceGoal
-        ? "Woo"
+        ? "Woo 🎉"
         : `${formatNumber(remainingDistanceKm)} ${distance} remaining`;
     }
   }, [
@@ -144,16 +145,9 @@ export function StatsScreen() {
 
   if (!font || !smallerFont) return <Box />;
 
-  const logError = (error: Error, info: { componentStack: string }) => {
+  function logError(error: Error, info: { componentStack: string }) {
     console.log(error, info);
-  };
-
-  console.log(
-    `calculatePercentage: ${calculatePercentage}`,
-    `determineAmount: ${determineAmount}`,
-    `determineGoal: ${determineGoal}`,
-    `determineRemainingAmount: ${determineRemainingAmount}`
-  );
+  }
 
   return (
     <ErrorBoundary fallback={<Fallback />} onError={logError}>
@@ -171,7 +165,7 @@ export function StatsScreen() {
               height: RADIUS * 2,
             }}
           >
-            {/* <DonutChart
+            <DonutChart
               radius={RADIUS}
               strokeWidth={STROKE_WIDTH}
               targetPercentage={calculatePercentage}
@@ -180,7 +174,7 @@ export function StatsScreen() {
               amount={determineAmount}
               message={determineGoal}
               remainingText={determineRemainingAmount}
-            /> */}
+            />
           </Box>
         </Box>
 
