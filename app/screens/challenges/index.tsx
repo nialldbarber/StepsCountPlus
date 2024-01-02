@@ -133,7 +133,7 @@ export function ChallengesScreen({ route }: Props) {
                   borderRadius="full"
                   marginHorizontal="5px"
                   borderWidth={1}
-                  borderColor="pureWhite"
+                  styles={styles.currentFilterScreen(false)}
                 >
                   <Text textStyles={styles.challengeChipText}>Add New</Text>
                 </Box>
