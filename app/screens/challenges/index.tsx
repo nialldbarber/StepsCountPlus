@@ -2,6 +2,7 @@ import { ChallengeCard } from "@/app/components/challenge/card";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
+import { Button } from "@/app/design-system/components/button";
 import { Chip } from "@/app/design-system/components/chip";
 import { Layout } from "@/app/design-system/components/layout";
 import { Pressable } from "@/app/design-system/components/pressable";
@@ -161,7 +162,7 @@ export function ChallengesScreen({ route }: Props) {
                 justifyContent="center"
               >
                 <Box justifyContent="center" paddingVertical="20px">
-                  <Text weight="bold">
+                  <Text weight="bold" textStyles={styles.textEmpty}>
                     Looks like you haven't {"\n"} completed a challenge!
                   </Text>
                 </Box>
@@ -175,6 +176,12 @@ export function ChallengesScreen({ route }: Props) {
                     🙈
                   </Text>
                 </Box>
+                <Button
+                  onPress={() => navigate("SelectChallenge")}
+                  color="white"
+                >
+                  Start a Challenge
+                </Button>
               </Box>
             )}
           </Box>
@@ -214,7 +221,7 @@ export function ChallengesScreen({ route }: Props) {
             justifyContent="center"
           >
             <Box justifyContent="center" paddingVertical="20px">
-              <Text weight="bold">
+              <Text weight="bold" textStyles={styles.textEmpty}>
                 Looks like you haven't {"\n"} started a challenge!
               </Text>
             </Box>
@@ -222,12 +229,15 @@ export function ChallengesScreen({ route }: Props) {
               justifyContent="center"
               alignItems="center"
               paddingTop="20px"
-              paddingBottom="42px"
+              paddingBottom="36px"
             >
               <Text level="heading" weight="bold" size="44px">
                 🙈
               </Text>
             </Box>
+            <Button onPress={() => navigate("SelectChallenge")} color="white">
+              Start a Challenge
+            </Button>
           </Box>
         )}
       </Box>
@@ -241,6 +251,9 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   text: {
     marginTop: space["6px"],
+  },
+  textEmpty: {
+    textAlign: "center",
   },
   currentFilterScreen: (isActive) => ({
     borderColor: isActive
