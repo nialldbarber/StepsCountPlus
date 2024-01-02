@@ -149,9 +149,9 @@ export function ChallengeCard({
             </Box>
           </>
         ) : (
-          <Box alignSelf="center" paddingTop="20px">
-            <Button shape="small" size="12px" onPress={fn}>
-              Accept challenge
+          <Box alignSelf="flex-start" paddingTop="34px">
+            <Button shape="small" size="12px" color="white" onPress={fn}>
+              Start challenge
             </Button>
           </Box>
         )}
