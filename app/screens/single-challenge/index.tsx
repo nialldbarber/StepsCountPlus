@@ -82,7 +82,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
         position: "bottom",
         onPress: () =>
           // @TODO: this doesn't work correctly
-          navigate("ChallengesRoot", { currentFilter: challenge.category }),
+          navigate("ChallengesRoot"),
         bottomOffset: 100,
       });
     } catch (error) {
