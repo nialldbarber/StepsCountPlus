@@ -3,12 +3,12 @@ import { InfoModal } from "@/app/components/info-modal";
 import { ScreenHeader } from "@/app/components/screen-header";
 import data from "@/app/data/challenges.json";
 import { Box } from "@/app/design-system/components/box";
+import { CHALLENGE_TYPES } from "@/app/design-system/components/card";
 import { Input } from "@/app/design-system/components/input";
 import { Layout } from "@/app/design-system/components/layout";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
-import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { shuffle } from "@/app/lib/shuffle";
 import type { RootChallengesScreen } from "@/app/navigation/types";
 import type { Challenge, ChallengeType } from "@/app/store/challenges";
@@ -55,17 +55,15 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
     setFilterValue(text);
   }
 
-  function invokeAddNewChallenge(challenge: Challenge) {
-    const checkIfUserHasOtherChallengesInProgress = !!challenges.find(
-      (c) => c.category === challenge.category
-    );
+  function checkIfUserHasOtherChallengesInProgress(challenge: Challenge) {
+    return !!challenges.find((c) => c.category === challenge.category);
+  }
 
-    if (checkIfUserHasOtherChallengesInProgress) {
+  function invokeAddNewChallenge(challenge: Challenge) {
+    if (checkIfUserHasOtherChallengesInProgress(challenge)) {
       Toast.show({
         type: "error",
-        text1: `${capitaliseFirstLetter(
-          challenge.category
-        )} already in progress`,
+        text1: `${CHALLENGE_TYPES[challenge.category]} already in progress`,
         text2: "You can only accept 1 challenge per category",
         position: "bottom",
         bottomOffset: 100,
@@ -80,9 +78,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
         text1: "Added successfully!",
         text2: "Click here to check it out 🚀",
         position: "bottom",
-        onPress: () =>
-          // @TODO: this doesn't work correctly
-          navigate("ChallengesRoot"),
+        onPress: () => navigate("ChallengesRoot"),
         bottomOffset: 100,
       });
     } catch (error) {
@@ -117,11 +113,11 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
         <Box marginTop="32px">
           <Stack>
             {availableChallenges.length === 0 ? (
+              // TODO: add an empty state
               <Box>
                 <Text>hello</Text>
               </Box>
             ) : (
-              // TODO: option to randomise (thinking runs and f1 tracks)
               availableChallenges.map((challenge) => {
                 const { id, title, difficulty, emoji, target, category } =
                   challenge;
