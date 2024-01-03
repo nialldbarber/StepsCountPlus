@@ -165,11 +165,11 @@ export function ChallengesScreen() {
         </Box>
 
         {currentFilterScreen === "completed" ? (
-          <Box>
+          <Box flex={1} flexGrow={1} minHeight="2px">
             {completedChallenges.length > 0 ? (
               <FlashList
                 data={completedChallenges}
-                estimatedItemSize={300}
+                estimatedItemSize={200}
                 renderItem={({ item }) => (
                   <Box>
                     <Text>{item.title}</Text>
@@ -207,11 +207,11 @@ export function ChallengesScreen() {
               </Box>
             )}
           </Box>
-        ) : challenges.length > 0 ? (
-          <Box>
+        ) : filterChallengesByCategory.length > 0 ? (
+          <Box flex={1} flexGrow={1} minHeight="2px">
             <FlashList
               data={filterChallengesByCategory}
-              estimatedItemSize={300}
+              estimatedItemSize={200}
               renderItem={({ item }) => (
                 // <Pressable
                 //   onPress={() =>
@@ -244,7 +244,9 @@ export function ChallengesScreen() {
           >
             <Box justifyContent="center" paddingVertical="20px">
               <Text weight="bold" textStyles={styles.textEmpty}>
-                Looks like you haven't {"\n"} started a challenge!
+                {filterChallengesByCategory.length === 0
+                  ? `Looks like you haven't \n started a ${currentFilter} challenge!`
+                  : `Looks like you haven't \n started a challenge!`}
               </Text>
             </Box>
             <Box
