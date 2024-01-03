@@ -3,6 +3,7 @@ import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import type { ChallengeTypes } from "@/app/navigation/types";
 import { useNavigation } from "@react-navigation/native";
+import { Dimensions } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Props = {
@@ -25,18 +26,7 @@ export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
   "f1-tracks": "🏎️",
 };
 
-const CHALLENGE_DESC_TYPES: Record<string, string> = {
-  steps:
-    "Make every step count in a quest for fitness, turning daily strides into exciting mini-adventures",
-  distance:
-    "Embark on a journey of endurance and discovery, measuring your progress one step at a time",
-  flights:
-    "Travel the world through fitness, connecting iconic landmarks like the Statue of Liberty and Burj Khalifa with each workout",
-  "long-distance":
-    "Test your limits with epic adventures, where each stride spans vast distances and landscapes, from serene trails to rugged terrains",
-  "f1-tracks":
-    "Experience the thrill of Formula 1 by tackling challenges modeled on world-famous tracks, blending speed with strategy",
-};
+const { width } = Dimensions.get("window");
 
 export function Card({ challengeType }: Props) {
   const { navigate } = useNavigation();
@@ -47,8 +37,10 @@ export function Card({ challengeType }: Props) {
       position="relative"
       backgroundColor={theme.colors.cardBackgroundColor}
       padding="20px"
-      borderRadius="large"
-      minHeight="120px"
+      margin="10px"
+      borderRadius="larger"
+      minHeight="150px"
+      styles={{ width: width / 2 - 40 }}
       shadow
     >
       <Pressable
@@ -58,7 +50,7 @@ export function Card({ challengeType }: Props) {
         <Box
           flexDirection="row"
           alignItems="center"
-          justifyContent="flex-start"
+          justifyContent="center"
           width="full"
         >
           <Box
@@ -75,12 +67,9 @@ export function Card({ challengeType }: Props) {
               {CHALLENGE_EMOJI_TYPES[challengeType]}
             </Text>
           </Box>
-          <Box flex={1} paddingRight="20px">
-            <Text>{CHALLENGE_TYPES[challengeType]}</Text>
-            <Text textStyles={styles.text} size="11px">
-              {CHALLENGE_DESC_TYPES[challengeType]}
-            </Text>
-          </Box>
+        </Box>
+        <Box paddingTop="10px">
+          <Text>{CHALLENGE_TYPES[challengeType]}</Text>
         </Box>
       </Pressable>
     </Box>

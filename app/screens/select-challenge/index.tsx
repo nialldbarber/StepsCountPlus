@@ -7,7 +7,7 @@ export function SelectChallengeScreen() {
   return (
     <Layout>
       <ScreenHeader title="Choose a category" />
-      <Box gap="20px" justifyContent="center" marginVertical="20px">
+      <Box flexDirection="row" flexWrap="wrap" marginVertical="20px">
         <Card challengeType="steps" />
         <Card challengeType="distance" />
         <Card challengeType="flights" />
