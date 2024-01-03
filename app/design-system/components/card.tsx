@@ -11,6 +11,7 @@ type Props = {
 };
 
 export const CHALLENGE_TYPES: Record<string, string> = {
+  custom: "Custom",
   steps: "Steps",
   distance: "Distance",
   flights: "Flights",
@@ -19,6 +20,7 @@ export const CHALLENGE_TYPES: Record<string, string> = {
 };
 
 export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
+  custom: "🛠️",
   steps: "👟",
   distance: "📍",
   flights: "🪜",
@@ -27,6 +29,7 @@ export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
 };
 
 export const CHALLENGE_INFO_TYPES: Record<string, string> = {
+  custom: "Create your own challenge",
   steps: "Step count, walking, running",
   distance: "Walking, running, cycling",
   flights: "Tall buildings, mountains",

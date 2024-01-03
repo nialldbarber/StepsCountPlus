@@ -16,6 +16,8 @@ export function SelectChallengeScreen() {
       </Box>
       <Bleed left="-10px" right="-10px">
         <Box flexDirection="row" flexWrap="wrap" marginVertical="20px">
+          <Card challengeType="custom" />
+          <Card challengeType="steps" />
           <Card challengeType="steps" />
           <Card challengeType="distance" />
           <Card challengeType="flights" />

@@ -18,6 +18,7 @@ export type RootBottomTabsParamList = {
 };
 
 export type ChallengeTypes =
+  | "custom"
   | "steps"
   | "distance"
   | "flights"
