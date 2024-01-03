@@ -83,7 +83,11 @@ export function ChallengeCard({
       overflow="hidden"
       borderRadius="medium"
     >
-      <Box backgroundColor={theme.colors.cardBackgroundColor} padding="20px">
+      <Box
+        backgroundColor={theme.colors.cardBackgroundColor}
+        padding="20px"
+        minHeight="120px"
+      >
         <Box flexDirection="row" justifyContent="space-between" flexWrap="wrap">
           <Box flexDirection="row" flexWrap="wrap">
             <Box paddingRight="20px">
