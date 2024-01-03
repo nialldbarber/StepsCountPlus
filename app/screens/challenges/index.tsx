@@ -8,11 +8,9 @@ import { Row } from "@/app/design-system/components/row";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
-import { RootChallengesScreen } from "@/app/navigation/types";
 import { ChallengeType, useChallengesStore } from "@/app/store/challenges";
 import { MenuView } from "@react-native-menu/menu";
 import { useNavigation } from "@react-navigation/native";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FlashList } from "@shopify/flash-list";
 import { Filter } from "iconsax-react-native";
 import { useMemo, useState } from "react";
@@ -23,17 +21,12 @@ import {
   useStyles,
 } from "react-native-unistyles";
 
-type Props = NativeStackScreenProps<RootChallengesScreen, "ChallengesRoot">;
-
 const { height } = Dimensions.get("screen");
 
-export function ChallengesScreen({ route }: Props) {
+export function ChallengesScreen() {
   const { styles, theme } = useStyles(stylesheet);
-  const filter = route?.params?.currentFilter ?? "all";
 
-  const [currentFilter, setCurrentFilter] = useState<ChallengeType>(
-    filter as ChallengeType
-  );
+  const [currentFilter, setCurrentFilter] = useState<ChallengeType>("all");
   const [currentFilterScreen, setCurrentFilterScreen] = useState<
     "in-progress" | "completed"
   >("in-progress");
