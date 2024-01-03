@@ -8,11 +8,10 @@ import { useEffectOnce } from "@/app/hooks/useEffectOnce";
 import { getPercentageFromPeriod } from "@/app/lib/activity/challenge";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
-import { determinePercentage } from "@/app/lib/format/numbers";
 import type { ChallengeType } from "@/app/store/challenges";
 import { Challenge, useChallengesStore } from "@/app/store/challenges";
 import { Trash } from "iconsax-react-native";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface Props extends Challenge {
@@ -54,7 +53,8 @@ export function ChallengeCard({
         if (!startDate) return;
         const finalPercentage = await getPercentageFromPeriod(
           category,
-          startDate
+          startDate,
+          target
         );
 
         if (
@@ -77,15 +77,8 @@ export function ChallengeCard({
     };
   });
 
-  const percent = useMemo(
-    () => determinePercentage(percentage, target),
-    [percentage, target]
-  );
-
-  // when you complete a challenge,
-
   useEffect(() => {
-    if (Number(percent) >= 100) {
+    if (Number(percentage) >= 100) {
       // move the challenge to completed list
       // setCompletedChallenge({
       //   ...challenge,
@@ -95,7 +88,7 @@ export function ChallengeCard({
 
       console.log(title, "it hath surpassed!");
     }
-  }, [percent, challenge]);
+  }, [percentage, challenge]);
 
   return (
     <Box
@@ -143,9 +136,7 @@ export function ChallengeCard({
               justifyContent="space-between"
               paddingTop="30px"
             >
-              <Text size="14px">
-                {determinePercentage(percentage, target)}% complete
-              </Text>
+              <Text size="14px">{Math.round(percentage)}% complete</Text>
             </Box>
           </>
         ) : (
@@ -156,7 +147,7 @@ export function ChallengeCard({
           </Box>
         )}
       </Box>
-      {isSet && <Box styles={styles.percent(percent)} />}
+      {isSet && <Box styles={styles.percent(percentage)} />}
     </Box>
   );
 }

@@ -1,6 +1,7 @@
 import { ChallengeType } from "@/app/store/challenges";
 import type { AppleHealthKit, HealthInputOptions } from "react-native-health";
 import HealthKit from "react-native-health";
+import { determinePercentage } from "../format/numbers";
 
 const INTERVAL_DURATIONS = {
   "24hours": 24 * 60 * 60 * 1000,
@@ -20,7 +21,8 @@ export function getCurrentPercentage(
   fn:
     | AppleHealthKit["getDailyStepCountSamples"]
     | AppleHealthKit["getDailyFlightsClimbedSamples"]
-    | AppleHealthKit["getDailyDistanceWalkingRunningSamples"]
+    | AppleHealthKit["getDailyDistanceWalkingRunningSamples"],
+  target: number
 ) {
   return new Promise((resolve, reject) => {
     fn(options, (error, results) => {
@@ -33,7 +35,8 @@ export function getCurrentPercentage(
           return;
         }
         const total = results.reduce((sum, sample) => sum + sample.value, 0);
-        resolve(total);
+        const percentage = determinePercentage(total, target);
+        resolve(percentage);
       }
     });
   });
@@ -41,7 +44,8 @@ export function getCurrentPercentage(
 
 export function getPercentageFromPeriod(
   type: ChallengeType,
-  startDate: string
+  startDate: string,
+  target: number
 ) {
   const formattedStartDate = new Date(startDate).toISOString();
   const formattedEndDate = new Date().toISOString();
@@ -55,18 +59,24 @@ export function getPercentageFromPeriod(
 
   switch (type) {
     case "steps":
-      return getCurrentPercentage(options, HealthKit.getDailyStepCountSamples);
+      return getCurrentPercentage(
+        options,
+        HealthKit.getDailyStepCountSamples,
+        target
+      );
     case "flights":
       return getCurrentPercentage(
         options,
-        HealthKit.getDailyFlightsClimbedSamples
+        HealthKit.getDailyFlightsClimbedSamples,
+        target
       );
     case "distance":
     case "f1-tracks":
     case "long-distance":
       return getCurrentPercentage(
         options,
-        HealthKit.getDailyDistanceWalkingRunningSamples
+        HealthKit.getDailyDistanceWalkingRunningSamples,
+        target
       );
     default:
       return Promise.reject(new Error("Invalid challenge type"));
