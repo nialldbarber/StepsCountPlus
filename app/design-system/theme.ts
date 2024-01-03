@@ -43,6 +43,7 @@ export const lightTheme = {
     chipChallengesBorder: colors.white,
     chipChallengesActiveBorder: colors.primary,
     chipChallengesColor: colors.black,
+    chipFilterBackground: colors.pureWhite,
     /**
      * @type Donut
      */
@@ -66,6 +67,7 @@ export const lightTheme = {
     infoStroke: colors.primary,
     trashIconStroke: colors.destructive,
     challengeConfigStroke: colors.greyFour,
+    filterStroke: colors.black,
     /**
      * @type Button
      */
@@ -152,6 +154,7 @@ export const darkTheme = {
     chipChallengesBorder: colors.blackTwo,
     chipChallengesActiveBorder: colors.primary,
     chipChallengesColor: colors.white,
+    chipFilterBackground: colors.blackTwo,
     /**
      * @type Donut
      */
@@ -175,6 +178,7 @@ export const darkTheme = {
     infoStroke: colors.primary,
     trashIconStroke: colors.destructive,
     challengeConfigStroke: colors.greyFour,
+    filterStroke: colors.greyFour,
     /**
      * @type Button
      */
