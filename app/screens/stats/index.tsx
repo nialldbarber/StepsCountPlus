@@ -61,14 +61,6 @@ export function StatsScreen() {
     useDistanceStore();
   const { stepsGoal, flightsGoal, distanceGoal } = useGoalsStore();
 
-  console.log(
-    "dailySteps, weeklySteps, monthlySteps, yearlySteps",
-    dailySteps,
-    weeklySteps,
-    monthlySteps,
-    yearlySteps
-  );
-
   const calculatePercentage = useMemo(() => {
     if (currentFilter === "Steps" && stepsGoal !== 0) {
       return dailySteps / stepsGoal;

@@ -4,7 +4,6 @@ import { Button } from "@/app/design-system/components/button";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { radius } from "@/app/design-system/radius";
-import { useEffectOnce } from "@/app/hooks/useEffectOnce";
 import { getPercentageFromPeriod } from "@/app/lib/activity/challenge";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
@@ -36,59 +35,52 @@ export function ChallengeCard({
   const [percentage, setPercentage] = useState(0);
   const { setCompletedChallenge } = useChallengesStore();
 
-  // useEffect(() => {
-  // 	new NativeEventEmitter(NativeModules.AppleHealthKit).addListener(
-  // 		"healthKit:Running:new",
-  // 		async () => {
-  // 			console.log("--> Running observer triggered");
-  // 		},
-  // 	);
-  // });
-
-  useEffectOnce(() => {
-    let isMounted = true;
-
+  useEffect(() => {
     async function getPercentage() {
       try {
         if (!startDate) return;
-        const finalPercentage = await getPercentageFromPeriod(
+        const { percentage: finalPercentage, completionTime } =
+          await getPercentageFromPeriod(category, startDate, target, title);
+
+        console.log({
           category,
           startDate,
-          target
-        );
+          target,
+          title,
+          finalPercentage,
+          completionTime,
+        });
 
         if (
           category === "distance" ||
           category === "f1-tracks" ||
           category === "long-distance"
         ) {
-          setPercentage(convertMetersToKm(finalPercentage as number));
+          setPercentage(convertMetersToKm(Number(finalPercentage)));
         } else {
-          setPercentage(finalPercentage as number);
+          setPercentage(Number(finalPercentage));
         }
       } catch (error) {
         console.error("shit");
       }
     }
     getPercentage();
-
-    return () => {
-      isMounted = false;
-    };
-  });
+  }, [startDate, category]);
 
   useEffect(() => {
     if (Number(percentage) >= 100) {
-      // move the challenge to completed list
+      setCompletedChallenge({
+        ...challenge,
+      });
+      // @TODO: real implementation when I can
+      // figure out tracking time taken
       // setCompletedChallenge({
       //   ...challenge,
       //   endDate: "",
       //   timeTaken: "",
       // });
-
-      console.log(title, "it hath surpassed!");
     }
-  }, [percentage, challenge]);
+  }, [percentage, challenge, setCompletedChallenge]);
 
   return (
     <Box

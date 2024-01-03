@@ -32,8 +32,9 @@ export type Challenge = {
 };
 
 export type ChallengeComplete = {
-  endDate: string;
-  timeTaken: string;
+  // @TODO: add endDate and timeTaken later
+  //endDate: string;
+  //timeTaken: string;
 } & Challenge;
 
 type ChallengesState = {

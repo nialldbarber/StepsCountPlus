@@ -22,8 +22,9 @@ export function getCurrentPercentage(
     | AppleHealthKit["getDailyStepCountSamples"]
     | AppleHealthKit["getDailyFlightsClimbedSamples"]
     | AppleHealthKit["getDailyDistanceWalkingRunningSamples"],
-  target: number
-) {
+  target: number,
+  title: string
+): Promise<{ percentage: string; completionTime: string | undefined }> {
   return new Promise((resolve, reject) => {
     fn(options, (error, results) => {
       if (error) {
@@ -34,9 +35,21 @@ export function getCurrentPercentage(
           console.error("Results are undefined or _not_ an array", results);
           return;
         }
+
+        let currentTotal = 0;
+        let completionTime;
+
+        for (const sample of results) {
+          currentTotal += sample.value;
+          if (!completionTime && currentTotal >= target) {
+            completionTime = sample.endDate;
+            break;
+          }
+        }
+
         const total = results.reduce((sum, sample) => sum + sample.value, 0);
         const percentage = determinePercentage(total, target);
-        resolve(percentage);
+        resolve({ percentage, completionTime });
       }
     });
   });
@@ -45,7 +58,8 @@ export function getCurrentPercentage(
 export function getPercentageFromPeriod(
   type: ChallengeType,
   startDate: string,
-  target: number
+  target: number,
+  title: string
 ) {
   const formattedStartDate = new Date(startDate).toISOString();
   const formattedEndDate = new Date().toISOString();
@@ -62,13 +76,15 @@ export function getPercentageFromPeriod(
       return getCurrentPercentage(
         options,
         HealthKit.getDailyStepCountSamples,
-        target
+        target,
+        title
       );
     case "flights":
       return getCurrentPercentage(
         options,
         HealthKit.getDailyFlightsClimbedSamples,
-        target
+        target,
+        title
       );
     case "distance":
     case "f1-tracks":
@@ -76,7 +92,8 @@ export function getPercentageFromPeriod(
       return getCurrentPercentage(
         options,
         HealthKit.getDailyDistanceWalkingRunningSamples,
-        target
+        target,
+        title
       );
     default:
       return Promise.reject(new Error("Invalid challenge type"));
