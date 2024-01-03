@@ -26,6 +26,14 @@ export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
   "f1-tracks": "🏎️",
 };
 
+export const CHALLENGE_INFO_TYPES: Record<string, string> = {
+  steps: "Step count, walking, running",
+  distance: "Walking, running, cycling",
+  flights: "Tall buildings, mountains",
+  "long-distance": "Marathons, train jounreys",
+  "f1-tracks": "Tracks from around the world",
+};
+
 const { width } = Dimensions.get("window");
 
 export function Card({ challengeType }: Props) {
@@ -47,29 +55,22 @@ export function Card({ challengeType }: Props) {
         style={styles.button}
         onPress={() => navigate("SingleChallenge", { challengeType })}
       >
-        <Box
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="center"
-          width="full"
-        >
-          <Box
-            backgroundColor="orange_light"
-            marginLeft="20px"
-            marginRight="24px"
-            height="80px"
-            width="80px"
-            alignItems="center"
-            justifyContent="center"
-            borderRadius="full"
-          >
-            <Text level="heading" size="44px">
-              {CHALLENGE_EMOJI_TYPES[challengeType]}
-            </Text>
-          </Box>
+        <Box marginLeft="20px" marginRight="24px" alignItems="center">
+          <Text level="heading" size="44px">
+            {CHALLENGE_EMOJI_TYPES[challengeType]}
+          </Text>
         </Box>
         <Box paddingTop="10px">
           <Text>{CHALLENGE_TYPES[challengeType]}</Text>
+        </Box>
+        <Box paddingHorizontal="20px" paddingTop="5px">
+          <Text
+            size="11px"
+            color="greyFour"
+            textStyles={{ textAlign: "center" }}
+          >
+            {CHALLENGE_INFO_TYPES[challengeType]}
+          </Text>
         </Box>
       </Pressable>
     </Box>
