@@ -18,11 +18,11 @@ export function SelectChallengeScreen() {
         <Box flexDirection="row" flexWrap="wrap" marginVertical="20px">
           <Card challengeType="custom" />
           <Card challengeType="steps" />
-          <Card challengeType="steps" />
           <Card challengeType="distance" />
           <Card challengeType="flights" />
           <Card challengeType="long-distance" />
           <Card challengeType="f1-tracks" />
+          <Card challengeType="cycling" />
         </Box>
       </Bleed>
     </Layout>

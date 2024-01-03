@@ -111,6 +111,102 @@
           "emoji": "🏃",
           "target": 9289,
           "category": "long-distance"
+        },
+        {
+          "id": "long-distance-5",
+          "title": "Land's End to John O'Groats",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 1913,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-6",
+          "title": "The Great Wall of China",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 21196,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-7",
+          "title": "The Great Barrier Reef",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 2300,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-8",
+          "title": "The Nile",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 6650,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-9",
+          "title": "The Amazon",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 6800,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-10",
+          "title": "The Mississippi",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 3766,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-11",
+          "title": "The Yangtze",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 6300,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-12",
+          "title": "The Mekong",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 4350,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-13",
+          "title": "The Danube",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 2850,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-14",
+          "title": "The Volga",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 3740,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-15",
+          "title": "Appalachian Trail",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 3500,
+          "category": "long-distance"
+        },
+        {
+          "id": "long-distance-16",
+          "title": "The Daugava",
+          "difficulty": "hard",
+          "emoji": "🏃",
+          "target": 1020,
+          "category": "long-distance"
         }
       ],
       "f1-tracks": [
@@ -137,6 +233,176 @@
           "emoji": "🇦🇺",
           "target": 306,
           "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-4",
+          "title": "Azerbaijan Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇦🇿",
+          "target": 306,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-5",
+          "title": "Miami Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇺🇸",
+          "target": 308,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-6",
+          "title": "Monaco Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇲🇨",
+          "target": 260,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-7",
+          "title": "Spanish Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇪🇸",
+          "target": 307,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-8",
+          "title": "Canadian Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇨🇦",
+          "target": 305,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-9",
+          "title": "Austrian Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇦🇹",
+          "target": 306,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-10",
+          "title": "British Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇬🇧",
+          "target": 306,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-11",
+          "title": "Hungarian Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇭🇺",
+          "target": 306,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-12",
+          "title": "Belgian Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇧🇪",
+          "target": 308,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-13",
+          "title": "Dutch Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇳🇱",
+          "target": 307,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-14",
+          "title": "Italian Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇮🇹",
+          "target": 307,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-15",
+          "title": "Singapore Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇸🇬",
+          "target": 306,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-16",
+          "title": "Japanese Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇯🇵",
+          "target": 307,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-17",
+          "title": "Qatar Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇶🇦",
+          "target": 308,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-18",
+          "title": "US Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇺🇸",
+          "target": 308,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-19",
+          "title": "Mexican Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇲🇽",
+          "target": 305,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-20",
+          "title": "Brazilian Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇲🇽",
+          "target": 306,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-21",
+          "title": "Las Vegas Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇺🇸",
+          "target": 310,
+          "category": "f1-tracks"
+        },
+        {
+          "id": "f1-tracks-22",
+          "title": "Abu Dhabi Grand Prix",
+          "difficulty": "medium",
+          "emoji": "🇦🇪",
+          "target": 306,
+          "category": "f1-tracks"
+        }
+      ],
+      "cycling": [
+        {
+          "id": "cycling-1",
+          "title": "London to Brighton",
+          "difficulty": "medium",
+          "emoji": "🚴",
+          "target": 86,
+          "category": "cycling"
+        },
+        {
+          "id": "cycling-2",
+          "title": "Paris–Roubaix",
+          "difficulty": "hard",
+          "emoji": "🚴",
+          "target": 260,
+          "category": "cycling"
         }
       ]
     }

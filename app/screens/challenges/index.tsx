@@ -148,6 +148,10 @@ export function ChallengesScreen() {
                 id: "f1-tracks",
                 title: "F1 Tracks",
               },
+              {
+                id: "cycling",
+                title: "Cycling",
+              },
             ]}
           >
             <Pressable forceHaptic>

@@ -24,6 +24,7 @@ export type ChallengeTypes =
   | "flights"
   | "long-distance"
   | "f1-tracks"
+  | "cycling"
   | "emphasise";
 
 export type RootChallengesScreen = {

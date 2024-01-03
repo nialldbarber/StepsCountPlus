@@ -41,7 +41,7 @@ export function SingleChallengeScreen({ route: { params } }: Props) {
 
   const availableChallenges = useMemo(() => {
     const challenge =
-      challengeType === "f1-tracks"
+      challengeType === "f1-tracks" || challengeType === "long-distance"
         ? shuffle(allAvailableChallenges)
         : allAvailableChallenges;
     return challenge

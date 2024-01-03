@@ -17,6 +17,7 @@ export const CHALLENGE_TYPES: Record<string, string> = {
   flights: "Flights",
   "long-distance": "Long Distances",
   "f1-tracks": "F1 Tracks",
+  cycling: "Cycling",
 };
 
 export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
@@ -26,6 +27,7 @@ export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
   flights: "🪜",
   "long-distance": "🏃",
   "f1-tracks": "🏎️",
+  cycling: "🚴",
 };
 
 export const CHALLENGE_INFO_TYPES: Record<string, string> = {
@@ -33,8 +35,9 @@ export const CHALLENGE_INFO_TYPES: Record<string, string> = {
   steps: "Step count, walking, running",
   distance: "Walking, running, cycling",
   flights: "Tall buildings, mountains",
-  "long-distance": "Marathons, train jounreys",
+  "long-distance": "Marathons, train jounreys, rivers",
   "f1-tracks": "Tracks from around the world",
+  cycling: "Famous cycling routes, stages of the grand tours",
 };
 
 const { width } = Dimensions.get("window");
