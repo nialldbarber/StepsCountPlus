@@ -2,6 +2,7 @@ import { BarChart } from "@/app/components/bar-chart";
 import { ScreenHeader } from "@/app/components/screen-header";
 import { Box } from "@/app/design-system/components/box";
 import { Layout } from "@/app/design-system/components/layout";
+import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import {
   PeriodIntervals,
@@ -101,15 +102,17 @@ export function CurrentChallengeScreen({
             },
           ]}
         >
-          <Box
-            alignSelf="flex-end"
-            backgroundColor="blackTwo"
-            paddingVertical="5px"
-            paddingHorizontal="10px"
-            borderRadius="large"
-          >
-            <Text>{PERIOD_MAP[period]}</Text>
-          </Box>
+          <Pressable forceHaptic>
+            <Box
+              alignSelf="flex-end"
+              backgroundColor="blackTwo"
+              paddingVertical="5px"
+              paddingHorizontal="10px"
+              borderRadius="large"
+            >
+              <Text>{PERIOD_MAP[period]}</Text>
+            </Box>
+          </Pressable>
         </MenuView>
       </Box>
       <Box>
