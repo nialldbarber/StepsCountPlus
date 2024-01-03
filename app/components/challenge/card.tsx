@@ -39,17 +39,11 @@ export function ChallengeCard({
     async function getPercentage() {
       try {
         if (!startDate) return;
-        const { percentage: finalPercentage, completionTime } =
-          await getPercentageFromPeriod(category, startDate, target, title);
-
-        console.log({
+        const finalPercentage = await getPercentageFromPeriod(
           category,
           startDate,
-          target,
-          title,
-          finalPercentage,
-          completionTime,
-        });
+          target
+        );
 
         if (
           category === "distance" ||
