@@ -2,6 +2,7 @@ import { ChallengeCard } from "@/app/components/challenge/card";
 import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
+import { CHALLENGE_TYPES } from "@/app/design-system/components/card";
 import { Layout } from "@/app/design-system/components/layout";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
@@ -245,7 +246,7 @@ export function ChallengesScreen() {
             <Box justifyContent="center" paddingVertical="20px">
               <Text weight="bold" textStyles={styles.textEmpty}>
                 {filterChallengesByCategory.length === 0
-                  ? `Looks like you haven't \n started a ${currentFilter} challenge!`
+                  ? `Looks like you haven't \n started a ${CHALLENGE_TYPES[currentFilter]} challenge!`
                   : `Looks like you haven't \n started a challenge!`}
               </Text>
             </Box>
