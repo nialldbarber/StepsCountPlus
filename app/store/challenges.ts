@@ -49,7 +49,7 @@ type ChallengesActions = {
 
 export const useChallengesStore = create(
   persist(
-    immer<ChallengesState & ChallengesActions>((set, get) => ({
+    immer<ChallengesState & ChallengesActions>((set) => ({
       challenges: [],
       completedChallenges: [],
       setAddChallenge: (challenge: Challenge) => {
