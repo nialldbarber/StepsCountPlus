@@ -95,19 +95,19 @@ export function StatsScreen() {
   const determineRemainingAmount = useMemo(() => {
     if (currentFilter === "Steps") {
       return dailySteps >= stepsGoal
-        ? "Woo 🎉"
+        ? "Target achieved!"
         : `${formatNumber(stepsGoal - dailySteps)} steps remaining`;
     }
     if (currentFilter === "Flights") {
       return dailyFlights >= flightsGoal
-        ? "Woo 🎉"
+        ? "Target achieved!"
         : `${formatNumber(flightsGoal - dailyFlights)} flights remaining`;
     }
     if (currentFilter === "Distance") {
       const dailyDistanceKm = convertMetersToKm(dailyDistance);
       const remainingDistanceKm = distanceGoal - dailyDistanceKm;
       return dailyDistanceKm >= distanceGoal
-        ? "Woo 🎉"
+        ? "Target achieved!"
         : `${formatNumber(remainingDistanceKm)} ${distance} remaining`;
     }
   }, [
