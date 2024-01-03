@@ -9,7 +9,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 
 if (!storage.getString("theme")) {
-  storage.set("theme", "light");
+  storage.set("theme", "dark");
 }
 
 function App() {
