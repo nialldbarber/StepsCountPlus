@@ -48,7 +48,7 @@ export function Card({ challengeType }: Props) {
       margin="10px"
       borderRadius="larger"
       minHeight="150px"
-      styles={{ width: width / 2 - 40 }}
+      styles={{ width: width / 2 - 30 }}
       shadow
     >
       <Pressable
