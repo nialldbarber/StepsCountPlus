@@ -85,13 +85,15 @@ export function ChallengeCard({
     >
       <Box backgroundColor={theme.colors.cardBackgroundColor} padding="20px">
         <Box flexDirection="row" justifyContent="space-between" flexWrap="wrap">
-          <Box flexDirection="row">
+          <Box flexDirection="row" flexWrap="wrap">
             <Box paddingRight="20px">
               <Text>{emoji}</Text>
             </Box>
-            <Text level="heading" size="18px">
-              {title} {"\n"}challenge
-            </Text>
+            <Box flexShrink={1} width="7/10">
+              <Text level="heading" size="18px">
+                {title}
+              </Text>
+            </Box>
           </Box>
           <Box>
             <Box
