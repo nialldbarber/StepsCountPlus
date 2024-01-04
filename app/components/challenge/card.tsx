@@ -48,14 +48,15 @@ export function ChallengeCard({
         if (
           category === "distance" ||
           category === "f1-tracks" ||
-          category === "long-distance"
+          category === "long-distance" ||
+          category === "cycling"
         ) {
           setPercentage(convertMetersToKm(Number(finalPercentage)));
         } else {
           setPercentage(Number(finalPercentage));
         }
       } catch (error) {
-        console.error("shit");
+        console.error("shit", error, title);
       }
     }
     getPercentage();
