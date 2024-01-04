@@ -1,14 +1,24 @@
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
+import { PrependToUnion } from "@/app/lib/misc-types";
 import type { ChallengeTypes } from "@/app/navigation/types";
 import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+import type { Union } from "ts-toolbelt";
 
-type Props = {
-  challengeType: ChallengeTypes;
-};
+type CustomChallengeTypes = PrependToUnion<
+  Union.Exclude<"steps" | "flights" | "distance", "custom">,
+  "custom"
+>;
+type Props =
+  | {
+      challengeType: ChallengeTypes;
+    }
+  | {
+      challengeType: CustomChallengeTypes;
+    };
 
 export const CHALLENGE_TYPES: Record<string, string> = {
   custom: "Custom",
@@ -45,6 +55,20 @@ const { width } = Dimensions.get("window");
 export function Card({ challengeType }: Props) {
   const { navigate } = useNavigation();
   const { styles, theme } = useStyles(stylesheet);
+  const isCustom =
+    challengeType === "custom-steps" ||
+    challengeType === "custom-flights" ||
+    challengeType === "custom-distance";
+
+  function handleNavigateToChallenge() {
+    if (isCustom) {
+      navigate("CreateYourChallenge");
+    } else if (challengeType === "custom") {
+      navigate("CreateYourChallenge");
+    } else {
+      navigate("SingleChallenge", { challengeType });
+    }
+  }
 
   return (
     <Box
@@ -57,14 +81,7 @@ export function Card({ challengeType }: Props) {
       styles={{ width: width / 2 - 30 }}
       shadow
     >
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          challengeType === "custom"
-            ? navigate("CreateYourChallenge")
-            : navigate("SingleChallenge", { challengeType });
-        }}
-      >
+      <Pressable style={styles.button} onPress={handleNavigateToChallenge}>
         <Box marginLeft="20px" marginRight="24px" alignItems="center">
           <Text level="heading" size="44px">
             {CHALLENGE_EMOJI_TYPES[challengeType]}
