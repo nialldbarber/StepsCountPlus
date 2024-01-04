@@ -35,6 +35,13 @@ export type RootChallengesScreen = {
   CreateYourChallenge: undefined;
 };
 
+export type RootCreateYourChallengeScreen = {
+  CreateYourChallengeRoot: undefined;
+  SingleCreateYourChallenge: {
+    type: "custom-steps" | "custom-distance" | "custom-flights";
+  };
+};
+
 export type RootSettingsScreen = {
   SettingsRoot: undefined;
   PrivacyPolicy: undefined;
@@ -57,6 +64,7 @@ declare global {
       extends RootStackParamsList,
         RootBottomTabsParamList,
         RootChallengesScreen,
-        RootSettingsScreen {}
+        RootSettingsScreen,
+        RootCreateYourChallengeScreen {}
   }
 }

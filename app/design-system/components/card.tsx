@@ -70,7 +70,7 @@ export function Card({ challengeType }: Props) {
 
   function handleNavigateToChallenge() {
     if (isCustom) {
-      navigate("CreateYourChallenge");
+      navigate("SingleCreateYourChallenge", { type: challengeType });
     } else if (challengeType === "custom") {
       navigate("CreateYourChallenge");
     } else {

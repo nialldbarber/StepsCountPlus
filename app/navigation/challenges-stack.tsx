@@ -1,7 +1,7 @@
+import { CreateYourChallengeStack } from "@/app/navigation/create-your-challenge-stack";
 import type { RootChallengesScreen } from "@/app/navigation/types";
 import { options } from "@/app/navigation/utils";
 import { ChallengesScreen } from "@/app/screens/challenges";
-import { CreateYourChallengeScreen } from "@/app/screens/create-your-challenge";
 import { CurrentChallengeScreen } from "@/app/screens/current-challenge";
 import { SelectChallengeScreen } from "@/app/screens/select-challenge";
 import { SingleChallengeScreen } from "@/app/screens/single-challenge";
@@ -34,7 +34,7 @@ export function ChallengeStack() {
       />
       <Stack.Screen
         name="CreateYourChallenge"
-        component={CreateYourChallengeScreen}
+        component={CreateYourChallengeStack}
         options={options}
       />
     </Stack.Navigator>
