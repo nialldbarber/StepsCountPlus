@@ -16,7 +16,7 @@ export const useGoalsStore = create(
     (set, _) => ({
       stepsGoal: 5000,
       flightsGoal: 10,
-      distanceGoal: 7000,
+      distanceGoal: 7,
       setStepsGoal: (steps) => {
         set({ stepsGoal: steps });
       },
