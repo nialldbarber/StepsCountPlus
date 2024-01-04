@@ -1,7 +1,7 @@
 import type { Colors } from "@/app/design-system/colors";
 import { colors } from "@/app/design-system/colors";
-import type { Radius } from "@/app/design-system/radius";
-import { radius } from "@/app/design-system/radius";
+import type { Radius } from "@/app/design-system/radii";
+import { radii } from "@/app/design-system/radii";
 import { shadow as dropShadow } from "@/app/design-system/shadow";
 import type { Height, Width } from "@/app/design-system/size";
 import { heights, widths } from "@/app/design-system/size";
@@ -178,25 +178,25 @@ export function Box({
       borderStyle,
       borderColor: colors[borderColor],
       borderBottomLeftRadius:
-        radius[borderBottomLeftRadius] ??
-        radius[borderBottomRadius] ??
-        radius[borderLeftRadius] ??
-        radius[borderRadius],
+        radii[borderBottomLeftRadius] ??
+        radii[borderBottomRadius] ??
+        radii[borderLeftRadius] ??
+        radii[borderRadius],
       borderBottomRightRadius:
-        radius[borderBottomRightRadius] ??
-        radius[borderBottomRadius] ??
-        radius[borderRightRadius] ??
-        radius[borderRadius],
+        radii[borderBottomRightRadius] ??
+        radii[borderBottomRadius] ??
+        radii[borderRightRadius] ??
+        radii[borderRadius],
       borderTopLeftRadius:
-        radius[borderTopLeftRadius] ??
-        radius[borderTopRadius] ??
-        radius[borderLeftRadius] ??
-        radius[borderRadius],
+        radii[borderTopLeftRadius] ??
+        radii[borderTopRadius] ??
+        radii[borderLeftRadius] ??
+        radii[borderRadius],
       borderTopRightRadius:
-        radius[borderTopRightRadius] ??
-        radius[borderTopRadius] ??
-        radius[borderRightRadius] ??
-        radius[borderRadius],
+        radii[borderTopRightRadius] ??
+        radii[borderTopRadius] ??
+        radii[borderRightRadius] ??
+        radii[borderRadius],
       flex,
       flexBasis,
       flexDirection,

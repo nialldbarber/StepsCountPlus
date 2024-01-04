@@ -1,4 +1,4 @@
-export const radius = {
+export const radii = {
   none: 0,
   small: 4,
   medium: 8,
@@ -7,4 +7,4 @@ export const radius = {
   full: 100,
 } as const;
 
-export type Radius = keyof typeof radius;
+export type Radius = keyof typeof radii;

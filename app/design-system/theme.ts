@@ -1,5 +1,5 @@
 import { colors } from "@/app/design-system/colors";
-import { radius } from "@/app/design-system/radius";
+import { radii } from "@/app/design-system/radii";
 
 export const lightTheme = {
   colors: {
@@ -108,7 +108,7 @@ export const lightTheme = {
     /**
      * @type Button
      */
-    buttonBorderRadius: radius.full,
+    buttonBorderRadius: radii.full,
   },
 } as const;
 
@@ -219,7 +219,7 @@ export const darkTheme = {
     /**
      * @type Button
      */
-    buttonBorderRadius: radius.full,
+    buttonBorderRadius: radii.full,
   },
 } as const;
 

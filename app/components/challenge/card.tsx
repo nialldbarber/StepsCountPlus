@@ -3,7 +3,7 @@ import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
-import { radius } from "@/app/design-system/radius";
+import { radii } from "@/app/design-system/radii";
 import { getPercentageFromPeriod } from "@/app/lib/activity/challenge";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
@@ -159,6 +159,6 @@ const stylesheet = createStyleSheet((theme) => ({
     width: `${Number(percent)}%`,
     height: 4,
     backgroundColor: theme.colors.cardPercentStroke,
-    borderRadius: radius.full,
+    borderRadius: radii.full,
   }),
 }));
