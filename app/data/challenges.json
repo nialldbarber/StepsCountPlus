@@ -3,6 +3,14 @@
     "types": {
       "steps": [
         {
+          "id": "steps-0",
+          "title": "200 steps",
+          "difficulty": "easy",
+          "emoji": "👟",
+          "target": 200,
+          "category": "steps"
+        },
+        {
           "id": "steps-1",
           "title": "10,000 steps",
           "difficulty": "easy",
