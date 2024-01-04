@@ -36,11 +36,12 @@ export type ChallengeComplete = {
   // @TODO: add endDate and timeTaken later
   //endDate: string;
   //timeTaken: string;
+  count?: number;
 } & Challenge;
 
 type ChallengesState = {
   challenges: Array<Challenge>;
-  completedChallenges: Array<Challenge>;
+  completedChallenges: Array<ChallengeComplete>;
 };
 
 type ChallengesActions = {
@@ -68,8 +69,21 @@ export const useChallengesStore = create(
       },
       setCompletedChallenge: (completedChallenge: ChallengeComplete) => {
         set((state) => {
-          // move challenge to completed challenges
-          state.completedChallenges.push(completedChallenge);
+          const existingChallenge = state.completedChallenges.find(
+            (challenge) => challenge.id === completedChallenge.id
+          );
+
+          if (existingChallenge) {
+            // @ts-expect-error - count is not defined on Challenge
+            existingChallenge.count += 1;
+            return;
+          }
+
+          const newCompletedChallenge = {
+            ...completedChallenge,
+            count: 1,
+          };
+          state.completedChallenges.push(newCompletedChallenge);
           // remove challenge from challenges
           state.challenges = state.challenges.filter(
             (challenge) => challenge.id !== completedChallenge.id

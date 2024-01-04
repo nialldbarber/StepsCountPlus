@@ -14,14 +14,13 @@ import { useEffect, useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface Props extends Challenge {
-  challenge: Challenge;
   isSet?: boolean;
   fn: () => void;
   category: ChallengeType;
 }
 
 export function ChallengeCard({
-  challenge,
+  id,
   title,
   difficulty,
   emoji,
@@ -63,19 +62,19 @@ export function ChallengeCard({
   }, [startDate, category]);
 
   useEffect(() => {
+    console.log({ percentage });
     if (Number(percentage) >= 100) {
       setCompletedChallenge({
-        ...challenge,
+        id,
+        title,
+        difficulty,
+        emoji,
+        startDate,
+        target,
+        category,
       });
-      // @TODO: real implementation when I can
-      // figure out tracking time taken
-      // setCompletedChallenge({
-      //   ...challenge,
-      //   endDate: "",
-      //   timeTaken: "",
-      // });
     }
-  }, [percentage, challenge, setCompletedChallenge]);
+  }, [percentage]);
 
   return (
     <Box

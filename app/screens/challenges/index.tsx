@@ -9,6 +9,7 @@ import { Row } from "@/app/design-system/components/row";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
+import { actions } from "@/app/screens/challenges/constants";
 import { ChallengeType, useChallengesStore } from "@/app/store/challenges";
 import { MenuView } from "@react-native-menu/menu";
 import { useNavigation } from "@react-navigation/native";
@@ -50,8 +51,6 @@ export function ChallengesScreen() {
     });
     return filteredResults;
   }, [challenges, currentFilter]);
-
-  console.log("completedChallenges:", completedChallenges);
 
   return (
     <Layout>
@@ -123,36 +122,7 @@ export function ChallengesScreen() {
             onPressAction={({ nativeEvent }) => {
               setCurrentFilter(nativeEvent.event as ChallengeType);
             }}
-            actions={[
-              {
-                id: "all",
-                title: "All",
-              },
-              {
-                id: "steps",
-                title: "Steps",
-              },
-              {
-                id: "distance",
-                title: "Distance",
-              },
-              {
-                id: "flights",
-                title: "Flights",
-              },
-              {
-                id: "long-distance",
-                title: "Long Distance",
-              },
-              {
-                id: "f1-tracks",
-                title: "F1 Tracks",
-              },
-              {
-                id: "cycling",
-                title: "Cycling",
-              },
-            ]}
+            actions={actions}
           >
             <Pressable forceHaptic>
               <Box
@@ -172,15 +142,9 @@ export function ChallengesScreen() {
         {currentFilterScreen === "completed" ? (
           <Box flex={1} flexGrow={1} minHeight="2px">
             {completedChallenges.length > 0 ? (
-              <FlashList
-                data={completedChallenges}
-                estimatedItemSize={200}
-                renderItem={({ item }) => (
-                  <Box>
-                    <Text>{item.title}</Text>
-                  </Box>
-                )}
-              />
+              <Box>
+                <Text>{JSON.stringify(completedChallenges, null, 2)}</Text>
+              </Box>
             ) : (
               <Box
                 flex={1}
@@ -218,13 +182,7 @@ export function ChallengesScreen() {
               data={filterChallengesByCategory}
               estimatedItemSize={200}
               renderItem={({ item }) => (
-                // <Pressable
-                //   onPress={() =>
-                //     navigate("CurrentChallenge", { challenge: item })
-                //   }
-                // >
                 <ChallengeCard
-                  challenge={filterChallengesByCategory}
                   id={item.id}
                   key={item.id}
                   title={item.title}
@@ -236,7 +194,6 @@ export function ChallengesScreen() {
                   target={item.target}
                   category={item.category}
                 />
-                // </Pressable>
               )}
             />
           </Box>

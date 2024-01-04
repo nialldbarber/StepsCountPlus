@@ -14,11 +14,19 @@ type Props = NativeStackScreenProps<
 export function SingleCreateYourChallengeScreen({ route: { params } }: Props) {
   console.log(params);
 
+  const challenge = formatHyphen(params.type, "before");
+
   return (
     <Layout>
-      <ScreenHeader title={`Custom ${formatHyphen(params.type, "before")}`} />
+      <ScreenHeader title={`Custom ${challenge}`} />
       <Box flexDirection="row" flexWrap="wrap" marginVertical="20px">
-        <Text>hello</Text>
+        <Text>
+          {challenge === "steps"
+            ? "needs to be an input?"
+            : challenge === "flights"
+            ? "needs to be an input?"
+            : "needs to be a MAP!"}
+        </Text>
       </Box>
     </Layout>
   );
