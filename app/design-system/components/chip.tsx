@@ -10,8 +10,7 @@ import { heights, widths } from "@/app/design-system/size";
 import type { Space } from "@/app/design-system/space";
 import { space } from "@/app/design-system/space";
 import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
-import { StyleSheet, ViewStyle } from "react-native";
-import { useStyles } from "react-native-unistyles";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type ChipMode = "light" | "dark";
 interface ChipProps extends PressableProps {
@@ -39,8 +38,8 @@ export function Chip({
   onPress,
   ...rest
 }: ChipProps) {
-  const { theme } = useStyles();
-  const { onPress: onPressHook, animatedStyle } = useButtonAnimation();
+  const { styles } = useStyles(stylesheet);
+  const { onPress: onPressHook } = useButtonAnimation();
 
   function handleOnPress() {
     if (onPress) {
@@ -49,45 +48,45 @@ export function Chip({
     }
   }
 
-  const backgroundStyles: Record<ChipMode, ViewStyle> = {
-    light: {
-      backgroundColor: isSelected
-        ? theme.colors.chipActiveBackgroundColor
-        : theme.colors.chipInactiveBackgroundColor,
-    },
-    dark: {
-      backgroundColor: isSelected
-        ? theme.colors.chipDarkActiveBackgroundColor
-        : theme.colors.chipDarkInactiveBackgroundColor,
-    },
-  };
-
-  const styles = StyleSheet.create({
-    container: {
-      flexDirection: "row",
-      height: typeof height === "number" ? heights[height] : space["38px"],
-      paddingHorizontal: space["15px"],
-      borderRadius: radii.full,
-      alignItems: "center",
-      justifyContent: "center",
-      ...backgroundStyles[mode],
-      ...shadow(),
-      width: typeof width === "number" ? widths[width] : space["0px"],
-    },
-    text: {
-      color: isSelected
-        ? theme.colors.chipActiveColor
-        : theme.colors.chipInactiveColor,
-    },
-  });
-
   return (
-    <Pressable style={styles.container} onPress={handleOnPress} {...rest}>
+    <Pressable
+      style={styles.container(height, width)}
+      onPress={handleOnPress}
+      {...rest}
+    >
       {icon && isSelected && <Box paddingRight="5px">{selectedIcon}</Box>}
       {icon && !isSelected && <Box paddingRight="5px">{icon}</Box>}
-      <Text textStyles={styles.text} weight="bold" size={size}>
+      <Text textStyles={styles.text(isSelected)} weight="bold" size={size}>
         {label}
       </Text>
     </Pressable>
   );
 }
+
+const stylesheet = createStyleSheet((theme) => ({
+  container: (height?: Height | Space, width?: Width) => ({
+    flexDirection: "row",
+    height: typeof height === "number" ? heights[height] : space["38px"],
+    width: typeof width === "number" ? widths[width] : space["0px"],
+    paddingHorizontal: space["15px"],
+    borderRadius: radii.full,
+    alignItems: "center",
+    justifyContent: "center",
+    variants: {
+      mode: {
+        light: {
+          backgroundColor: theme.colors.chipActiveBackgroundColor,
+        },
+        dark: {
+          backgroundColor: theme.colors.chipDarkActiveBackgroundColor,
+        },
+      },
+    },
+    ...shadow(),
+  }),
+  text: (isSelected) => ({
+    color: isSelected
+      ? theme.colors.chipActiveColor
+      : theme.colors.chipInactiveColor,
+  }),
+}));
