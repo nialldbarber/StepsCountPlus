@@ -59,7 +59,11 @@ export function Card({ challengeType }: Props) {
     >
       <Pressable
         style={styles.button}
-        onPress={() => navigate("SingleChallenge", { challengeType })}
+        onPress={() => {
+          challengeType === "custom"
+            ? navigate("CreateYourChallenge")
+            : navigate("SingleChallenge", { challengeType });
+        }}
       >
         <Box marginLeft="20px" marginRight="24px" alignItems="center">
           <Text level="heading" size="44px">

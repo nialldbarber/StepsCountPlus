@@ -32,6 +32,7 @@ export type RootChallengesScreen = {
   SelectChallenge: undefined;
   SingleChallenge: { challengeType: ChallengeTypes };
   CurrentChallenge: { challenge: Challenge };
+  CreateYourChallenge: undefined;
 };
 
 export type RootSettingsScreen = {
