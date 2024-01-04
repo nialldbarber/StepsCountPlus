@@ -1,6 +1,7 @@
 import { Box } from "@/app/design-system/components/box";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
+import { space } from "@/app/design-system/space";
 import { PrependToUnion } from "@/app/lib/misc-types";
 import type { ChallengeTypes } from "@/app/navigation/types";
 import { useNavigation } from "@react-navigation/native";
@@ -23,8 +24,11 @@ type Props =
 export const CHALLENGE_TYPES: Record<string, string> = {
   custom: "Custom",
   steps: "Steps",
+  "custom-steps": "Steps",
   distance: "Distance",
+  "custom-distance": "Distance",
   flights: "Flights",
+  "custom-flights": "Flights",
   "long-distance": "Long Distances",
   "f1-tracks": "F1 Tracks",
   cycling: "Cycling",
@@ -33,8 +37,11 @@ export const CHALLENGE_TYPES: Record<string, string> = {
 export const CHALLENGE_EMOJI_TYPES: Record<string, string> = {
   custom: "🛠️",
   steps: "👟",
+  "custom-steps": "👟",
   distance: "📍",
+  "custom-distance": "📍",
   flights: "🪜",
+  "custom-flights": "🪜",
   "long-distance": "🏃",
   "f1-tracks": "🏎️",
   cycling: "🚴",
@@ -51,6 +58,7 @@ export const CHALLENGE_INFO_TYPES: Record<string, string> = {
 };
 
 const { width } = Dimensions.get("window");
+const CARD_BLEED = 30;
 
 export function Card({ challengeType }: Props) {
   const { navigate } = useNavigation();
@@ -78,7 +86,7 @@ export function Card({ challengeType }: Props) {
       margin="10px"
       borderRadius="larger"
       minHeight="150px"
-      styles={{ width: width / 2 - 30 }}
+      styles={styles.container(isCustom)}
       shadow
     >
       <Pressable style={styles.button} onPress={handleNavigateToChallenge}>
@@ -91,11 +99,7 @@ export function Card({ challengeType }: Props) {
           <Text>{CHALLENGE_TYPES[challengeType]}</Text>
         </Box>
         <Box paddingHorizontal="20px" paddingTop="5px">
-          <Text
-            size="11px"
-            color="greyFour"
-            textStyles={{ textAlign: "center" }}
-          >
+          <Text size="11px" color="greyFour" textStyles={styles.text}>
             {CHALLENGE_INFO_TYPES[challengeType]}
           </Text>
         </Box>
@@ -105,6 +109,11 @@ export function Card({ challengeType }: Props) {
 }
 
 const stylesheet = createStyleSheet(() => ({
+  container: (isCustom: boolean) => ({
+    width: isCustom ? "100%" : width / 2 - CARD_BLEED,
+    margin: isCustom ? 0 : space["10px"],
+    marginBottom: isCustom ? space["20px"] : space["10px"],
+  }),
   button: {
     position: "absolute",
     top: 0,
@@ -115,6 +124,6 @@ const stylesheet = createStyleSheet(() => ({
     justifyContent: "center",
   },
   text: {
-    lineHeight: 14,
+    textAlign: "center",
   },
 }));
