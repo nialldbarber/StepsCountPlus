@@ -8,35 +8,39 @@ import { ArrowLeft } from "iconsax-react-native";
 import { useStyles } from "react-native-unistyles";
 
 interface Props extends A11y {
-	title: string;
+  back?: boolean;
+  title: string;
 }
 
 export function ScreenHeader({
-	title,
-	a11yHint,
-	a11yRole,
-	a11yLabel,
-	a11yState,
+  back = true,
+  title,
+  a11yHint,
+  a11yRole,
+  a11yLabel,
+  a11yState,
 }: Props) {
-	const { theme } = useStyles();
-	const { goBack } = useNavigation();
+  const { theme } = useStyles();
+  const { goBack } = useNavigation();
 
-	return (
-		<>
-			<Box>
-				<Pressable
-					onPress={goBack}
-					accessible
-					accessibilityLabel="Press to go back to home screen"
-				>
-					<ArrowLeft size={28} color={theme.colors.goBackStroke} />
-				</Pressable>
-			</Box>
-			<Box paddingLeft="10px" alignSelf="center">
-				<Text level="heading" size="23px" weight="bold">
-					{removeDashes(capitaliseFirstLetter(title))}
-				</Text>
-			</Box>
-		</>
-	);
+  return (
+    <>
+      {back && (
+        <Box>
+          <Pressable
+            onPress={goBack}
+            accessible
+            accessibilityLabel="Press to go back to home screen"
+          >
+            <ArrowLeft size={28} color={theme.colors.goBackStroke} />
+          </Pressable>
+        </Box>
+      )}
+      <Box paddingLeft="10px" alignSelf="center">
+        <Text level="heading" size="23px" weight="bold">
+          {removeDashes(capitaliseFirstLetter(title))}
+        </Text>
+      </Box>
+    </>
+  );
 }

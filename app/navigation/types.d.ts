@@ -49,6 +49,11 @@ export type RootSettingsScreen = {
   RateApp: undefined;
 };
 
+export type RootProfileScreen = {
+  ProfileRoot: undefined;
+  Premium: undefined;
+};
+
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
   StackScreenProps<RootStackParamsList, T>;
 
@@ -65,6 +70,7 @@ declare global {
         RootBottomTabsParamList,
         RootChallengesScreen,
         RootSettingsScreen,
-        RootCreateYourChallengeScreen {}
+        RootCreateYourChallengeScreen,
+        RootProfileScreen {}
   }
 }
