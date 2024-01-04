@@ -1,8 +1,8 @@
 import { ChallengeCard } from "@/app/components/challenge/card";
+import { CompletedChallengeCard } from "@/app/components/challenge/completed";
 import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
-import { CHALLENGE_TYPES } from "@/app/design-system/components/card";
 import { Layout } from "@/app/design-system/components/layout";
 import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
@@ -142,9 +142,18 @@ export function ChallengesScreen() {
         {currentFilterScreen === "completed" ? (
           <Box flex={1} flexGrow={1} minHeight="2px">
             {completedChallenges.length > 0 ? (
-              <Box>
-                <Text>{JSON.stringify(completedChallenges, null, 2)}</Text>
-              </Box>
+              <FlashList
+                data={completedChallenges}
+                estimatedItemSize={200}
+                renderItem={({ item }) => (
+                  <CompletedChallengeCard
+                    key={item.id}
+                    title={item.title}
+                    difficulty={item.difficulty}
+                    emoji={item.emoji}
+                  />
+                )}
+              />
             ) : (
               <Box
                 flex={1}
@@ -207,7 +216,7 @@ export function ChallengesScreen() {
             <Box justifyContent="center" paddingVertical="20px">
               <Text weight="bold" textStyles={styles.textEmpty}>
                 {filterChallengesByCategory.length === 0
-                  ? `Looks like you haven't \n started a ${CHALLENGE_TYPES[currentFilter]} challenge!`
+                  ? `Looks like you haven't started \n one of these challenges yet!`
                   : `Looks like you haven't \n started a challenge!`}
               </Text>
             </Box>

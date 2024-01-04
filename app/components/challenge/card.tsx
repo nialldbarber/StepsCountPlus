@@ -62,7 +62,6 @@ export function ChallengeCard({
   }, [startDate, category]);
 
   useEffect(() => {
-    console.log({ percentage });
     if (Number(percentage) >= 100) {
       setCompletedChallenge({
         id,
