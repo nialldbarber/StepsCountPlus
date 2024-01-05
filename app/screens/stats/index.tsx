@@ -89,7 +89,7 @@ export function StatsScreen() {
     if (currentFilter === "Flights") {
       return dailyFlights;
     }
-    return formatNumber(convertMetersToKm(dailyDistance));
+    return formatNumber(convertMetersToKm(dailyDistance), true);
   }, [currentFilter, dailySteps, dailyFlights, dailyDistance]);
 
   const determineRemainingAmount = useMemo(() => {
@@ -108,7 +108,7 @@ export function StatsScreen() {
       const remainingDistanceKm = distanceGoal - dailyDistanceKm;
       return dailyDistanceKm >= distanceGoal
         ? "Target achieved!"
-        : `${formatNumber(remainingDistanceKm)} ${distance} remaining`;
+        : `${formatNumber(remainingDistanceKm, true)} ${distance} remaining`;
     }
   }, [
     currentFilter,
@@ -129,7 +129,7 @@ export function StatsScreen() {
       return `Goal: ${formatNumber(flightsGoal)} flights`;
     }
     if (currentFilter === "Distance") {
-      return `Goal: ${formatNumber(distanceGoal)} ${distance}`;
+      return `Goal: ${formatNumber(distanceGoal, true)} ${distance}`;
     }
 
     return "";
@@ -247,10 +247,10 @@ export function StatsScreen() {
           {currentFilter === "Distance" && (
             <StatsTable
               filter="Distance"
-              daily={formatNumber(convertMetersToKm(dailyDistance))}
-              weekly={formatNumber(convertMetersToKm(weeklyDistance))}
-              monthly={formatNumber(convertMetersToKm(monthlyDistance))}
-              yearly={formatNumber(convertMetersToKm(yearlyDistance))}
+              daily={formatNumber(convertMetersToKm(dailyDistance), true)}
+              weekly={formatNumber(convertMetersToKm(weeklyDistance), true)}
+              monthly={formatNumber(convertMetersToKm(monthlyDistance), true)}
+              yearly={formatNumber(convertMetersToKm(yearlyDistance), true)}
             />
           )}
         </Box>
@@ -318,7 +318,7 @@ export function StatsScreen() {
   );
 }
 
-const stylesheet = createStyleSheet((theme) => ({
+const stylesheet = createStyleSheet(() => ({
   container: {
     flex: 1,
   },
