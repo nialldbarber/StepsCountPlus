@@ -12,12 +12,42 @@ import { Text as NativeText } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export type BaseTextProps = {
+  /**
+   * The explicit font size of
+   * the text
+   */
   size?: FontSizes;
+  /**
+   * The explicit font weight of
+   * the text
+   */
   weight?: FontWeight;
+  /**
+   * Whether this is a heading or
+   * base text
+   */
   level?: TextTypes;
+  /**
+   * The explicit color of
+   * the text
+   */
   color?: Colors;
+  /**
+   * Any additional styles overrides
+   * to be applied to the text
+   */
   textStyles?: TextStyle;
+  /**
+   * Use if a string contains an
+   * emoji - this fixes the line
+   * height issue prevelant on
+   * mobile devices
+   */
   withEmoji?: boolean;
+  /**
+   * The accessibility hint for
+   * the text
+   */
   a11yHint?: string;
 };
 
@@ -42,6 +72,7 @@ export function Text({
       }
       if (React.isValidElement(child)) {
         return React.cloneElement(child, {
+          // @ts-expect-error
           style: {
             ...child.props.style,
             alignSelf: "baseline",
