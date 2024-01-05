@@ -142,18 +142,24 @@ export function ChallengesScreen() {
         {currentFilterScreen === "completed" ? (
           <Box flex={1} flexGrow={1} minHeight="2px">
             {completedChallenges.length > 0 ? (
-              <FlashList
-                data={completedChallenges}
-                estimatedItemSize={200}
-                renderItem={({ item }) => (
-                  <CompletedChallengeCard
-                    key={item.id}
-                    title={item.title}
-                    difficulty={item.difficulty}
-                    emoji={item.emoji}
+              <>
+                <Text>{JSON.stringify(completedChallenges, null, 2)}</Text>
+                <Box flex={1} flexGrow={1} minHeight="2px">
+                  <FlashList
+                    data={completedChallenges}
+                    estimatedItemSize={200}
+                    renderItem={({ item }) => (
+                      <CompletedChallengeCard
+                        key={item.id}
+                        title={item.title}
+                        difficulty={item.difficulty}
+                        emoji={item.emoji}
+                        count={item.count || 0}
+                      />
+                    )}
                   />
-                )}
-              />
+                </Box>
+              </>
             ) : (
               <Box
                 flex={1}

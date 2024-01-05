@@ -74,11 +74,21 @@ export const useChallengesStore = create(
           );
 
           if (existingChallenge) {
+            console.log(
+              `Incrementing count for challenge ${completedChallenge.id}`
+            );
             // @ts-expect-error - count is not defined on Challenge
             existingChallenge.count += 1;
+
+            state.challenges = state.challenges.filter(
+              (challenge) => challenge.id !== completedChallenge.id
+            );
             return;
           }
 
+          console.log(
+            `Adding new completed challenge ${completedChallenge.id}`
+          );
           const newCompletedChallenge = {
             ...completedChallenge,
             count: 1,
