@@ -4,9 +4,17 @@ import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { Challenge } from "@/app/store/challenges";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-type Props = Pick<Challenge, "title" | "difficulty" | "emoji">;
+type Completed = Pick<Challenge, "title" | "difficulty" | "emoji">;
+interface Props extends Completed {
+  count: number;
+}
 
-export function CompletedChallengeCard({ title, difficulty, emoji }: Props) {
+export function CompletedChallengeCard({
+  title,
+  difficulty,
+  emoji,
+  count,
+}: Props) {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
@@ -49,6 +57,7 @@ export function CompletedChallengeCard({ title, difficulty, emoji }: Props) {
             </Box>
           </Box>
         </Box>
+        <Text>Count: {count}</Text>
       </Box>
     </Box>
   );
