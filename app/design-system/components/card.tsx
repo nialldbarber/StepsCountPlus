@@ -110,8 +110,8 @@ export function Card({ challengeType }: Props) {
 
 const stylesheet = createStyleSheet(() => ({
   container: (isCustom: boolean) => ({
-    width: isCustom ? "100%" : width / 2 - CARD_BLEED,
-    margin: isCustom ? 0 : space["10px"],
+    width: isCustom ? "30%" : width / 2 - CARD_BLEED,
+    margin: isCustom ? space["6px"] : space["10px"],
     marginBottom: isCustom ? space["20px"] : space["10px"],
   }),
   button: {

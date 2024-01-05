@@ -143,7 +143,6 @@ export function ChallengesScreen() {
           <Box flex={1} flexGrow={1} minHeight="2px">
             {completedChallenges.length > 0 ? (
               <>
-                <Text>{JSON.stringify(completedChallenges, null, 2)}</Text>
                 <Box flex={1} flexGrow={1} minHeight="2px">
                   <FlashList
                     data={completedChallenges}
