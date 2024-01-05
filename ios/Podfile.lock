@@ -1011,7 +1011,7 @@ PODS:
     - React
     - React-callinvoker
     - React-Core
-  - react-native-unistyles (2.0.0-rc.1):
+  - react-native-unistyles (2.0.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1520,7 +1520,7 @@ SPEC CHECKSUMS:
   react-native-onesignal: 0d90da0cdf5703356d7624ca9e705b0ea2c8ca56
   react-native-safe-area-context: cd1169d797a2ef722a00bfc5af10748d5b6c94f9
   react-native-skia: 17ee79b4c29eb3df54691ceed3c30c103f5ab0d0
-  react-native-unistyles: 9081942e12c66831a3c58a7bb1842cff6432a91d
+  react-native-unistyles: ef2a4b7338412f23a8cbdac08d2c2f4c1a838aa5
   React-nativeconfig: a063483672b8add47a4875b0281e202908ff6747
   React-NativeModulesApple: 169506a5fd708ab22811f76ee06a976595c367a1
   React-perflogger: b61e5db8e5167f5e70366e820766c492847c082e
