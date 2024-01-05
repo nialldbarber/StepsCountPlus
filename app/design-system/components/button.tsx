@@ -33,17 +33,14 @@ interface ButtonProps extends PressableProps, BaseTextProps {
    */
   shape?: Shape;
   /**
-   * Whether the button is loading
-   */
-  isLoading?: boolean;
-  /**
    * Whether the button is disabled
    */
   isDisabled?: boolean;
   /**
-   * Whether the button is active
+   * Whether the button is pending/in
+   * a loading state
    */
-  isActive?: boolean;
+  isPending?: boolean;
   /**
    * Should ideally use text, but you get
    * nesting with `children` over a `text` prop
@@ -51,37 +48,47 @@ interface ButtonProps extends PressableProps, BaseTextProps {
   children: string;
 }
 
-export function Button({
-  variant = "primary",
-  shape = "medium",
-  isLoading = false,
-  isDisabled = false,
-  isActive = false,
-  children,
-  weight,
-  size,
-  color,
-  ...rest
-}: ButtonProps) {
+function disableOnPending(props: ButtonProps) {
+  if (props.isPending) {
+    props.onPress = undefined;
+    props.onLongPress = undefined;
+    props.onPressIn = undefined;
+    props.onPressOut = undefined;
+  }
+  return props;
+}
+
+export function Button(props: ButtonProps) {
+  const updatedProps = disableOnPending(props);
+  const {
+    variant = "primary",
+    shape = "medium",
+    isDisabled = false,
+    isPending = false,
+    children,
+    weight,
+    size,
+    color,
+    ...rest
+  } = updatedProps;
+
   const { styles } = useStyles(stylesheet, { variant, shape });
   const { onPress, animatedStyle } = useButtonAnimation();
   const accessibilityLabel = `${children} button`;
 
-  /**
-   * Animations
-   */
+  // Animations
   const loader = useSharedValue(0);
   const loaderStyle = useAnimatedStyle(() => ({
     opacity: loader.value,
   }));
 
   useEffect(() => {
-    if (isLoading) {
+    if (isPending) {
       loader.value = withTiming(1, { duration: 500 });
     } else {
       loader.value = withTiming(0, { duration: 100 });
     }
-  }, [isLoading, loader]);
+  }, [isPending, loader]);
 
   return (
     <Animated.View style={animatedStyle}>
@@ -92,7 +99,7 @@ export function Button({
         onPressOut={() => onPress("out")}
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel}
-        accessibilityState={{ disabled: isDisabled, busy: isLoading }}
+        accessibilityState={{ disabled: isDisabled, busy: isPending }}
       >
         <Box flexDirection="row">
           <Text size={size} weight={weight} color={color} style={styles.text}>
@@ -126,6 +133,7 @@ const stylesheet = createStyleSheet((theme) => ({
           borderColor: theme.colors.buttonSecondaryBackgroundColor,
           borderWidth: 2,
         },
+        // @TODO - add tertiary, link, destructive
         tertiary: {},
         link: {},
         destructive: {},
