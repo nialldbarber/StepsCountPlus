@@ -13,9 +13,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
-// import { appTheme } from "@/design-system/theme/design-tokens";
-// import { useButtonAnimation } from "@/hooks/useButtonAnimation";
-// import { useThemeStore } from "@/stores/theme";
 
 export type Variant =
   | "primary"
@@ -27,10 +24,30 @@ export type Variant =
 export type Shape = "small" | "medium" | "large";
 
 interface ButtonProps extends PressableProps, BaseTextProps {
+  /**
+   * The variant/state of the button
+   */
   variant?: Variant;
+  /**
+   * The shape of the button
+   */
   shape?: Shape;
+  /**
+   * Whether the button is loading
+   */
   isLoading?: boolean;
+  /**
+   * Whether the button is disabled
+   */
   isDisabled?: boolean;
+  /**
+   * Whether the button is active
+   */
+  isActive?: boolean;
+  /**
+   * Should ideally use text, but you get
+   * nesting with `children` over a `text` prop
+   */
   children: string;
 }
 
@@ -39,7 +56,7 @@ export function Button({
   shape = "medium",
   isLoading = false,
   isDisabled = false,
-  // isActive = false,
+  isActive = false,
   children,
   weight,
   size,
@@ -50,6 +67,9 @@ export function Button({
   const { onPress, animatedStyle } = useButtonAnimation();
   const accessibilityLabel = `${children} button`;
 
+  /**
+   * Animations
+   */
   const loader = useSharedValue(0);
   const loaderStyle = useAnimatedStyle(() => ({
     opacity: loader.value,
@@ -135,6 +155,7 @@ const stylesheet = createStyleSheet((theme) => ({
         secondary: {
           color: theme.colors.buttonSecondaryTextColor,
         },
+        // @TODO - add tertiary, link, destructive
         tertiary: {},
         link: {},
         destructive: {},
