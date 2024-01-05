@@ -12,6 +12,9 @@ import Animated, {
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type LoaderProps = {
+  /**
+   * The variant/state of the loader
+   */
   variant?: Variant;
 };
 
@@ -37,7 +40,13 @@ export function Loader({ variant = "primary" }: LoaderProps) {
   });
 
   return (
-    <Box flex={1} justifyContent="center" alignItems="center">
+    <Box
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
+      a11yRole="image"
+      a11yLabel="Loading content"
+    >
       <Animated.View style={[styles.spinner, rotationStyles]} />
     </Box>
   );
@@ -52,6 +61,7 @@ const stylesheet = createStyleSheet((theme) => ({
     variants: {
       variant: {
         primary: {
+          // @TODO: Add these colors to the theme
           borderTopColor: "#f5f5f5",
           borderRightColor: "#f5f5f5",
           borderBottomColor: "#f5f5f5",
