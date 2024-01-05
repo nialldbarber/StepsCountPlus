@@ -164,7 +164,7 @@ export const darkTheme = {
      */
     inputBackgroundColor: colors.blackTwo,
     inputIconColor: colors.pureWhite,
-    inputPlaceholderColor: colors.pureWhite,
+    inputPlaceholderColor: colors.greyFour,
     /**
      * @type Icons
      */

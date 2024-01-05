@@ -5,40 +5,71 @@ import type { ViewStyle } from "react-native";
 import { View } from "react-native";
 
 type Props = {
-	top?: NegativeSpace;
-	bottom?: NegativeSpace;
-	left?: NegativeSpace;
-	right?: NegativeSpace;
-	horizontal?: NegativeSpace;
-	vertical?: NegativeSpace;
-	style?: ViewStyle;
+  /**
+   * The amount of negative space applied to the top
+   */
+  top?: NegativeSpace;
+  /**
+   * The amount of negative space applied to the bottom
+   */
+  bottom?: NegativeSpace;
+  /**
+   * The amount of negative space applied to the left
+   */
+  left?: NegativeSpace;
+  /**
+   * The amount of negative space applied to the right
+   */
+  right?: NegativeSpace;
+  /**
+   * The amount of negative space applied to the horizontal axis
+   */
+  horizontal?: NegativeSpace;
+  /**
+   * The amount of negative space applied to the vertical axis
+   */
+  vertical?: NegativeSpace;
+  /**
+   * Align items along the cross axis
+   * This will override the `align-items` value
+   */
+  alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
+  /**
+   * Align items along the cross axis
+   */
+  alignItems?: "flex-start" | "flex-end" | "center" | "stretch";
+  /**
+   * Style overrides
+   */
+  style?: ViewStyle;
 };
 
 export function Bleed({
-	top,
-	bottom,
-	left,
-	right,
-	horizontal,
-	vertical,
-	children,
-	style,
-	...rest
+  top = "0px",
+  bottom = "0px",
+  left = "0px",
+  right = "0px",
+  horizontal = "0px",
+  vertical = "0px",
+  children,
+  style,
+  ...rest
 }: PropsWithChildren<Props>) {
-	return (
-		<View
-			style={{
-				marginTop: negativeSpace[top],
-				marginLeft: negativeSpace[left],
-				marginBottom: negativeSpace[bottom],
-				marginRight: negativeSpace[right],
-				marginHorizontal: negativeSpace[horizontal],
-				marginVertical: negativeSpace[vertical],
-				...style,
-			}}
-			{...rest}
-		>
-			{children}
-		</View>
-	);
+  return (
+    <View
+      style={{
+        marginTop: negativeSpace[top],
+        marginLeft: negativeSpace[left],
+        marginBottom: negativeSpace[bottom],
+        marginRight: negativeSpace[right],
+        marginHorizontal: negativeSpace[horizontal],
+        marginVertical: negativeSpace[vertical],
+        ...style,
+        ...rest,
+      }}
+      {...rest}
+    >
+      {children}
+    </View>
+  );
 }

@@ -1,3 +1,4 @@
+import { DonutChart } from "@/app/components/donut-chart";
 import { InfoModal } from "@/app/components/info-modal";
 import { StatsTable } from "@/app/components/stats/stats-table";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
@@ -9,11 +10,15 @@ import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
+import { shadow } from "@/app/design-system/shadow";
+import { space } from "@/app/design-system/space";
 import { useActiveValue } from "@/app/hooks/useActiveValue";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
+import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
 import { formatNumber } from "@/app/lib/format/numbers";
 import { timeBasedGreeting } from "@/app/lib/times/greeting";
+import { Fallback } from "@/app/screens/stats/fallback";
 import { useDistanceStore } from "@/app/store/distance";
 import { useFlightsStore } from "@/app/store/flights";
 import type { Goals } from "@/app/store/goal-types";
@@ -25,13 +30,9 @@ import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
 import { useFont } from "@shopify/react-native-skia";
 import { useMemo, useRef, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { PixelRatio, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
-
-import { DonutChart } from "@/app/components/donut-chart";
-import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
-import { Fallback } from "@/app/screens/stats/fallback";
-import { ErrorBoundary } from "react-error-boundary";
 
 const RADIUS = PixelRatio.roundToNearestPixel(160);
 const STROKE_WIDTH = 12;
@@ -170,15 +171,7 @@ export function StatsScreen() {
           </Box>
         </Box>
 
-        {/* TODO: come back and fix this */}
-        <Bleed
-          alignItems="center"
-          left="-42px"
-          right="-42px"
-          backgroundColor={theme.colors.statsScreenChipBackgroundColor}
-          paddingVertical={10}
-          shadow
-        >
+        <Bleed alignItems="center" left="-42px" right="-42px">
           <Row
             marginHorizontal="15px"
             marginTop="12px"
@@ -318,8 +311,13 @@ export function StatsScreen() {
   );
 }
 
-const stylesheet = createStyleSheet(() => ({
+const stylesheet = createStyleSheet((theme) => ({
   container: {
     flex: 1,
+  },
+  bleed: {
+    backgroundColor: theme.colors.statsScreenChipBackgroundColor,
+    paddingVertical: space["10px"],
+    ...shadow(),
   },
 }));
