@@ -2,6 +2,7 @@ const fraction = (numerator: number, denominator: number) =>
   `${(numerator * 100) / denominator}%`;
 
 export const widths = {
+  "0": 0,
   "1/2": fraction(1, 2),
   "1/3": fraction(1, 3),
   "1/4": fraction(1, 4),
@@ -16,6 +17,7 @@ export const widths = {
 } as const;
 
 export const heights = {
+  "0": 0,
   "1/2": fraction(1, 2),
   "1/3": fraction(1, 3),
   "1/4": fraction(1, 4),
