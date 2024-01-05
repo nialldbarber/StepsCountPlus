@@ -13,8 +13,9 @@ import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type ChipMode = "light" | "dark";
+
 interface ChipProps extends PressableProps {
-  mode?: "light" | "dark";
+  variant?: ChipMode;
   height?: Height | Space;
   size?: FontSizes;
   a11yLabel: string;
@@ -27,7 +28,7 @@ interface ChipProps extends PressableProps {
 }
 
 export function Chip({
-  mode = "light",
+  variant = "light",
   isSelected = false,
   height,
   size,
@@ -38,7 +39,7 @@ export function Chip({
   onPress,
   ...rest
 }: ChipProps) {
-  const { styles } = useStyles(stylesheet);
+  const { styles } = useStyles(stylesheet, { variant });
   const { onPress: onPressHook } = useButtonAnimation();
 
   function handleOnPress() {
@@ -50,7 +51,7 @@ export function Chip({
 
   return (
     <Pressable
-      style={styles.container(height, width)}
+      style={styles.container(height, width, isSelected)}
       onPress={handleOnPress}
       {...rest}
     >
@@ -64,21 +65,30 @@ export function Chip({
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-  container: (height?: Height | Space, width?: Width) => ({
+  container: (
+    height?: Height | Space,
+    width?: Width,
+    isSelected?: boolean
+  ) => ({
     flexDirection: "row",
     height: typeof height === "number" ? heights[height] : space["38px"],
-    width: typeof width === "number" ? widths[width] : space["0px"],
+    // @ts-expect-error
+    width: widths[width],
     paddingHorizontal: space["15px"],
     borderRadius: radii.full,
     alignItems: "center",
     justifyContent: "center",
     variants: {
-      mode: {
+      variant: {
         light: {
-          backgroundColor: theme.colors.chipActiveBackgroundColor,
+          backgroundColor: isSelected
+            ? theme.colors.chipActiveBackgroundColor
+            : theme.colors.chipInactiveBackgroundColor,
         },
         dark: {
-          backgroundColor: theme.colors.chipDarkActiveBackgroundColor,
+          backgroundColor: isSelected
+            ? theme.colors.chipDarkActiveBackgroundColor
+            : theme.colors.chipDarkInactiveBackgroundColor,
         },
       },
     },
