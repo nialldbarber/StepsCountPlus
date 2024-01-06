@@ -8,13 +8,46 @@ import flattenChildren from "react-keyed-flatten-children";
 import { ScrollView, type ViewProps } from "react-native";
 
 interface RowProps extends ViewProps, Partial<A11y> {
+  /**
+   * The amount of space around all
+   * child elements
+   */
   margin?: Space;
+  /**
+   * The amount of space above and below
+   * all child elements
+   */
   marginTop?: Space;
+  /**
+   * The amount of space below child
+   * elements
+   */
   marginBottom?: Space;
+  /**
+   * The amount of space to the above and
+   * below of all child elements
+   */
   marginVertical?: Space;
+  /**
+   * The amount of space to the left and
+   * right of all child elements
+   */
   marginHorizontal?: Space;
+  /**
+   * The amount of spacing between each
+   * child elements
+   *
+   */
   gutter?: Space;
+  /**
+   * Whether the row should scroll
+   * horizontally
+   */
   scroll?: boolean;
+  /**
+   * The alignment of the child elements
+   * along the main axis
+   */
   justifyContent?: JustifyContent;
 }
 
