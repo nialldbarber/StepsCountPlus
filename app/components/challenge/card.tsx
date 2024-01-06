@@ -1,7 +1,7 @@
 import { hitSlopLarge } from "@/app/constants/hit-slop";
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { radii } from "@/app/design-system/radii";
 import { getPercentageFromPeriod } from "@/app/lib/activity/challenge";

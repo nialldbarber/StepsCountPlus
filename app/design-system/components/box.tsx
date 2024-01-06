@@ -9,7 +9,17 @@ import type { NegativeSpace, Space } from "@/app/design-system/space";
 import { space } from "@/app/design-system/space";
 import type { NegativeZIndex, ZIndex } from "@/app/design-system/z-index";
 import { zIndex } from "@/app/design-system/z-index";
-import type { A11y } from "@/app/lib/misc-types";
+import type { A11y } from "@/app/types/a11y";
+import type {
+  AlignItems,
+  AlignSelf,
+  BorderStyle,
+  FlexDirection,
+  FlexWrap,
+  JustifyContent,
+  Overflow,
+  Position,
+} from "@/app/types/styles";
 import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
 import type { AccessibilityRole, ViewStyle } from "react-native";
@@ -40,10 +50,10 @@ function isColorKey(key: string): key is Colors {
 
 export type BoxProps = {
   a11yRole?: AccessibilityRole;
-  alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
-  alignItems?: "flex-start" | "flex-end" | "center" | "stretch";
+  alignSelf?: AlignSelf;
+  alignItems?: AlignItems;
   borderWidth?: number;
-  borderStyle?: "dotted" | "dashed" | "solid" | undefined;
+  borderStyle?: BorderStyle;
   borderColor?: Colors;
   borderRadius?: Radii;
   borderTopLeftRadius?: Radii;
@@ -53,20 +63,15 @@ export type BoxProps = {
   bottom?: Space;
   flex?: number;
   flexBasis?: number | string;
-  flexDirection?: "row" | "row-reverse" | "column";
+  flexDirection?: FlexDirection;
   flexGrow?: 0 | 1;
   flexShrink?: 0 | 1;
-  flexWrap?: "wrap";
+  flexWrap?: FlexWrap;
   rowGap?: Space;
   columnGap?: Space;
   gap?: Space;
   left?: Space;
-  justifyContent?:
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "space-between"
-    | "space-around";
+  justifyContent?: JustifyContent;
   margin?: Space | NegativeSpace;
   marginBottom?: Space | NegativeSpace;
   marginHorizontal?: Space | NegativeSpace;
@@ -83,12 +88,12 @@ export type BoxProps = {
   paddingRight?: Space;
   paddingTop?: Space;
   paddingVertical?: Space;
-  position?: "absolute" | "relative";
+  position?: Position;
   right?: Space;
   top?: Space;
   height?: Height | Space;
   width?: Width | Space;
-  overflow?: "hidden" | "visible" | "scroll";
+  overflow?: Overflow;
   backgroundColor?: Colors | string;
   styles?: ViewStyle;
   shadow?: boolean;

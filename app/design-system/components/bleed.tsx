@@ -1,5 +1,6 @@
 import type { NegativeSpace } from "@/app/design-system/space";
 import { negativeSpace } from "@/app/design-system/space";
+import type { AlignItems, AlignSelf } from "@/app/types/styles";
 import type { PropsWithChildren } from "react";
 import type { ViewStyle } from "react-native";
 import { View } from "react-native";
@@ -33,11 +34,11 @@ type Props = {
    * Align items along the cross axis
    * This will override the `align-items` value
    */
-  alignSelf?: "flex-start" | "flex-end" | "center" | "stretch";
+  alignSelf?: AlignSelf;
   /**
    * Align items along the cross axis
    */
-  alignItems?: "flex-start" | "flex-end" | "center" | "stretch";
+  alignItems?: AlignItems;
   /**
    * Style overrides
    */

@@ -1,8 +1,8 @@
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { capitaliseFirstLetter, removeDashes } from "@/app/lib/format/alpha";
-import type { A11y } from "@/app/lib/misc-types";
+import type { A11y } from "@/app/types/a11y";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "iconsax-react-native";
 import { useStyles } from "react-native-unistyles";

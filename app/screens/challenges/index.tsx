@@ -1,10 +1,10 @@
 import { ChallengeCard } from "@/app/components/challenge/card";
 import { CompletedChallengeCard } from "@/app/components/challenge/completed";
+import { Pressable } from "@/app/core/pressable";
 import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Layout } from "@/app/design-system/components/layout";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";

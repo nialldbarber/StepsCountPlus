@@ -1,4 +1,4 @@
-import type { A11y } from "@/app/lib/misc-types";
+import type { A11y } from "@/app/types/a11y";
 import type { PressableProps as NativePressableProps } from "react-native";
 import { Pressable as NativePressable } from "react-native";
 import RNReactNativeHapticFeedback from "react-native-haptic-feedback";

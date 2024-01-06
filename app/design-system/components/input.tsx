@@ -1,5 +1,5 @@
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { radii } from "@/app/design-system/radii";
 import { heights } from "@/app/design-system/size";
 import { space } from "@/app/design-system/space";

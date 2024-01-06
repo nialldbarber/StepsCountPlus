@@ -1,6 +1,6 @@
+import type { PressableProps } from "@/app/core/pressable";
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
-import type { PressableProps } from "@/app/design-system/components/pressable";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import type { FontSizes } from "@/app/design-system/font-size";
 import { radii } from "@/app/design-system/radii";
@@ -10,7 +10,7 @@ import { heights, widths } from "@/app/design-system/size";
 import type { Space } from "@/app/design-system/space";
 import { space } from "@/app/design-system/space";
 import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
-import type { A11y } from "@/app/lib/misc-types";
+import type { A11y } from "@/app/types/a11y";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Variant = "light" | "dark";

@@ -1,9 +1,9 @@
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
-import { PrependToUnion } from "@/app/lib/misc-types";
 import type { ChallengeTypes } from "@/app/navigation/types";
+import type { PrependToUnion } from "@/app/types/alpha";
 import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";

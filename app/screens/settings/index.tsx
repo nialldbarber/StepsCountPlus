@@ -1,6 +1,6 @@
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
-import { Pressable } from "@/app/design-system/components/pressable";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
 import { invokeChangeTheme } from "@/app/lib/theme";

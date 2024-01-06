@@ -1,7 +1,7 @@
+import type { PressableProps } from "@/app/core/pressable";
+import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
 import { Loader } from "@/app/design-system/components/loader";
-import type { PressableProps } from "@/app/design-system/components/pressable";
-import { Pressable } from "@/app/design-system/components/pressable";
 import type { BaseTextProps } from "@/app/design-system/components/text";
 import { Text } from "@/app/design-system/components/text";
 import { shadow } from "@/app/design-system/shadow";
