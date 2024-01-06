@@ -15,6 +15,14 @@ import { useMemo } from "react";
 import type { AccessibilityRole, ViewStyle } from "react-native";
 import { View } from "react-native";
 
+/**
+ * A note on the undefined values in the
+ * useMemo dependency array: I'd rather they
+ * had no value, than give each one an
+ * arbitrary value. This way, if the value
+ * is undefined, it will be ignored
+ */
+
 function resolveToken<TokenName extends string, TokenValue, CustomValue>(
   scale: Record<TokenName, TokenValue>,
   value: TokenName | { custom: CustomValue } | undefined
@@ -294,6 +302,7 @@ export function Box({
       style={[
         styles,
         customStyles,
+        // @TODO: change this to the default shadow value
         shadow ? dropShadow({ elevation: 1, opacity: 0.15 }) : null,
       ]}
       accessibilityRole={a11yRole}
