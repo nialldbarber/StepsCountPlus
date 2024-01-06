@@ -7,4 +7,4 @@ export const radii = {
   full: 100,
 } as const;
 
-export type Radius = keyof typeof radii;
+export type Radii = keyof typeof radii;

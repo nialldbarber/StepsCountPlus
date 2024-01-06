@@ -9,7 +9,6 @@ import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
 import type { ChallengeType } from "@/app/store/challenges";
 import { Challenge, useChallengesStore } from "@/app/store/challenges";
-import { Trash } from "iconsax-react-native";
 import { useEffect, useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
@@ -119,7 +118,14 @@ export function ChallengeCard({
           <>
             <Box position="absolute" bottom="15px" right="15px">
               <Pressable onPress={fn} hitSlop={hitSlopLarge}>
-                <Trash color={theme.colors.trashIconStroke} />
+                <Button
+                  variant="destructive"
+                  size="12px"
+                  shape="small"
+                  radii="medium"
+                >
+                  Remove
+                </Button>
               </Pressable>
             </Box>
             <Box

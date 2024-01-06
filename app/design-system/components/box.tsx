@@ -1,6 +1,6 @@
 import type { Colors } from "@/app/design-system/colors";
 import { colors } from "@/app/design-system/colors";
-import type { Radius } from "@/app/design-system/radii";
+import type { Radii } from "@/app/design-system/radii";
 import { radii } from "@/app/design-system/radii";
 import { shadow as dropShadow } from "@/app/design-system/shadow";
 import type { Height, Width } from "@/app/design-system/size";
@@ -45,11 +45,11 @@ export type BoxProps = {
   borderWidth?: number;
   borderStyle?: "dotted" | "dashed" | "solid" | undefined;
   borderColor?: Colors;
-  borderRadius?: Radius;
-  borderTopLeftRadius?: Radius;
-  borderTopRightRadius?: Radius;
-  borderBottomLeftRadius?: Radius;
-  borderBottomRightRadius?: Radius;
+  borderRadius?: Radii;
+  borderTopLeftRadius?: Radii;
+  borderTopRightRadius?: Radii;
+  borderBottomLeftRadius?: Radii;
+  borderBottomRightRadius?: Radii;
   bottom?: Space;
   flex?: number;
   flexBasis?: number | string;

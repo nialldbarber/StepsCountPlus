@@ -14,6 +14,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { Radii, radii } from "../radii";
 
 export type Variant =
   | "primary"
@@ -37,6 +38,11 @@ interface ButtonProps extends PressableProps, BaseTextProps {
    * Whether the button is disabled
    */
   isDisabled?: boolean;
+  /**
+   * The explicit border radius of the button
+   * based off of the defined radii scale
+   */
+  radii?: Radii;
   /**
    * Whether the button is pending/in
    * a loading state
@@ -66,6 +72,7 @@ export function Button(props: ButtonProps) {
     shape = "medium",
     isDisabled = false,
     isPending = false,
+    radii,
     children,
     weight,
     size,
@@ -73,7 +80,7 @@ export function Button(props: ButtonProps) {
     ...rest
   } = updatedProps;
 
-  const { styles } = useStyles(stylesheet, { variant, shape });
+  const { styles } = useStyles(stylesheet, { variant, shape, radii });
   const { onPress, animatedStyle } = useButtonAnimation();
   const accessibilityLabel = `${children} button`;
 
@@ -103,7 +110,12 @@ export function Button(props: ButtonProps) {
         accessibilityState={{ disabled: isDisabled, busy: isPending }}
       >
         <Box flexDirection="row">
-          <Text size={size} weight={weight} color={color} style={styles.text}>
+          <Text
+            size={size}
+            weight={weight}
+            color={color}
+            textStyles={styles.text}
+          >
             {children}
           </Text>
         </Box>
@@ -137,12 +149,14 @@ const stylesheet = createStyleSheet((theme) => ({
         // @TODO - add tertiary, link, destructive
         tertiary: {},
         link: {},
-        destructive: {},
+        destructive: {
+          backgroundColor: "#F9F1F2",
+        },
       },
       shape: {
         small: {
-          height: space["38px"],
-          paddingHorizontal: space["15px"],
+          height: space["30px"],
+          paddingHorizontal: space["10px"],
         },
         medium: {
           height: space["60px"],
@@ -151,6 +165,17 @@ const stylesheet = createStyleSheet((theme) => ({
         large: {
           height: space["60px"],
           paddingHorizontal: space["20px"],
+        },
+      },
+      radii: {
+        small: {
+          borderRadius: radii.small,
+        },
+        medium: {
+          borderRadius: radii.medium,
+        },
+        large: {
+          borderRadius: radii.large,
         },
       },
     },
@@ -167,7 +192,10 @@ const stylesheet = createStyleSheet((theme) => ({
         // @TODO - add tertiary, link, destructive
         tertiary: {},
         link: {},
-        destructive: {},
+        destructive: {
+          // @TODO - add color to theme
+          color: "#F54E4E",
+        },
       },
     },
   },
