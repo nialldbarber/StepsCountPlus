@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from "@/app/design-system/theme";
+import { darkTheme, lightTheme } from "@/app/design-system/design-tokens";
 import { storage } from "@/app/storage/mmkv";
 import { UnistylesRegistry, UnistylesThemes } from "react-native-unistyles";
 
