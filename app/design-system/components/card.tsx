@@ -9,6 +9,10 @@ import { Dimensions } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 import type { Union } from "ts-toolbelt";
 
+// @TODO: this component is not atomic
+// make it more reusable, and portion
+// off specific logic into /components/card/*
+
 type CustomChallengeTypes = PrependToUnion<
   Union.Exclude<"steps" | "flights" | "distance", "custom">,
   "custom"
