@@ -12,21 +12,14 @@ interface Props extends A11y {
   title: string;
 }
 
-export function ScreenHeader({
-  back = true,
-  title,
-  a11yHint,
-  a11yRole,
-  a11yLabel,
-  a11yState,
-}: Props) {
+export function ScreenHeader({ back = true, title, ...rest }: Props) {
   const { theme } = useStyles();
   const { goBack } = useNavigation();
 
   return (
     <>
       {back && (
-        <Box>
+        <Box {...rest}>
           <Pressable
             onPress={goBack}
             accessible
