@@ -30,12 +30,12 @@ export function Header({ header }: Props) {
         flexDirection="row"
         alignItems="center"
         justifyContent="space-between"
-        paddingBottom="24px"
+        paddingBottom="12px"
         paddingHorizontal="20px"
       >
         <Text
           level="heading"
-          size="34px"
+          size="30px"
           weight="bold"
           textStyles={styles.text}
         >
