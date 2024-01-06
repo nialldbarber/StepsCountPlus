@@ -4,11 +4,22 @@ import { Pressable as NativePressable } from "react-native";
 import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 export interface PressableProps extends NativePressableProps, A11y {
+  /**
+   * Function to be called when the Pressable is pressed
+   */
   onPress?: (...args: unknown[]) => unknown;
+  /**
+   * Haptic feedback to be triggered when the Pressable is pressed
+   */
   haptics?: {
     type: "action" | "notification";
     level?: "Success" | "Warning" | "Error" | "Light" | "Medium" | "Heavy";
   };
+  /**
+   * Use this when the Pressable doesn't
+   * fire a function, but still requires
+   * feedback
+   */
   forceHaptic?: boolean;
 }
 
