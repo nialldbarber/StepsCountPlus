@@ -9,7 +9,7 @@ import { useMeasurementsStore } from "@/app/store/measurements";
 import { usePreferencesStore } from "@/app/store/perferences";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { Image, Linking, ScrollView, Switch } from "react-native";
 import {
   UnistylesRuntime,
@@ -279,7 +279,7 @@ export function SettingsScreen() {
             </Text>
             <Box height="3px" />
             <Text color="greyFour" size="12px">
-              StepsCountPlus+ 1.1.0 (32)
+              StepsCountPlus+ 1.0.0 (0)
             </Text>
           </Box>
         </Box>
@@ -290,13 +290,13 @@ export function SettingsScreen() {
 
 const stylesheet = createStyleSheet((theme) => ({
   button: {
-    padding: 5,
+    padding: space["5px"],
     alignItems: "center",
     backgroundColor: "pureWhite",
     marginLeft: space["32px"],
   },
   text: (isSelected: boolean) => ({
-    paddingTop: 5,
+    paddingTop: space["5px"],
     color: isSelected
       ? theme.colors.settingsScreenTextActive
       : theme.colors.settingsScreenTextInactive,
