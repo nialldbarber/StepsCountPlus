@@ -40,7 +40,7 @@ export function Input({
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       />
-      {value.length > 0 ? (
+      {value?.length > 0 ? (
         <Box position="absolute" right="12px" top="12px">
           <Pressable onPress={handleDeleteValue}>
             <CloseCircle color={theme.colors.inputIconColor} />
