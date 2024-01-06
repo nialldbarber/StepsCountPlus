@@ -10,8 +10,6 @@ import { Pressable } from "@/app/design-system/components/pressable";
 import { Row } from "@/app/design-system/components/row";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
-import { shadow } from "@/app/design-system/shadow";
-import { space } from "@/app/design-system/space";
 import { useActiveValue } from "@/app/hooks/useActiveValue";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
 import { useGetHealthData } from "@/app/lib/activity/useGetHealthData";
@@ -47,7 +45,7 @@ export function StatsScreen() {
   const { value, handleActiveValue } = useActiveValue();
   const { handlePresentModalPress, handleCloseModal } =
     useBottomSheet(bottomSheetRef);
-  const { theme } = useStyles(stylesheet);
+  const { styles, theme } = useStyles(stylesheet);
   const font = useFont(require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`), 65);
   const smallerFont = useFont(
     require(`${pathToFonts}/PlusJakartaSans-Bold.ttf`),
@@ -171,7 +169,7 @@ export function StatsScreen() {
           </Box>
         </Box>
 
-        <Bleed alignItems="center" left="-42px" right="-42px">
+        <Bleed left="-42px" right="-42px" style={styles.bleedContainer}>
           <Row
             marginHorizontal="15px"
             marginTop="12px"
@@ -312,12 +310,7 @@ export function StatsScreen() {
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-  container: {
-    flex: 1,
-  },
-  bleed: {
-    backgroundColor: theme.colors.statsScreenChipBackgroundColor,
-    paddingVertical: space["10px"],
-    ...shadow(),
+  bleedContainer: {
+    alignItems: "center",
   },
 }));
