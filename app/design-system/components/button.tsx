@@ -168,6 +168,9 @@ const stylesheet = createStyleSheet((theme) => ({
         },
       },
       radii: {
+        none: {
+          borderRadius: radii.none,
+        },
         small: {
           borderRadius: radii.small,
         },
@@ -176,6 +179,12 @@ const stylesheet = createStyleSheet((theme) => ({
         },
         large: {
           borderRadius: radii.large,
+        },
+        larger: {
+          borderRadius: radii.larger,
+        },
+        full: {
+          borderRadius: radii.full,
         },
       },
     },
