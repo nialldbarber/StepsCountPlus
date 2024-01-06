@@ -53,7 +53,6 @@ export function Bleed({
   vertical = "0px",
   children,
   style,
-  ...rest
 }: PropsWithChildren<Props>) {
   return (
     <View
@@ -65,9 +64,7 @@ export function Bleed({
         marginHorizontal: negativeSpace[horizontal],
         marginVertical: negativeSpace[vertical],
         ...style,
-        ...rest,
       }}
-      {...rest}
     >
       {children}
     </View>
