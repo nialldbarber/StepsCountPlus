@@ -1,3 +1,5 @@
+import { MultiBlockRow } from "@/app/components/settings/multi-block-row";
+import { Row } from "@/app/components/settings/row";
 import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
@@ -9,50 +11,12 @@ import { useMeasurementsStore } from "@/app/store/measurements";
 import { usePreferencesStore } from "@/app/store/perferences";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
-import type { PropsWithChildren } from "react";
 import { Image, Linking, ScrollView, Switch } from "react-native";
 import {
   UnistylesRuntime,
   createStyleSheet,
   useStyles,
 } from "react-native-unistyles";
-
-function Row({ children }: PropsWithChildren) {
-  const { theme } = useStyles();
-
-  return (
-    <Box
-      backgroundColor={theme.colors.settingsCardBackgroundColor}
-      padding="20px"
-      marginHorizontal="20px"
-      marginVertical="10px"
-      borderRadius="large"
-      flexDirection="row"
-      justifyContent="space-between"
-      alignItems="center"
-      shadow
-    >
-      {children}
-    </Box>
-  );
-}
-
-function MultiBlockRow({ children }: PropsWithChildren) {
-  const { theme } = useStyles();
-
-  return (
-    <Box
-      backgroundColor={theme.colors.settingsCardBackgroundColor}
-      padding="20px"
-      marginHorizontal="20px"
-      marginVertical="10px"
-      borderRadius="large"
-      shadow
-    >
-      {children}
-    </Box>
-  );
-}
 
 export function SettingsScreen() {
   const { styles, theme } = useStyles(stylesheet);
