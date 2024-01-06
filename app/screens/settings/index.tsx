@@ -6,6 +6,7 @@ import { space } from "@/app/design-system/space";
 import { invokeChangeTheme } from "@/app/lib/theme";
 import { storage } from "@/app/storage/mmkv";
 import { useMeasurementsStore } from "@/app/store/measurements";
+import { usePreferencesStore } from "@/app/store/perferences";
 import { useNavigation } from "@react-navigation/native";
 import { CloseCircle } from "iconsax-react-native";
 import { PropsWithChildren } from "react";
@@ -57,6 +58,7 @@ export function SettingsScreen() {
   const { styles, theme } = useStyles(stylesheet);
   const { goBack, navigate } = useNavigation();
   const { distance, setDistance } = useMeasurementsStore();
+  const { hapticFeedback, setHapticFeedback } = usePreferencesStore();
   const currentTheme = storage.getString("theme");
 
   return (
@@ -161,6 +163,23 @@ export function SettingsScreen() {
               </Box>
             </Box>
           </MultiBlockRow>
+
+          <Box paddingHorizontal="30px" paddingTop="15px">
+            <Text color="greyFour" size="14px">
+              Haptics
+            </Text>
+          </Box>
+          <Row>
+            <Text>Feedback</Text>
+            <Box flexDirection="row" alignItems="center">
+              <Box paddingHorizontal="15px">
+                <Switch
+                  value={hapticFeedback}
+                  onValueChange={() => setHapticFeedback(!hapticFeedback)}
+                />
+              </Box>
+            </Box>
+          </Row>
 
           <Box paddingHorizontal="30px" paddingTop="15px">
             <Text color="greyFour" size="14px">
