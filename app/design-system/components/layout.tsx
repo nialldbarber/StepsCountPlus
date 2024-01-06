@@ -6,6 +6,11 @@ import { SafeAreaView, ScrollView } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type Props = {
+  /**
+   * Explicit background color
+   * overrides the default theme background color
+   * if necessary
+   */
   backgroundColor?: Colors | string;
 };
 
