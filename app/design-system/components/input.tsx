@@ -11,6 +11,10 @@ import { createStyleSheet, useStyles } from "react-native-unistyles";
 import { colors } from "../colors";
 
 interface Props extends TextInputProps {
+  /**
+   * Custom method to remove the value
+   * of the input, usually with an X icon
+   */
   handleDeleteValue?: () => void;
 }
 
@@ -21,28 +25,28 @@ export function Input({
   onChangeText,
   handleDeleteValue,
 }: Props) {
-  const [active, setActive] = useState(false);
+  const [focused, setFocused] = useState(false);
   const { styles, theme } = useStyles(stylesheet);
 
   return (
     <Box shadow position="relative">
       <TextInput
-        style={styles.container(active)}
+        style={styles.container(focused)}
         value={value}
         onChangeText={(text) => onChangeText?.(text)}
         placeholder={placeholder}
         placeholderTextColor={theme.colors.inputPlaceholderColor}
         keyboardType={keyboardType}
-        onFocus={() => setActive(true)}
-        onBlur={() => setActive(false)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
-      {value?.length > 0 && (
+      {value.length > 0 ? (
         <Box position="absolute" right="12px" top="12px">
           <Pressable onPress={handleDeleteValue}>
             <CloseCircle color={theme.colors.inputIconColor} />
           </Pressable>
         </Box>
-      )}
+      ) : null}
     </Box>
   );
 }
@@ -50,6 +54,7 @@ export function Input({
 const stylesheet = createStyleSheet((theme) => ({
   container: (active) => ({
     // backgroundColor: theme.colors.inputBackgroundColor,
+    // @TODO: move this into theme colors
     backgroundColor: active ? colors.black : colors.blackTwo,
     borderColor: colors.blackTwo,
     borderWidth: 2,
