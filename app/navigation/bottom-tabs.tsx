@@ -1,16 +1,22 @@
-import { colors } from "@/app/design-system/colors";
+import { Tabs } from "@/app/navigation/bottom-tabs/tabs";
 import { ChallengeStack } from "@/app/navigation/challenges-stack";
 import { Header } from "@/app/navigation/header";
 import { ProfileStack } from "@/app/navigation/profile-stack";
 import type { RootBottomTabsParamList } from "@/app/navigation/types";
 import { GoalsScreen } from "@/app/screens/goals";
 import { StatsScreen } from "@/app/screens/stats";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Award, Chart, ProfileCircle, StatusUp } from "iconsax-react-native";
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
 import { useStyles } from "react-native-unistyles";
 
 const Tab = createBottomTabNavigator<RootBottomTabsParamList>();
 type Focused = { focused: boolean };
+
+function CustomTabBar(props: BottomTabBarProps) {
+  return <Tabs {...props} />;
+}
 
 export function BottomTabs() {
   const { theme } = useStyles();
@@ -22,49 +28,24 @@ export function BottomTabs() {
 
   const TABS = {
     STATS: {
-      tabBarIcon: ({ focused }: Focused) => (
-        <Chart
-          color={focused ? colors.primary : theme.colors.bottomTabsIconStroke}
-        />
-      ),
       header: () => <Header header="stats" />,
     },
     CHALLENGES: {
-      tabBarIcon: ({ focused }: Focused) => (
-        <StatusUp
-          color={focused ? colors.primary : theme.colors.bottomTabsIconStroke}
-        />
-      ),
       header: () => <Header header="challenges" />,
     },
     GOALS: {
-      tabBarIcon: ({ focused }: Focused) => (
-        <Award
-          color={focused ? colors.primary : theme.colors.bottomTabsIconStroke}
-        />
-      ),
       header: () => <Header header="goals" />,
     },
     PROFILE: {
-      tabBarIcon: ({ focused }: Focused) => (
-        <ProfileCircle
-          color={focused ? colors.primary : theme.colors.bottomTabsIconStroke}
-        />
-      ),
       header: () => <Header header="profile" />,
     },
   };
 
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: theme.colors.bottomTabsBackgroundColor,
-          borderTopColor: theme.colors.bottomTabsBackgroundColor,
-        },
-        tabBarLabelStyle: {
-          fontWeight: "bold",
-        },
+      tabBar={CustomTabBar}
+      sceneContainerStyle={{
+        backgroundColor: theme.colors.bottomTabsBackgroundColor,
       }}
     >
       <Tab.Screen

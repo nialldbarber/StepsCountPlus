@@ -1,5 +1,3 @@
-import { hitSlopLarge } from "@/app/constants/hit-slop";
-import { Pressable } from "@/app/core/pressable";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Text } from "@/app/design-system/components/text";
@@ -115,27 +113,13 @@ export function ChallengeCard({
           </Box>
         </Box>
         {isSet ? (
-          <>
-            <Box position="absolute" bottom="15px" right="15px">
-              <Pressable onPress={fn} hitSlop={hitSlopLarge}>
-                <Button
-                  variant="destructive"
-                  size="12px"
-                  shape="small"
-                  radii="medium"
-                >
-                  Remove
-                </Button>
-              </Pressable>
-            </Box>
-            <Box
-              flexDirection="row"
-              justifyContent="space-between"
-              paddingTop="30px"
-            >
-              <Text size="14px">{Math.round(percentage)}% complete</Text>
-            </Box>
-          </>
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            paddingTop="30px"
+          >
+            <Text size="14px">{Math.round(percentage)}% complete</Text>
+          </Box>
         ) : (
           <Box alignSelf="flex-start" paddingTop="34px">
             <Button shape="small" size="12px" color="white" onPress={fn}>

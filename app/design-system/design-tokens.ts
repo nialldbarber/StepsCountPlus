@@ -32,6 +32,7 @@ export const lightTheme = {
     bottomTabsIconActiveStroke: colors.primary,
     bottomTabsTextColor: colors.black,
     bottomTabsTextActiveColor: colors.primary,
+    bottomTabsSlidingBackgroundColor: colors.greyEight,
     /**
      * @type Chip
      */
@@ -139,12 +140,13 @@ export const darkTheme = {
     /**
      * @type Bottom tabs
      */
-    bottomTabBackgroundColor: colors.pureWhite,
+    bottomTabBackgroundColor: colors.blackTwo,
     bottomTabActiveTabBorder: colors.primary,
     bottomTabsIconStroke: colors.white,
     bottomTabsIconActiveStroke: colors.primary,
     bottomTabsTextColor: colors.white,
     bottomTabsTextActiveColor: colors.primary,
+    bottomTabsSlidingBackgroundColor: colors.greySeven,
     /**
      * @type Chip
      */

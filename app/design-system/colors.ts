@@ -15,6 +15,8 @@ export const greyColors = {
   greyFour: "#717171",
   greyFive: "#eef1ee",
   greySix: "rgba(209, 213, 219, 0.09)",
+  greySeven: "rgba(209, 213, 219, 0.1)",
+  greyEight: "rgba(209, 213, 219, 0.2)",
 } as const;
 
 export const coreColors = {
