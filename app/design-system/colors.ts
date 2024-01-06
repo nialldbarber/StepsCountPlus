@@ -33,7 +33,7 @@ export const coreColors = {
 
 export const tonalColors = {
   orange: "#e2572b",
-  orange_light: "#fae5e1",
+  orangeLight: "#fae5e1",
 } as const;
 
 export type BaseColors = keyof typeof baseColors;

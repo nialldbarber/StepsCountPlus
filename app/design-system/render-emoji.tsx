@@ -5,10 +5,10 @@ import { StyleSheet, Text } from "react-native";
 
 const emojiRegex = createEmojiRegex();
 const styles = StyleSheet.create({
-	emoji: {
-		color: "black",
-		fontFamily: "System",
-	},
+  emoji: {
+    color: "black",
+    fontFamily: "System",
+  },
 });
 
 /**
@@ -17,27 +17,27 @@ const styles = StyleSheet.create({
  * @param stringNode
  * @returns React.JSX.Element
  */
-export const renderStringWithEmoji = (stringNode: ReactNode) => {
-	const strings = Array.isArray(stringNode) ? stringNode : [stringNode];
-	return (
-		<Fragment>
-			{strings.map((string) => {
-				if (typeof string !== "string") {
-					return string;
-				}
+export function renderStringWithEmoji(stringNode: ReactNode) {
+  const strings = Array.isArray(stringNode) ? stringNode : [stringNode];
+  return (
+    <Fragment>
+      {strings.map((string) => {
+        if (typeof string !== "string") {
+          return string;
+        }
 
-				const emojis = string.match(emojiRegex);
-				if (emojis === null) return string;
+        const emojis = string.match(emojiRegex);
+        if (emojis === null) return string;
 
-				return string.split(emojiRegex).map((stringPart, index) => (
-					<Fragment key={`emoji-${index}`}>
-						{stringPart}
-						{emojis[index] ? (
-							<Text style={styles.emoji}>{emojis[index]}</Text>
-						) : null}
-					</Fragment>
-				));
-			})}
-		</Fragment>
-	);
-};
+        return string.split(emojiRegex).map((stringPart, index) => (
+          <Fragment key={`emoji-${index}`}>
+            {stringPart}
+            {emojis[index] ? (
+              <Text style={styles.emoji}>{emojis[index]}</Text>
+            ) : null}
+          </Fragment>
+        ));
+      })}
+    </Fragment>
+  );
+}
