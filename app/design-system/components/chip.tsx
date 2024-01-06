@@ -10,20 +10,52 @@ import { heights, widths } from "@/app/design-system/size";
 import type { Space } from "@/app/design-system/space";
 import { space } from "@/app/design-system/space";
 import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
+import type { A11y } from "@/app/lib/misc-types";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
-type ChipMode = "light" | "dark";
+type Variant = "light" | "dark";
 
-interface ChipProps extends PressableProps {
-  variant?: ChipMode;
+interface ChipProps extends PressableProps, Partial<A11y> {
+  /**
+   * The variant/state of the chip
+   */
+  variant?: Variant;
+  /**
+   * Explicit height of the chip, based
+   * off of the defined height scale
+   */
   height?: Height | Space;
-  size?: FontSizes;
-  a11yLabel: string;
-  label: string;
-  isSelected?: boolean;
+  /**
+   * Explicit width of the chip, based
+   * off of the defined width scale
+   */
   width?: Width;
+  /**
+   * The explicit font size of the text
+   */
+  size?: FontSizes;
+  /**
+   * The text representation of the chip
+   */
+  label: string;
+  /**
+   * Whether the chip is selected or not
+   */
+  isSelected?: boolean;
+  /**
+   * The icon to display when the chip is
+   * _not_ selected
+   */
   icon?: React.ReactNode;
+  /**
+   * The icon to display when the chip is
+   * selected
+   */
   selectedIcon?: React.ReactNode;
+  /**
+   * Callback function when the chip is
+   * pressed
+   */
   onPress?: (...args: unknown[]) => void;
 }
 
@@ -53,6 +85,9 @@ export function Chip({
     <Pressable
       style={styles.container(height, width, isSelected)}
       onPress={handleOnPress}
+      a11yHint="Tap to select"
+      a11yLabel={label}
+      a11yState={{ selected: isSelected }}
       {...rest}
     >
       {icon && isSelected && <Box paddingRight="5px">{selectedIcon}</Box>}
