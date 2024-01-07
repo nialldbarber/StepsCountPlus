@@ -5,9 +5,9 @@ import { UnistylesRegistry, UnistylesThemes } from "react-native-unistyles";
 const currentTheme = storage.getString("theme") as keyof UnistylesThemes;
 
 UnistylesRegistry.addThemes({
-  light: lightTheme,
-  dark: darkTheme,
+	light: lightTheme,
+	dark: darkTheme,
 }).addConfig({
-  initialTheme: currentTheme,
-  adaptiveThemes: true,
+	initialTheme: currentTheme,
+	adaptiveThemes: false,
 });
