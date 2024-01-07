@@ -53,6 +53,7 @@ export function GoalsCard({
 }: GoalsCardProps) {
 	const { styles, theme } = useStyles(stylesheet);
 	const bottomSheetRef = useRef(null);
+	const initialRender = useRef(true);
 	const { handleActiveValue } = useActiveValue(-1);
 	const { handleShakeAnimation, useShakeAnimationStyles } = useShakeAnimation();
 	const { handlePresentModalPress } = useBottomSheet(bottomSheetRef);
@@ -86,6 +87,11 @@ export function GoalsCard({
 	const goalValueTransform = useSharedValue(1);
 
 	useEffect(() => {
+		if (initialRender.current) {
+			initialRender.current = false;
+			return;
+		}
+
 		goalValueTransform.value = withTiming(
 			0,
 			{
