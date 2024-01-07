@@ -15,8 +15,11 @@ import type { LowercaseGoals } from "@/app/types/goals";
 import { useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 export function CreateYourChallengeScreen() {
 	const { styles } = useStyles(stylesheet);
+	const [customChallengeTitle, setCustomChallengeTitle] = useState("");
 	const [customChallengeAmount, setCustomChallengeAmount] = useState("");
 	const { setAddChallenge } = useChallengesStore(); // @TODO: add this in later
 
@@ -33,8 +36,12 @@ export function CreateYourChallengeScreen() {
 		category: "custom",
 	};
 
-	function handleFilterValue(text: string) {
+	function handleAddCustomAmount(text: string) {
 		setCustomChallengeAmount(text);
+	}
+
+	function handleAddCustomTitle(text: string) {
+		setCustomChallengeTitle(text);
 	}
 
 	function handleSelectChallenge(challenge: LowercaseGoals) {
@@ -42,45 +49,68 @@ export function CreateYourChallengeScreen() {
 	}
 
 	return (
-		<Layout>
-			<ScreenHeader title="Select a category" />
-			<Box flexDirection="row" flexWrap="wrap" marginVertical="20px">
-				<Pressable
-					onPress={() => handleSelectChallenge("steps")}
-					style={styles.container(currentChallenge === "steps")}
-				>
-					<Text>👟</Text>
-					<Text>Steps</Text>
-				</Pressable>
-				<Pressable
-					onPress={() => handleSelectChallenge("flights")}
-					style={styles.container(currentChallenge === "flights")}
-				>
-					<Text>🪜</Text>
-					<Text>Flights</Text>
-				</Pressable>
-				<Pressable
-					onPress={() => handleSelectChallenge("distance")}
-					style={styles.container(currentChallenge === "distance")}
-				>
-					<Text>📍</Text>
-					<Text>Distance</Text>
-				</Pressable>
-			</Box>
-			<Box paddingLeft="10px" paddingBottom="10px">
-				<Text size="14px" color="greyFour">
-					Enter steps amount:
-				</Text>
-				<Text size="12px" color="greyFour">
-					(minimum 1000 steps)
-				</Text>
-			</Box>
-			<Stack gutter="10px">
-				<Input keyboardType="numeric" onChangeText={handleFilterValue} />
-				<Text>{customChallengeAmount}</Text>
-				<Button>Add</Button>
-			</Stack>
-		</Layout>
+		<KeyboardAwareScrollView
+			style={{ flex: 1 }}
+			resetScrollToCoords={{ x: 0, y: 0 }}
+			scrollEnabled={false}
+			contentContainerStyle={{ flexGrow: 1 }}
+		>
+			<Layout>
+				<ScreenHeader title="" />
+				<Box flexDirection="row" flexWrap="wrap" marginVertical="20px">
+					<Pressable
+						onPress={() => handleSelectChallenge("steps")}
+						style={styles.container(currentChallenge === "steps")}
+					>
+						<Text>👟</Text>
+						<Text>Steps</Text>
+					</Pressable>
+					<Pressable
+						onPress={() => handleSelectChallenge("flights")}
+						style={styles.container(currentChallenge === "flights")}
+					>
+						<Text>🪜</Text>
+						<Text>Flights</Text>
+					</Pressable>
+					<Pressable
+						onPress={() => handleSelectChallenge("distance")}
+						style={styles.container(currentChallenge === "distance")}
+					>
+						<Text>📍</Text>
+						<Text>Distance</Text>
+					</Pressable>
+				</Box>
+				<Box marginVertical="20px">
+					<Stack gutter="10px">
+						<Box>
+							<Box paddingLeft="10px" paddingBottom="10px">
+								<Text size="14px" color="greyFour">
+									Add a custom title:
+								</Text>
+							</Box>
+							<Input onChangeText={handleAddCustomTitle} />
+						</Box>
+						<Box>
+							<Box paddingLeft="10px" paddingBottom="10px">
+								<Text size="14px" color="greyFour">
+									Enter steps amount:
+								</Text>
+								<Text size="12px" color="greyFour">
+									(minimum 1000 steps)
+								</Text>
+							</Box>
+							<Input
+								onChangeText={handleAddCustomAmount}
+								keyboardType="number-pad"
+							/>
+						</Box>
+						<Box marginVertical="15px">
+							<Button>Add</Button>
+						</Box>
+					</Stack>
+				</Box>
+			</Layout>
+		</KeyboardAwareScrollView>
 	);
 }
 

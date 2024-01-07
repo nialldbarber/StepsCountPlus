@@ -22,7 +22,7 @@ export function Layout({
 
 	return (
 		<SafeAreaView style={styles.container(backgroundColor)}>
-			<ScrollView>
+			<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 				<Box padding="20px" marginBottom="52px">
 					{children}
 				</Box>
