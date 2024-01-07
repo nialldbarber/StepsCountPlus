@@ -45,11 +45,9 @@ export function GoalsCard({
 }: GoalsCardProps) {
   const { theme } = useStyles();
   const bottomSheetRef = useRef(null);
-  // const timerRef = useRef(null);
   const { handleActiveValue } = useActiveValue(-1);
   const { handleShakeAnimation, useShakeAnimationStyles } = useShakeAnimation();
-  const { snapPoints, handlePresentModalPress } =
-    useBottomSheet(bottomSheetRef);
+  const { handlePresentModalPress } = useBottomSheet(bottomSheetRef);
 
   function handleMinusGoal() {
     if (goalAmount > lowerLimit) {
