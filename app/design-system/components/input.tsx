@@ -41,6 +41,7 @@ export function Input({
 				onFocus={() => setFocused(true)}
 				onBlur={() => setFocused(false)}
 				returnKeyType="done"
+				multiline={false}
 			/>
 			{value?.length > 0 ? (
 				<Box position="absolute" right="12px" top="12px">

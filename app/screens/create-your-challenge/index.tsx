@@ -15,9 +15,12 @@ import type { LowercaseGoals } from "@/app/types/goals";
 import { useState } from "react";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
+import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Toast from "react-native-toast-message";
 
 export function CreateYourChallengeScreen() {
+	const { navigate } = useNavigation();
 	const { styles } = useStyles(stylesheet);
 	const [customChallengeTitle, setCustomChallengeTitle] = useState("");
 	const [customChallengeAmount, setCustomChallengeAmount] = useState("");
@@ -27,7 +30,7 @@ export function CreateYourChallengeScreen() {
 		useState<LowercaseGoals>("steps");
 
 	const newChallenge: Challenge = {
-		id: "custom-challenge",
+		id: `${Math.random() * 1000}-custom-challenge`,
 		title: `${customChallengeAmount}`, // @TODO:, format this
 		difficulty: "easy", // @TODO:, programatically calculate difficulty?
 		emoji: "🛠️",
@@ -46,6 +49,20 @@ export function CreateYourChallengeScreen() {
 
 	function handleSelectChallenge(challenge: LowercaseGoals) {
 		setCurrentChallenge(challenge);
+	}
+
+	function handleAddChallenge() {
+		setAddChallenge(newChallenge);
+
+		Toast.show({
+			type: "success",
+			text1: "Challenge added!",
+			text2: "Click here to check it out 🚀",
+			position: "bottom",
+			bottomOffset: 100,
+			onPress: () => navigate("ChallengesRoot"),
+		});
+		console.log(JSON.stringify(newChallenge, null, 2));
 	}
 
 	return (
@@ -88,7 +105,7 @@ export function CreateYourChallengeScreen() {
 									Add a custom title:
 								</Text>
 							</Box>
-							<Input onChangeText={handleAddCustomTitle} />
+							<Input onChangeText={handleAddCustomTitle} maxLength={100} />
 						</Box>
 						<Box>
 							<Box paddingLeft="10px" paddingBottom="10px">
@@ -102,10 +119,11 @@ export function CreateYourChallengeScreen() {
 							<Input
 								onChangeText={handleAddCustomAmount}
 								keyboardType="number-pad"
+								maxLength={9}
 							/>
 						</Box>
 						<Box marginVertical="15px">
-							<Button>Add</Button>
+							<Button onPress={handleAddChallenge}>Add</Button>
 						</Box>
 					</Stack>
 				</Box>
