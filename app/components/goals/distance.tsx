@@ -32,9 +32,9 @@ export function DailyDistanceGoal() {
 			title="Distance 📍"
 			goalAmount={distanceGoal}
 			units={pluralisation}
-			incrementBy="0.5"
-			decrementBy="0.5"
-			lowerLimit={0.5}
+			incrementBy="1"
+			decrementBy="1"
+			lowerLimit={1}
 			upperLimit={300}
 			goalCallback={setDistanceGoal}
 			options={dailyDistanceOptions}

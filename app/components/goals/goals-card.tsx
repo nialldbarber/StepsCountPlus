@@ -17,10 +17,14 @@ import {
 } from "@/app/lib/format/numbers";
 import type { Goals } from "@/app/store/goal-types";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ScrollView } from "react-native";
-import Animated from "react-native-reanimated";
-import { useStyles } from "react-native-unistyles";
+import Animated, {
+	useAnimatedStyle,
+	useSharedValue,
+	withTiming,
+} from "react-native-reanimated";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 type GoalsCardProps = {
 	type: Goals;
@@ -47,7 +51,7 @@ export function GoalsCard({
 	goalCallback,
 	options,
 }: GoalsCardProps) {
-	const { theme } = useStyles();
+	const { styles, theme } = useStyles(stylesheet);
 	const bottomSheetRef = useRef(null);
 	const { handleActiveValue } = useActiveValue(-1);
 	const { handleShakeAnimation, useShakeAnimationStyles } = useShakeAnimation();
@@ -73,11 +77,31 @@ export function GoalsCard({
 		if (goalAmount === 0) return 0;
 
 		if (type === "Distance") {
-			return `${formatNumberWithDecimals(goalAmount)} `;
+			return `${formatNumberWithDecimals(goalAmount)}`;
 		}
 
-		return `${formatNumber(goalAmount)} `;
+		return `${formatNumber(goalAmount)}`;
 	}, [goalAmount]);
+
+	const goalValueTransform = useSharedValue(1);
+
+	useEffect(() => {
+		goalValueTransform.value = withTiming(
+			0,
+			{
+				duration: 150,
+			},
+			() => {
+				goalValueTransform.value = withTiming(1, {
+					duration: 150,
+				});
+			},
+		);
+	}, [goal]);
+
+	const animatedGoalValue = useAnimatedStyle(() => ({
+		transform: [{ scale: goalValueTransform.value }],
+	}));
 
 	return (
 		<>
@@ -131,12 +155,14 @@ export function GoalsCard({
 							a11yLabel="test"
 							variant="dark"
 						/>
-						<Animated.View style={useShakeAnimationStyles}>
-							<Text level="heading" size="28px">
+						<Animated.View
+							style={[useShakeAnimationStyles, styles.textContainer]}
+						>
+							<Animated.Text style={[animatedGoalValue, styles.text]}>
 								{goal}
-								<Text size="12px" color="greyFour">
-									{units}
-								</Text>
+							</Animated.Text>
+							<Text size="12px" color="greyFour">
+								{units}
 							</Text>
 						</Animated.View>
 						<Chip
@@ -182,3 +208,14 @@ export function GoalsCard({
 		</>
 	);
 }
+
+const stylesheet = createStyleSheet((theme) => ({
+	textContainer: {
+		alignItems: "center",
+	},
+	text: {
+		color: theme.colors.textColor,
+		fontSize: 30,
+		fontWeight: "bold",
+	},
+}));
