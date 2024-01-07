@@ -31,13 +31,35 @@ export function CreateYourChallengeScreen() {
 
 	const newChallenge: Challenge = {
 		id: `${Math.random() * 1000}-custom-challenge`,
-		title: `${customChallengeAmount}`, // @TODO:, format this
+		title: customChallengeTitle,
 		difficulty: "easy", // @TODO:, programatically calculate difficulty?
 		emoji: "🛠️",
 		startDate: new Date().toISOString(),
 		target: Number(customChallengeAmount),
-		category: "custom",
+		category: currentChallenge,
 	};
+
+	/**
+	 * Flow:
+	 * 1. user adds a new challenge
+	 * 2. user selects a challenge type (steps, flights, distance)
+	 * 3. user enters a custom title
+	 * 4. user enters a custom amount
+	 * 5. user clicks "add challenge"
+	 *
+	 * 6. user is navigated to the category defined screen
+	 * Or
+	 * 6. ability to add challenge to challenge list button appears
+	 * 7. user clicks "add to challenge list"
+	 * 8. user is navigated to the challenge list screen
+	 *
+	 *
+	 * Considerations:
+	 * - should user be limited by the challenges they can create?
+	 * - should user be able to create a challenge with a custom emoji?
+	 * - should user be able to create a challenge with a custom difficulty?
+	 * - should user be able to create a challenge with a custom start date?
+	 */
 
 	function handleAddCustomAmount(text: string) {
 		setCustomChallengeAmount(text);
@@ -112,9 +134,6 @@ export function CreateYourChallengeScreen() {
 								<Text size="14px" color="greyFour">
 									Enter steps amount:
 								</Text>
-								<Text size="12px" color="greyFour">
-									(minimum 1000 steps)
-								</Text>
 							</Box>
 							<Input
 								onChangeText={handleAddCustomAmount}
@@ -122,10 +141,15 @@ export function CreateYourChallengeScreen() {
 								maxLength={9}
 							/>
 						</Box>
-						<Box marginVertical="15px">
-							<Button onPress={handleAddChallenge}>Add</Button>
-						</Box>
 					</Stack>
+					<Box marginTop="90px">
+						<Button onPress={handleAddChallenge}>Add</Button>
+					</Box>
+					<Box paddingTop="20px">
+						<Button variant="secondary" onPress={handleAddChallenge}>
+							Add + begin
+						</Button>
+					</Box>
 				</Box>
 			</Layout>
 		</KeyboardAwareScrollView>

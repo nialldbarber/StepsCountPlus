@@ -74,7 +74,6 @@ export function getPercentageFromPeriod(
 		case "f1-tracks":
 		case "long-distance":
 		case "cycling":
-		case "custom":
 			return getCurrentPercentage(
 				options,
 				HealthKit.getDailyDistanceWalkingRunningSamples,
@@ -143,7 +142,6 @@ export function getSegmentsFromPeriod(
 		case "f1-tracks":
 		case "long-distance":
 		case "cycling":
-		case "custom":
 			return getSegments(
 				options,
 				HealthKit.getDailyDistanceWalkingRunningSamples,

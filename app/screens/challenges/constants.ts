@@ -4,10 +4,6 @@ export const actions = [
 		title: "All",
 	},
 	{
-		id: "custom",
-		title: "Custom",
-	},
-	{
 		id: "steps",
 		title: "Steps",
 	},

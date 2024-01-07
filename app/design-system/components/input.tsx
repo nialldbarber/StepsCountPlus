@@ -8,7 +8,6 @@ import { useState } from "react";
 import type { TextInputProps } from "react-native";
 import { TextInput } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
-import { colors } from "../colors";
 
 interface Props extends TextInputProps {
 	/**
@@ -56,13 +55,15 @@ export function Input({
 
 const stylesheet = createStyleSheet((theme) => ({
 	container: (active) => ({
-		// backgroundColor: theme.colors.inputBackgroundColor,
-		// @TODO: move this into theme colors
-		backgroundColor: active ? colors.black : colors.blackTwo,
-		borderColor: colors.blackTwo,
+		backgroundColor: active
+			? theme.colors.inputActiveBackgroundColor
+			: theme.colors.inputInactiveBackgroundColor,
+		borderColor: active
+			? theme.colors.inputActiveBorderColor
+			: theme.colors.inputInactiveBorderColor,
 		borderWidth: 2,
 		paddingHorizontal: space["20px"],
-		height: heights["46px"],
+		height: heights["56px"],
 		borderRadius: radii.full,
 		color: theme.colors.inputPlaceholderColor,
 		fontSize: 16,
