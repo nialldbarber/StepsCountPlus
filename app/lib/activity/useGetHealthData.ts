@@ -46,7 +46,7 @@ export function useGetHealthData(date: Date) {
 
   /**
    * =====================================================================
-   * @type Initialisaton
+   * @type Initialisaton // Check if Apple Health permissions are granted
    * =====================================================================
    */
   useEffect(() => {

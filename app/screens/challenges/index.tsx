@@ -1,3 +1,4 @@
+import { ChallengeChip } from "@/app/components/challenge/chip";
 import { ChallengeItem } from "@/app/components/challenge/list-item";
 import { Pressable } from "@/app/core/pressable";
 import { Bleed } from "@/app/design-system/components/bleed";
@@ -57,49 +58,21 @@ export function ChallengesScreen() {
         <Bleed left="-20px" right="-20px" style={styles.bleed}>
           <Row marginHorizontal="15px" a11yRole="tablist" scroll>
             <Box flexDirection="row">
-              <Pressable onPress={() => setCurrentFilterScreen("in-progress")}>
-                <Box
-                  backgroundColor={theme.colors.chipChallengesBackground}
-                  paddingVertical="5px"
-                  paddingHorizontal="15px"
-                  borderRadius="full"
-                  marginHorizontal="5px"
-                  borderWidth={1}
-                  styles={styles.currentFilterScreen(
-                    currentFilterScreen === "in-progress"
-                  )}
-                >
-                  <Text textStyles={styles.challengeChipText}>In Progress</Text>
-                </Box>
-              </Pressable>
-              <Pressable onPress={() => setCurrentFilterScreen("completed")}>
-                <Box
-                  backgroundColor={theme.colors.chipChallengesBackground}
-                  paddingVertical="5px"
-                  paddingHorizontal="15px"
-                  borderRadius="full"
-                  marginHorizontal="5px"
-                  borderWidth={1}
-                  styles={styles.currentFilterScreen(
-                    currentFilterScreen === "completed"
-                  )}
-                >
-                  <Text textStyles={styles.challengeChipText}>Completed</Text>
-                </Box>
-              </Pressable>
-              <Pressable onPress={() => navigate("SelectChallenge")}>
-                <Box
-                  backgroundColor={theme.colors.chipChallengesBackground}
-                  paddingVertical="5px"
-                  paddingHorizontal="15px"
-                  borderRadius="full"
-                  marginHorizontal="5px"
-                  borderWidth={1}
-                  styles={styles.currentFilterScreen(false)}
-                >
-                  <Text textStyles={styles.challengeChipText}>Add New</Text>
-                </Box>
-              </Pressable>
+              <ChallengeChip
+                label="In Progress"
+                isSelected={currentFilterScreen === "in-progress"}
+                fn={() => setCurrentFilterScreen("in-progress")}
+              />
+              <ChallengeChip
+                label="Completed"
+                isSelected={currentFilterScreen === "completed"}
+                fn={() => setCurrentFilterScreen("completed")}
+              />
+              <ChallengeChip
+                label="Add new"
+                isSelected={false}
+                fn={() => navigate("SelectChallenge")}
+              />
             </Box>
           </Row>
         </Bleed>
@@ -245,13 +218,5 @@ const stylesheet = createStyleSheet((theme) => ({
   },
   textEmpty: {
     textAlign: "center",
-  },
-  currentFilterScreen: (isActive) => ({
-    borderColor: isActive
-      ? theme.colors.chipChallengesActiveBorder
-      : theme.colors.chipChallengesBorder,
-  }),
-  challengeChipText: {
-    color: theme.colors.chipChallengesColor,
   },
 }));
