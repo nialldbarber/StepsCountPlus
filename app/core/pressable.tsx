@@ -1,70 +1,69 @@
+import { hapticToTrigger, type HapticFeedbackType } from "@/app/lib/haptics";
+import { usePreferencesStore } from "@/app/store/perferences";
 import type { A11y } from "@/app/types/a11y";
 import type { PressableProps as NativePressableProps } from "react-native";
 import { Pressable as NativePressable } from "react-native";
-import RNReactNativeHapticFeedback from "react-native-haptic-feedback";
-import { usePreferencesStore } from "../store/perferences";
 
 export interface PressableProps extends NativePressableProps, A11y {
-  /**
-   * Function to be called when the Pressable is pressed
-   */
-  onPress?: (...args: unknown[]) => unknown;
-  /**
-   * Haptic feedback to be triggered when the Pressable is pressed
-   */
-  haptics?: {
-    type: "action" | "notification";
-    level?: "Success" | "Warning" | "Error" | "Light" | "Medium" | "Heavy";
-  };
-  /**
-   * Use this when the Pressable doesn't
-   * fire a function, but still requires
-   * feedback
-   */
-  forceHaptic?: boolean;
+	/**
+	 * Function to be called when the Pressable is pressed
+	 */
+	onPress?: (...args: unknown[]) => unknown;
+	/**
+	 * Haptic feedback to be triggered when the Pressable is pressed
+	 */
+	haptic?: HapticFeedbackType;
+	/**
+	 * Use this when the Pressable doesn't
+	 * fire a function, but still requires
+	 * feedback
+	 */
+	forceHaptic?: boolean;
 }
 
 export function Pressable({
-  onPress,
-  haptics = { type: "action" },
-  forceHaptic = false,
-  a11yLabel,
-  a11yHint,
-  a11yRole = "button",
-  a11yState,
-  children,
-  ...rest
+	onPress,
+	haptic = "impactMedium",
+	forceHaptic = false,
+	a11yLabel,
+	a11yHint,
+	a11yRole = "button",
+	a11yState,
+	children,
+	...rest
 }: PressableProps) {
-  const { hapticFeedback } = usePreferencesStore();
+	const { hapticFeedback } = usePreferencesStore();
 
-  const handleOnPress = () => {
-    if (hapticFeedback === false) {
-      if (onPress === null || onPress === undefined) return;
-      onPress();
-      return;
-    }
+	const handleOnPress = () => {
+		if (hapticFeedback === false) {
+			if (onPress === null || onPress === undefined) {
+				return;
+			}
+			onPress();
+			return;
+		}
 
-    if (forceHaptic) {
-      RNReactNativeHapticFeedback.trigger("impactMedium");
-      return;
-    }
+		if (forceHaptic) {
+			hapticToTrigger(haptic);
+			return;
+		}
 
-    if (onPress === null || onPress === undefined) return;
-    RNReactNativeHapticFeedback.trigger("impactMedium");
-    onPress();
-  };
+		if (onPress === null || onPress === undefined) return;
+		hapticToTrigger(haptic);
+		onPress();
+	};
 
-  return (
-    <NativePressable
-      onPress={handleOnPress}
-      {...rest}
-      accessible
-      accessibilityLabel={a11yLabel}
-      accessibilityHint={a11yHint}
-      accessibilityRole={a11yRole}
-      accessibilityState={a11yState}
-    >
-      {children}
-    </NativePressable>
-  );
+	return (
+		<NativePressable
+			onPress={handleOnPress}
+			{...rest}
+			accessible
+			accessibilityLabel={a11yLabel}
+			accessibilityHint={a11yHint}
+			accessibilityRole={a11yRole}
+			accessibilityState={a11yState}
+		>
+			{children}
+		</NativePressable>
+	);
 }
