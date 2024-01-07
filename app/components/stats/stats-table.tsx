@@ -1,10 +1,11 @@
 import { Box } from "@/app/design-system/components/box";
 import { Table } from "@/app/design-system/components/table";
 import { Text } from "@/app/design-system/components/text";
+import type { Goals } from "@/app/store/goal-types";
 import { useMeasurementsStore } from "@/app/store/measurements";
 
 type Props = {
-	filter: "Steps" | "Flights" | "Distance";
+	filter: Goals;
 	daily: string | number;
 	weekly: string | number;
 	monthly: string | number;
