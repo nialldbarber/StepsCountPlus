@@ -8,19 +8,21 @@ import { Layout } from "@/app/design-system/components/layout";
 import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
 import { radii } from "@/app/design-system/radii";
+import { heights } from "@/app/design-system/size";
 import { space } from "@/app/design-system/space";
 import type { Challenge } from "@/app/store/challenges";
 import { useChallengesStore } from "@/app/store/challenges";
 import type { LowercaseGoals } from "@/app/types/goals";
-import { useState } from "react";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
-
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export function CreateYourChallengeScreen() {
 	const { navigate } = useNavigation();
+	const insets = useSafeAreaInsets();
 	const { styles } = useStyles(stylesheet);
 	const [customChallengeTitle, setCustomChallengeTitle] = useState("");
 	const [customChallengeAmount, setCustomChallengeAmount] = useState("");
@@ -142,21 +144,31 @@ export function CreateYourChallengeScreen() {
 							/>
 						</Box>
 					</Stack>
-					<Box marginTop="90px">
-						<Button onPress={handleAddChallenge}>Add</Button>
-					</Box>
-					<Box paddingTop="20px">
-						<Button variant="secondary" onPress={handleAddChallenge}>
-							Add + begin
-						</Button>
-					</Box>
 				</Box>
 			</Layout>
+			<Box
+				position="absolute"
+				bottom="0px"
+				left="0px"
+				right="0px"
+				backgroundColor=""
+				paddingHorizontal="20px"
+				styles={styles.floatingButtonBackground(insets.bottom)}
+			>
+				<Box>
+					<Button onPress={handleAddChallenge}>Add</Button>
+				</Box>
+				<Box paddingTop="20px">
+					<Button variant="secondary" onPress={handleAddChallenge}>
+						Add + begin
+					</Button>
+				</Box>
+			</Box>
 		</KeyboardAwareScrollView>
 	);
 }
 
-const stylesheet = createStyleSheet(() => ({
+const stylesheet = createStyleSheet((theme) => ({
 	container: (isActive) => ({
 		flex: 1,
 		justifyContent: "center",
@@ -167,5 +179,9 @@ const stylesheet = createStyleSheet(() => ({
 		backgroundColor: colors.blackTwo,
 		borderWidth: 2,
 		borderColor: isActive ? colors.primary : colors.blackTwo,
+	}),
+	floatingButtonBackground: (bottom) => ({
+		backgroundColor: theme.colors.screenBackgroundColor,
+		paddingBottom: bottom + heights["68px"],
 	}),
 }));
