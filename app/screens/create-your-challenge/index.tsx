@@ -42,6 +42,12 @@ export function CreateYourChallengeScreen() {
 	};
 
 	/**
+	 * Picking a category flow:
+	 * - create a current category state
+	 * - create a function to set the current category
+	 */
+
+	/**
 	 * Flow:
 	 * 1. user adds a new challenge
 	 * 2. user selects a challenge type (steps, flights, distance)
@@ -121,30 +127,87 @@ export function CreateYourChallengeScreen() {
 						<Text>Distance</Text>
 					</Pressable>
 				</Box>
-				<Box marginVertical="20px">
-					<Stack gutter="10px">
-						<Box>
-							<Box paddingLeft="10px" paddingBottom="10px">
-								<Text size="14px" color="greyFour">
-									Add a custom title:
-								</Text>
+
+				{currentChallenge === "steps" && (
+					<Box marginVertical="20px">
+						<Stack gutter="10px">
+							<Box>
+								<Box paddingLeft="10px" paddingBottom="10px">
+									<Text size="14px" color="greyFour">
+										Add a custom title:
+									</Text>
+								</Box>
+								<Input onChangeText={handleAddCustomTitle} maxLength={100} />
 							</Box>
-							<Input onChangeText={handleAddCustomTitle} maxLength={100} />
-						</Box>
-						<Box>
-							<Box paddingLeft="10px" paddingBottom="10px">
-								<Text size="14px" color="greyFour">
-									Enter steps amount:
-								</Text>
+							<Box>
+								<Box paddingLeft="10px" paddingBottom="10px">
+									<Text size="14px" color="greyFour">
+										Enter steps amount:
+									</Text>
+								</Box>
+								<Input
+									onChangeText={handleAddCustomAmount}
+									keyboardType="number-pad"
+									maxLength={9}
+								/>
 							</Box>
-							<Input
-								onChangeText={handleAddCustomAmount}
-								keyboardType="number-pad"
-								maxLength={9}
-							/>
-						</Box>
-					</Stack>
-				</Box>
+						</Stack>
+					</Box>
+				)}
+
+				{currentChallenge === "flights" && (
+					<Box marginVertical="20px">
+						<Stack gutter="10px">
+							<Box>
+								<Box paddingLeft="10px" paddingBottom="10px">
+									<Text size="14px" color="greyFour">
+										Add a custom title:
+									</Text>
+								</Box>
+								<Input onChangeText={handleAddCustomTitle} maxLength={100} />
+							</Box>
+							<Box>
+								<Box paddingLeft="10px" paddingBottom="10px">
+									<Text size="14px" color="greyFour">
+										Enter flights amount:
+									</Text>
+								</Box>
+								<Input
+									onChangeText={handleAddCustomAmount}
+									keyboardType="number-pad"
+									maxLength={9}
+								/>
+							</Box>
+						</Stack>
+					</Box>
+				)}
+
+				{currentChallenge === "distance" && (
+					<Box marginVertical="20px">
+						<Stack gutter="10px">
+							<Box>
+								<Box paddingLeft="10px" paddingBottom="10px">
+									<Text size="14px" color="greyFour">
+										Add a custom title:
+									</Text>
+								</Box>
+								<Input onChangeText={handleAddCustomTitle} maxLength={100} />
+							</Box>
+							<Box>
+								<Box paddingLeft="10px" paddingBottom="10px">
+									<Text size="14px" color="greyFour">
+										Enter distance amount:
+									</Text>
+								</Box>
+								<Input
+									onChangeText={handleAddCustomAmount}
+									keyboardType="number-pad"
+									maxLength={9}
+								/>
+							</Box>
+						</Stack>
+					</Box>
+				)}
 			</Layout>
 			<Box
 				position="absolute"
