@@ -1,4 +1,5 @@
-import { hapticToTrigger, type HapticFeedbackType } from "@/app/lib/haptics";
+import type { HapticFeedbackType } from "@/app/lib/haptics";
+import { hapticToTrigger } from "@/app/lib/haptics";
 import { usePreferencesStore } from "@/app/store/perferences";
 import type { A11y } from "@/app/types/a11y";
 import type { PressableProps as NativePressableProps } from "react-native";
@@ -33,8 +34,9 @@ export function Pressable({
 	...rest
 }: PressableProps) {
 	const { hapticFeedback } = usePreferencesStore();
+	const invokeHaptic = hapticToTrigger(haptic);
 
-	const handleOnPress = () => {
+	function handleOnPress() {
 		if (hapticFeedback === false) {
 			if (onPress === null || onPress === undefined) {
 				return;
@@ -44,14 +46,15 @@ export function Pressable({
 		}
 
 		if (forceHaptic) {
-			hapticToTrigger(haptic);
+			invokeHaptic[haptic]();
 			return;
 		}
 
 		if (onPress === null || onPress === undefined) return;
-		hapticToTrigger(haptic);
+		console.log("i should be triggering haptic");
+		invokeHaptic[haptic]();
 		onPress();
-	};
+	}
 
 	return (
 		<NativePressable
