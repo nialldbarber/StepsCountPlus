@@ -2,6 +2,7 @@ import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Text } from "@/app/design-system/components/text";
 import { radii } from "@/app/design-system/radii";
+import { space } from "@/app/design-system/space";
 import { getPercentageFromPeriod } from "@/app/lib/activity/challenge";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
 import { convertMetersToKm } from "@/app/lib/format/measurements";
@@ -76,20 +77,21 @@ export function ChallengeCard({
 		<Box
 			marginBottom="28px"
 			position="relative"
+			borderRadius="large"
 			overflow="hidden"
-			borderRadius="medium"
 		>
 			<Box
 				backgroundColor={theme.colors.cardBackgroundColor}
 				padding="20px"
-				minHeight="120px"
+				minHeight="175px"
+				shadow
 			>
 				<Box flexDirection="row" justifyContent="space-between" flexWrap="wrap">
-					<Box flexDirection="row" flexWrap="wrap">
-						<Box paddingRight="20px">
+					<Box flexWrap="wrap">
+						<Box paddingRight="20px" paddingBottom="8px">
 							<Text>{emoji}</Text>
 						</Box>
-						<Box flexShrink={1} width="7/10">
+						<Box flexShrink={1}>
 							<Text level="heading" size="18px">
 								{title}
 							</Text>
@@ -113,11 +115,7 @@ export function ChallengeCard({
 					</Box>
 				</Box>
 				{isSet ? (
-					<Box
-						flexDirection="row"
-						justifyContent="space-between"
-						paddingTop="30px"
-					>
+					<Box paddingTop="5px">
 						<Text size="14px">{Math.round(percentage)}% complete</Text>
 					</Box>
 				) : (
@@ -128,7 +126,7 @@ export function ChallengeCard({
 					</Box>
 				)}
 			</Box>
-			{isSet && <Box styles={styles.percent(percentage)} />}
+			{isSet && <Box styles={styles.percent(percentage, difficulty)} />}
 		</Box>
 	);
 }
@@ -142,13 +140,18 @@ const stylesheet = createStyleSheet((theme) => ({
 				  ? theme.colors.cardWarning
 				  : theme.colors.cardError,
 	}),
-	percent: (percent) => ({
+	percent: (percent, difficulty) => ({
 		position: "absolute",
 		bottom: 0,
 		left: 0,
 		width: `${Number(percent)}%`,
-		height: 4,
-		backgroundColor: theme.colors.cardPercentStroke,
+		height: space["10px"],
+		backgroundColor:
+			difficulty === "easy"
+				? theme.colors.cardSuccess
+				: difficulty === "medium"
+				  ? theme.colors.cardWarning
+				  : theme.colors.cardError,
 		borderRadius: radii.full,
 	}),
 }));
