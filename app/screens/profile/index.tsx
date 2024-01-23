@@ -17,7 +17,6 @@ export function ProfileScreen() {
 		const unsubscribe = addListener("focus", () => {
 			if (isSubscribed === false && count % 10 === 0) {
 				navigate("Premium");
-				console.log("I AM FOCUSED");
 			}
 			setCount(count + 1);
 		});

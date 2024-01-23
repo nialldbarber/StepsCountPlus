@@ -1,51 +1,41 @@
-import type { Segments } from "@/app/store/measurement";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 type FlightsState = {
-	dailyFlights: number;
-	weeklyFlights: number;
-	weeklySegments: Segments;
-	monthlyFlights: number;
-	monthlySegments: Segments;
-	yearlyFlights: number;
-	yearlySegments: Segments;
+  dailyFlights: number;
+  weeklyFlights: number;
+  monthlyFlights: number;
+  yearlyFlights: number;
 };
 
 type FlightsActions = {
-	setDailyFlights: (flights: number) => void;
-	setWeeklyFlights: (flights: number, segments: Segments) => void;
-	setMonthlyFlights: (flights: number, segments: Segments) => void;
-	setYearlyFlights: (flights: number, segments: Segments) => void;
+  setDailyFlights: (flights: number) => void;
+  setWeeklyFlights: (flights: number) => void;
+  setMonthlyFlights: (flights: number) => void;
+  setYearlyFlights: (flights: number) => void;
 };
 
 export const useFlightsStore = create(
-	immer<FlightsState & FlightsActions>((set) => ({
-		dailyFlights: 0,
-		weeklyFlights: 0,
-		weeklySegments: [],
-		monthlyFlights: 0,
-		monthlySegments: [],
-		yearlyFlights: 0,
-		yearlySegments: [],
-		setDailyFlights: (flights: number) =>
-			set((state) => {
-				state.dailyFlights = flights;
-			}),
-		setWeeklyFlights: (flights: number, segments: Segments) =>
-			set((state) => {
-				state.weeklyFlights = flights;
-				state.weeklySegments = segments;
-			}),
-		setMonthlyFlights: (flights: number, segments: Segments) =>
-			set((state) => {
-				state.monthlyFlights = flights;
-				state.monthlySegments = segments;
-			}),
-		setYearlyFlights: (flights: number, segments: Segments) =>
-			set((state) => {
-				state.yearlyFlights = flights;
-				state.yearlySegments = segments;
-			}),
-	})),
+  immer<FlightsState & FlightsActions>((set) => ({
+    dailyFlights: 0,
+    weeklyFlights: 0,
+    monthlyFlights: 0,
+    yearlyFlights: 0,
+    setDailyFlights: (flights: number) =>
+      set((state) => {
+        state.dailyFlights = flights;
+      }),
+    setWeeklyFlights: (flights: number) =>
+      set((state) => {
+        state.weeklyFlights = flights;
+      }),
+    setMonthlyFlights: (flights: number) =>
+      set((state) => {
+        state.monthlyFlights = flights;
+      }),
+    setYearlyFlights: (flights: number) =>
+      set((state) => {
+        state.yearlyFlights = flights;
+      }),
+  }))
 );

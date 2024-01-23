@@ -92,7 +92,6 @@ export function CreateYourChallengeScreen() {
 			bottomOffset: 100,
 			onPress: () => navigate("ChallengesRoot"),
 		});
-		console.log(JSON.stringify(newChallenge, null, 2));
 	}
 
 	return (

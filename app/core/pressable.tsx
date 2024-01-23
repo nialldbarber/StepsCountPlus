@@ -51,7 +51,6 @@ export function Pressable({
 		}
 
 		if (onPress === null || onPress === undefined) return;
-		console.log("i should be triggering haptic");
 		invokeHaptic[haptic]();
 		onPress();
 	}

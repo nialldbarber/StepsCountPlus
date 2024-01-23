@@ -24,8 +24,6 @@ export function DailyDistanceGoal() {
 		return distance;
 	}, [distance, distanceGoal]);
 
-	console.log("HELLO", { distanceGoal });
-
 	return (
 		<GoalsCard
 			type="Distance"

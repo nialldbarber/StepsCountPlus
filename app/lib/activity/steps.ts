@@ -10,7 +10,7 @@ export function getMeasurementsFromPeriod(
     | HealthKit["getDailyStepCountSamples"]
     | HealthKit["getDailyFlightsClimbedSamples"]
     | HealthKit["getDailyDistanceWalkingRunningSamples"],
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: @TODO: find explicit type
   callback: (...args: any[]) => void
 ) {
   const startDate = new Date();
@@ -23,7 +23,6 @@ export function getMeasurementsFromPeriod(
   const options: HealthInputOptions = {
     startDate: startDate.toISOString(),
     endDate: new Date().toISOString(),
-    period: 1444,
   };
 
   retrievalFn(options, (error, results) => {
@@ -41,15 +40,7 @@ export function getMeasurementsFromPeriod(
       return;
     }
 
-    const segments = results
-      .filter((segment) => segment && typeof segment.value === "number")
-      .map((segment) => ({
-        timestamp: new Date().getTime(),
-        value: segment?.value,
-      }))
-      .reverse();
-
     const totalSteps = results.reduce((total, { value }) => total + value, 0);
-    callback(null, Math.round(totalSteps), segments);
+    callback(null, Math.round(totalSteps));
   });
 }
