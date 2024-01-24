@@ -301,6 +301,8 @@ export function useGetHealthData(date: Date) {
 				invokeDistanceData();
 			}
 		} catch (error) {
+			// @TODO: set global error here directing
+			// the user to accept health permissions in settings
 			console.error(error);
 		}
 	}, [hasPermission, distance]);

@@ -33,12 +33,12 @@ export type Challenge = {
 	category: ChallengeType;
 };
 
-export type ChallengeComplete = {
+export interface ChallengeComplete extends Challenge {
 	// @TODO: add endDate and timeTaken later
 	//endDate: string;
 	//timeTaken: string;
 	count?: number;
-} & Challenge;
+}
 
 type ChallengesState = {
 	challenges: Array<Challenge>;

@@ -2,14 +2,21 @@ import type { HapticFeedbackType } from "@/app/lib/haptics";
 import { hapticToTrigger } from "@/app/lib/haptics";
 import { usePreferencesStore } from "@/app/store/perferences";
 import type { A11y } from "@/app/types/a11y";
-import type { PressableProps as NativePressableProps } from "react-native";
+import type {
+	GestureResponderEvent,
+	PressableProps as NativePressableProps,
+} from "react-native";
 import { Pressable as NativePressable } from "react-native";
 
 export interface PressableProps extends NativePressableProps, A11y {
 	/**
-	 * Function to be called when the Pressable is pressed
+	 * Function to be called when the Pressable
+	 * is pressed added optionally here from
+	 * `PressableProps`, to make the parameters
+	 * optional if we want to just trigger
+	 * a haptic and no onPress event
 	 */
-	onPress?: (...args: unknown[]) => unknown;
+	onPress?: null | ((event?: GestureResponderEvent) => void) | undefined;
 	/**
 	 * Haptic feedback to be triggered when the Pressable is pressed
 	 */
@@ -37,6 +44,7 @@ export function Pressable({
 	const invokeHaptic = hapticToTrigger(haptic);
 
 	function handleOnPress() {
+		// are haptics disabled globally?
 		if (hapticFeedback === false) {
 			if (onPress === null || onPress === undefined) {
 				return;
@@ -44,12 +52,13 @@ export function Pressable({
 			onPress();
 			return;
 		}
-
+		// is the element button-like w/o an event?
 		if (forceHaptic) {
 			invokeHaptic[haptic]();
 			return;
 		}
 
+		// standard button with an event
 		if (onPress === null || onPress === undefined) return;
 		invokeHaptic[haptic]();
 		onPress();
