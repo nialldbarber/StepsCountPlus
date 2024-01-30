@@ -4,8 +4,8 @@ import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Card } from "@/app/design-system/components/card";
 import { Layout } from "@/app/design-system/components/layout";
-import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
+import { VStack } from "@/app/design-system/components/v-stack";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useRef } from "react";
@@ -28,7 +28,7 @@ export function SelectChallengeScreen() {
 					backgroundColor: theme.colors.modalBackgroundColor,
 				}}
 			>
-				<Stack margin="20px">
+				<VStack margin="20px">
 					<ScrollView showsVerticalScrollIndicator={false}>
 						<Box paddingBottom="20px">
 							<Text size="14px" weight="medium" textStyles={styles.text}>
@@ -43,7 +43,7 @@ export function SelectChallengeScreen() {
 							</Text>
 						</Box>
 					</ScrollView>
-				</Stack>
+				</VStack>
 			</BottomSheetModal>
 
 			<Layout>

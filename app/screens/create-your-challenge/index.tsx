@@ -5,8 +5,8 @@ import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Input } from "@/app/design-system/components/input";
 import { Layout } from "@/app/design-system/components/layout";
-import { Stack } from "@/app/design-system/components/stack";
 import { Text } from "@/app/design-system/components/text";
+import { VStack } from "@/app/design-system/components/v-stack";
 import { radii } from "@/app/design-system/radii";
 import { heights } from "@/app/design-system/size";
 import { space } from "@/app/design-system/space";
@@ -129,7 +129,7 @@ export function CreateYourChallengeScreen() {
 
 				{currentChallenge === "steps" && (
 					<Box marginVertical="20px">
-						<Stack gutter="10px">
+						<VStack gutter="10px">
 							<Box>
 								<Box paddingLeft="10px" paddingBottom="10px">
 									<Text size="14px" color="greyFour">
@@ -150,13 +150,13 @@ export function CreateYourChallengeScreen() {
 									maxLength={9}
 								/>
 							</Box>
-						</Stack>
+						</VStack>
 					</Box>
 				)}
 
 				{currentChallenge === "flights" && (
 					<Box marginVertical="20px">
-						<Stack gutter="10px">
+						<VStack gutter="10px">
 							<Box>
 								<Box paddingLeft="10px" paddingBottom="10px">
 									<Text size="14px" color="greyFour">
@@ -177,13 +177,13 @@ export function CreateYourChallengeScreen() {
 									maxLength={9}
 								/>
 							</Box>
-						</Stack>
+						</VStack>
 					</Box>
 				)}
 
 				{currentChallenge === "distance" && (
 					<Box marginVertical="20px">
-						<Stack gutter="10px">
+						<VStack gutter="10px">
 							<Box>
 								<Box paddingLeft="10px" paddingBottom="10px">
 									<Text size="14px" color="greyFour">
@@ -204,7 +204,7 @@ export function CreateYourChallengeScreen() {
 									maxLength={9}
 								/>
 							</Box>
-						</Stack>
+						</VStack>
 					</Box>
 				)}
 			</Layout>

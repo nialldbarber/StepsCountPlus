@@ -4,8 +4,8 @@ import { Pressable } from "@/app/core/pressable";
 import { Bleed } from "@/app/design-system/components/bleed";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
+import { HStack } from "@/app/design-system/components/h-stack";
 import { Layout } from "@/app/design-system/components/layout";
-import { Row } from "@/app/design-system/components/row";
 import { Text } from "@/app/design-system/components/text";
 import { space } from "@/app/design-system/space";
 import { capitaliseFirstLetter } from "@/app/lib/format/alpha";
@@ -56,7 +56,7 @@ export function ChallengesScreen() {
 		<Layout>
 			<Box>
 				<Bleed left="-20px" right="-20px" style={styles.bleed}>
-					<Row marginHorizontal="15px" a11yRole="tablist" scroll>
+					<HStack marginHorizontal="15px" a11yRole="tablist" scroll>
 						<Box flexDirection="row">
 							<ChallengeChip
 								label="In Progress"
@@ -74,7 +74,7 @@ export function ChallengesScreen() {
 								fn={() => navigate("SelectChallenge")}
 							/>
 						</Box>
-					</Row>
+					</HStack>
 				</Bleed>
 
 				<Box

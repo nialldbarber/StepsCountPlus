@@ -5,9 +5,9 @@ import { InfoModal } from "@/app/components/info-modal";
 import { hitSlopLarge } from "@/app/constants/hit-slop";
 import { Box } from "@/app/design-system/components/box";
 import { Chip } from "@/app/design-system/components/chip";
-import { Row } from "@/app/design-system/components/row";
-import { Stack } from "@/app/design-system/components/stack";
+import { HStack } from "@/app/design-system/components/h-stack";
 import { Text } from "@/app/design-system/components/text";
+import { VStack } from "@/app/design-system/components/v-stack";
 import { useActiveValue } from "@/app/hooks/useActiveValue";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
 import { useShakeAnimation } from "@/app/hooks/useShakeAnimation";
@@ -120,7 +120,7 @@ export function GoalsCard({
 					backgroundColor: theme.colors.modalBackgroundColor,
 				}}
 			>
-				<Stack margin="20px">
+				<VStack margin="20px">
 					<ScrollView showsVerticalScrollIndicator={false}>
 						{type === "Steps" ? (
 							<StepsInfo />
@@ -130,7 +130,7 @@ export function GoalsCard({
 							<DistanceInfo />
 						) : null}
 					</ScrollView>
-				</Stack>
+				</VStack>
 			</BottomSheetModal>
 			<Box
 				position="relative"
@@ -144,7 +144,7 @@ export function GoalsCard({
 				<Box position="absolute" right="19px" top="19px">
 					<InfoModal handlePresentModalPress={handlePresentModalPress} />
 				</Box>
-				<Stack gutter="5px">
+				<VStack gutter="5px">
 					<Box alignItems="center" paddingBottom="20px">
 						<Text level="heading" size="26px" weight="bold" withEmoji>
 							{title}
@@ -184,7 +184,7 @@ export function GoalsCard({
 						</Text>
 					</Box>
 					<Box marginVertical="5px">
-						<Row gutter="2px" justifyContent="space-between">
+						<HStack gutter="2px" justifyContent="space-between">
 							{options.map(({ id, label, value: chipValue }, index) => {
 								return (
 									<Chip
@@ -207,9 +207,9 @@ export function GoalsCard({
 									/>
 								);
 							})}
-						</Row>
+						</HStack>
 					</Box>
-				</Stack>
+				</VStack>
 			</Box>
 		</>
 	);
