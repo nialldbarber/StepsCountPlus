@@ -15,6 +15,12 @@ interface Props extends TextInputProps {
 	 * of the input, usually with an X icon
 	 */
 	handleDeleteValue?: () => void;
+	/**
+	 * Sometimes we don't want to give the user the
+	 * ability to clear their input. Cases such
+	 * as API limitations
+	 */
+	showClear?: boolean;
 }
 
 export function Input({
@@ -22,6 +28,7 @@ export function Input({
 	placeholder,
 	keyboardType,
 	onChangeText,
+	showClear = true,
 	handleDeleteValue,
 	...rest
 }: Props) {
@@ -41,8 +48,9 @@ export function Input({
 				onBlur={() => setFocused(false)}
 				returnKeyType="done"
 				multiline={false}
+				{...rest}
 			/>
-			{value?.length > 0 ? (
+			{showClear && value?.length > 0 ? (
 				<Box position="absolute" right="12px" top="12px">
 					<Pressable onPress={handleDeleteValue}>
 						<CloseCircle color={theme.colors.inputIconColor} />

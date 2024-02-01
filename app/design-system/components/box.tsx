@@ -33,7 +33,7 @@ import { View } from "react-native";
  * is undefined, it will be ignored
  */
 
-function resolveToken<TokenName extends string, TokenValue, CustomValue>(
+export function resolveToken<TokenName extends string, TokenValue, CustomValue>(
 	scale: Record<TokenName, TokenValue>,
 	value: TokenName | { custom: CustomValue } | undefined,
 ) {

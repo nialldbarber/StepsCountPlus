@@ -14,6 +14,7 @@ export const lightTheme = {
 		 */
 		screenBackgroundColor: colors.white,
 		modalBackgroundColor: colors.pureWhite,
+		loginModalBackgroundColor: colors.white,
 		// this is purposefully a string literal
 		// as its value is passed as a prop to Layout
 		statsBottomSectionBackgroundColor: "pureWhite",
@@ -135,6 +136,7 @@ export const darkTheme = {
 		 */
 		screenBackgroundColor: colors.black,
 		modalBackgroundColor: colors.black,
+		loginModalBackgroundColor: colors.white,
 		// this is purposefully a string literal
 		// as its value is passed as a prop to Layout
 		statsBottomSectionBackgroundColor: "black",
