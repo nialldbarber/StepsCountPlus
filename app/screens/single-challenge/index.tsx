@@ -1,7 +1,7 @@
 import { ChallengeCard } from "@/app/components/challenge/card";
 import { InfoModal } from "@/app/components/info-modal";
 import { ScreenHeader } from "@/app/components/screen-header";
-import data from "@/app/data/challenges.json";
+import data from "@/app/data/challenges.json" with { type: "json" };
 import { Box } from "@/app/design-system/components/box";
 import { CHALLENGE_TYPES } from "@/app/design-system/components/card";
 import { Input } from "@/app/design-system/components/input";
