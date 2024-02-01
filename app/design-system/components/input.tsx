@@ -8,6 +8,7 @@ import { useState } from "react";
 import type { TextInputProps } from "react-native";
 import { TextInput } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { Text } from "./text";
 
 interface Props extends TextInputProps {
 	/**
@@ -21,6 +22,9 @@ interface Props extends TextInputProps {
 	 * as API limitations
 	 */
 	showClear?: boolean;
+
+	isError?: boolean;
+	errorMessage?: string;
 }
 
 export function Input({
@@ -30,6 +34,8 @@ export function Input({
 	onChangeText,
 	showClear = true,
 	handleDeleteValue,
+	isError,
+	errorMessage,
 	...rest
 }: Props) {
 	const [focused, setFocused] = useState(false);
@@ -38,7 +44,7 @@ export function Input({
 	return (
 		<Box shadow position="relative">
 			<TextInput
-				style={styles.container(focused)}
+				style={styles.container(focused, isError)}
 				value={value}
 				onChangeText={(text) => onChangeText?.(text)}
 				placeholder={placeholder}
@@ -57,18 +63,27 @@ export function Input({
 					</Pressable>
 				</Box>
 			) : null}
+			<Box height="20px">
+				{isError && (
+					<Text size="11px" textStyles={styles.errorText}>
+						{errorMessage}
+					</Text>
+				)}
+			</Box>
 		</Box>
 	);
 }
 
 const stylesheet = createStyleSheet((theme) => ({
-	container: (active) => ({
+	container: (active, isError) => ({
 		backgroundColor: active
 			? theme.colors.inputActiveBackgroundColor
 			: theme.colors.inputInactiveBackgroundColor,
 		borderColor: active
 			? theme.colors.inputActiveBorderColor
-			: theme.colors.inputInactiveBorderColor,
+			: isError
+			  ? theme.colors.inputErrorBorderColor
+			  : theme.colors.inputInactiveBorderColor,
 		borderWidth: 2,
 		paddingHorizontal: space["20px"],
 		height: heights["56px"],
@@ -76,4 +91,9 @@ const stylesheet = createStyleSheet((theme) => ({
 		color: theme.colors.inputPlaceholderColor,
 		fontSize: 16,
 	}),
+	errorText: {
+		color: theme.colors.inputErrorTextColor,
+		paddingLeft: space["10px"],
+		paddingTop: space["10px"],
+	},
 }));

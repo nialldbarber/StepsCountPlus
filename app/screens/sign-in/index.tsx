@@ -8,6 +8,7 @@ import { VStack } from "@/app/design-system/components/v-stack";
 import { useBottomSheet } from "@/app/hooks/useBottomSheet";
 import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigation } from "@react-navigation/native";
 import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
@@ -24,16 +25,13 @@ export function SignInScreen() {
 	const bottomSheetRef = useRef(null);
 	const { handlePresentModalPress, handleCloseModal } =
 		useBottomSheet(bottomSheetRef);
+	const { navigate } = useNavigation();
 
 	const {
 		control,
 		handleSubmit,
 		formState: { errors, isSubmitting, isSubmitSuccessful },
 	} = useForm<SignIn>({
-		defaultValues: {
-			email: "",
-			password: "",
-		},
 		resolver: zodResolver(SignInSchema),
 	});
 
@@ -81,8 +79,8 @@ export function SignInScreen() {
 									keyboardType="email-address"
 									autoCapitalize="none"
 									showClear={false}
-									// isError={errors.email}
-									// errorMessage={errors.email?.message}
+									isError={errors.email}
+									errorMessage={errors.email?.message}
 								/>
 							)}
 							name="email"
@@ -98,6 +96,8 @@ export function SignInScreen() {
 									secureTextEntry
 									autoCapitalize="none"
 									showClear={false}
+									isError={errors.password}
+									errorMessage={errors.password?.message}
 								/>
 							)}
 							name="password"
@@ -137,7 +137,12 @@ export function SignInScreen() {
 							</Box>
 							<Box width="1/3" height="1px" backgroundColor="white" />
 						</Box>
-						<Button variant="tertiary">Create an account</Button>
+						<Button
+							variant="tertiary"
+							onPress={() => navigate("CreateAccount")}
+						>
+							Create an account
+						</Button>
 					</VStack>
 				</Box>
 			</Layout>

@@ -61,6 +61,8 @@ export const lightTheme = {
 		inputInactiveBorderColor: colors.white,
 		inputIconColor: colors.black,
 		inputPlaceholderColor: colors.black,
+		inputErrorBorderColor: colors.destructive,
+		inputErrorTextColor: colors.destructive,
 		/**
 		 * @type Icon
 		 */
@@ -183,6 +185,8 @@ export const darkTheme = {
 		inputInactiveBorderColor: colors.black,
 		inputIconColor: colors.pureWhite,
 		inputPlaceholderColor: colors.greyFour,
+		inputErrorBorderColor: colors.destructive,
+		inputErrorTextColor: colors.destructive,
 		/**
 		 * @type Icons
 		 */
