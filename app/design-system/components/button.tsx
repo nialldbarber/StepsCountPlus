@@ -8,6 +8,7 @@ import { shadow } from "@/app/design-system/shadow";
 import { space } from "@/app/design-system/space";
 import { useButtonAnimation } from "@/app/hooks/useButtonAnimation";
 import { useEffect } from "react";
+import { ViewStyle } from "react-native";
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
@@ -53,6 +54,10 @@ interface ButtonProps extends PressableProps, BaseTextProps {
 	 * nesting with `children` over a `text` prop
 	 */
 	children: string;
+	/**
+	 * Override styles for the button
+	 */
+	buttonStyles?: ViewStyle;
 }
 
 function disableOnPending(props: ButtonProps) {
@@ -77,6 +82,7 @@ export function Button(props: ButtonProps) {
 		weight,
 		size,
 		color,
+		buttonStyles,
 		...rest
 	} = updatedProps;
 
@@ -102,7 +108,7 @@ export function Button(props: ButtonProps) {
 		<Animated.View style={animatedStyle}>
 			<Pressable
 				{...rest}
-				style={styles.button}
+				style={[styles.button, buttonStyles]}
 				onPressIn={() => onPress("in")}
 				onPressOut={() => onPress("out")}
 				accessibilityRole="button"
@@ -146,8 +152,12 @@ const stylesheet = createStyleSheet((theme) => ({
 					borderColor: theme.colors.buttonSecondaryBorder,
 					borderWidth: 2,
 				},
-				// @TODO - add tertiary, link, destructive
-				tertiary: {},
+				tertiary: {
+					backgroundColor: theme.colors.buttonTertiaryBackgroundColor,
+					borderColor: theme.colors.buttonTertiaryBorder,
+					borderWidth: 2,
+				},
+				// @TODO - add link, destructive
 				link: {},
 				destructive: {
 					backgroundColor: "#F9F1F2",

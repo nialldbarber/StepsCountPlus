@@ -4,6 +4,7 @@ import type { PropsWithChildren } from "react";
 import { Children } from "react";
 import flattenChildren from "react-keyed-flatten-children";
 import type { ViewProps } from "react-native";
+import { Width } from "../size";
 
 interface VStackProps extends ViewProps {
 	/**
@@ -16,17 +17,23 @@ interface VStackProps extends ViewProps {
 	 * child element
 	 */
 	gutter?: Space;
+	/**
+	 * The overrided width of the element
+	 */
+	width?: Width | Space;
 }
 
 export function VStack({
 	margin = "0px",
 	gutter = "0px",
+	width,
 	children: childProp,
+	...rest
 }: PropsWithChildren<VStackProps>) {
 	const children = flattenChildren(childProp);
 
 	return (
-		<Box margin={margin}>
+		<Box margin={margin} width={width} {...rest}>
 			{Children.map(children, (child, index) => {
 				const first = index === 0;
 				const last = index === children.length - 1;

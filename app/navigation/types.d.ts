@@ -3,11 +3,14 @@ import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 
 export type RootStackParamsList = {
 	Home: undefined;
-	Authentication: undefined;
-	SignUp: undefined;
 	Settings: undefined;
 	Premium: undefined;
 	NewChallenge: undefined;
+	SignIn: undefined;
+	CreateAccount: undefined;
+	ThankYou: undefined;
+	EnableHealthData: undefined;
+	EnableNotifications: undefined;
 };
 
 export type RootBottomTabsParamList = {

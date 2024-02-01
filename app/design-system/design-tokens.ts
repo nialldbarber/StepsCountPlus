@@ -82,6 +82,9 @@ export const lightTheme = {
 		buttonSecondaryBackgroundColor: colors.secondary,
 		buttonSecondaryTextColor: colors.black,
 		buttonSecondaryBorder: colors.primary,
+		buttonTertiaryBackgroundColor: colors.secondary,
+		buttonTertiaryTextColor: colors.white,
+		buttonTertiaryBorder: colors.secondary,
 		/**
 		 * @type Table
 		 */
@@ -200,6 +203,9 @@ export const darkTheme = {
 		buttonSecondaryBackgroundColor: colors.blackTwo,
 		buttonSecondaryTextColor: colors.pureWhite,
 		buttonSecondaryBorder: colors.primary,
+		buttonTertiaryBackgroundColor: colors.blackTwo,
+		buttonTertiaryTextColor: colors.white,
+		buttonTertiaryBorder: colors.blackTwo,
 		/**
 		 * @type Table
 		 */
