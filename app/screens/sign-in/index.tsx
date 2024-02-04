@@ -1,3 +1,4 @@
+import { OauthButtons } from "@/app/components/oauth-buttons";
 import { Box } from "@/app/design-system/components/box";
 import { Button } from "@/app/design-system/components/button";
 import { Input } from "@/app/design-system/components/input";
@@ -118,14 +119,7 @@ export function SignInScreen() {
 							Already a user?
 						</Text>
 						<Button onPress={handlePresentModalPress}>Log in</Button>
-						<Box flexDirection="row" justifyContent="space-between">
-							<Button variant="secondary" buttonStyles={styles.button}>
-								Google
-							</Button>
-							<Button variant="secondary" buttonStyles={styles.button}>
-								Apple
-							</Button>
-						</Box>
+						<OauthButtons />
 						<Box
 							flexDirection="row"
 							alignItems="center"
@@ -151,9 +145,6 @@ export function SignInScreen() {
 }
 
 const stylesheet = createStyleSheet(() => ({
-	button: {
-		minWidth: 180,
-	},
 	text: {
 		alignSelf: "center",
 	},
